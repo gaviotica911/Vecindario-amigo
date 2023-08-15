@@ -1,7 +1,7 @@
 pipeline {
    agent any 
    environment {
-      GIT_REPO = 'YYY'
+      GIT_REPO = '202320_S4_E1_VecindarioAmigo_Back'
       GIT_CREDENTIAL_ID = 'de5cd571-10da-4034-8ba8-af99beef4b14'
       ARCHID_TOKEN = credentials('archid')
       SONARQUBE_URL = 'http://172.24.101.209:8082/sonar-isis2603'
