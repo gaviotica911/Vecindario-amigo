@@ -12,11 +12,10 @@ import lombok.Data;
 @Data
 @Entity
 public class VecindarioEntity {
-    private int id;
+    private int ID;
     private String nombre;
     private String ciudad;
     private String localidad;
-    private String vecindarios_cercanos;
 
     @OneToMany(mappedBy = "habitantes", fetch = FetchType.LAZY)
     private List<VecinoEntity> habitantes = new ArrayList<>();
@@ -24,7 +23,13 @@ public class VecindarioEntity {
     @OneToMany(mappedBy = "negocios", fetch = FetchType.LAZY)
     private List<NegocioEntity> negocios = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ccs", fetch = FetchType.LAZY)
-    private List<CentroComercialEntity> ccs = new ArrayList<>();
+    @OneToMany(mappedBy = "centrosComerciales", fetch = FetchType.LAZY)
+    private List<CentroComercialEntity> centrosComerciales = new ArrayList<>();
+
+    @OneToMany(mappedBy = "vecindariosCercanos", fetch = FetchType.LAZY)
+    private List<VecindarioEntity> vecindariosCercanos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "zonasVerdes", fetch = FetchType.LAZY)
+    private List<Zona_VerdeEntity> zonasVerdes = new ArrayList<>();
 
 }

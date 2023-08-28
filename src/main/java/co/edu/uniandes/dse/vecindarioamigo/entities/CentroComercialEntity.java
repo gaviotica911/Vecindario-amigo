@@ -12,10 +12,11 @@ import lombok.Data;
 @Data
 @Entity
 public class CentroComercialEntity {
+    private int ID;
     private String nombre;
     private String descripcion;
-    private int ubicacion;
-    private int calificacion;
+    private String ubicacion;
+    private float calificacion;
 
     @OneToMany(mappedBy = "lista_negocios", fetch = FetchType.LAZY)
     private List<NegocioEntity> lista_negocios = new ArrayList<>();
