@@ -1,7 +1,5 @@
 package co.edu.uniandes.dse.vecindarioamigo.entities;
 
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,25 +17,23 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Data
 @Entity
-public class NegocioEntity  extends BaseEntity {
+public class NegocioEntity extends BaseEntity {
 
-	
 	private Integer ID;
 	private String nombre;
 	private String descripcion;
 	private Integer numeroDeTelefonico;
 	private Float Calificacion;
-	
-	
+
 	@OneToMany(mappedBy = "ofertas", cascade = CascadeType.PERSIST, orphanRemoval = true)
-	private List<OfertaEntity> reviews = new ArrayList<>();
-	
+	private List<OfertaEntity> ofertas = new ArrayList<>();
+
 	@OneToMany(mappedBy = "comentarios", cascade = CascadeType.PERSIST, orphanRemoval = true)
-	private List<ComentatiosEntity> reviews = new ArrayList<>();
-	
+	private List<ComentarioEntity> comentarios = new ArrayList<>();
+
 	@ManyToOne
 	private CentroComercialEntity CentroComercial;
-	
+
 	@ManyToOne
 	private VecindarioEntity Vecindario;
 }

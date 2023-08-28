@@ -1,6 +1,5 @@
 package co.edu.uniandes.dse.vecindarioamigo.entities;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,11 +23,10 @@ public class Zona_VerdeEntity extends BaseEntity {
 	private String descripcion;
 	private List<String> preferencias;
 	private Float calificacion;
-	
-	
+
 	@ManyToOne
 	private VecindarioEntity vecindario;
 
 	@OneToMany(mappedBy = "comentarios", cascade = CascadeType.PERSIST, orphanRemoval = true)
-	private List<ComentatiosEntity> reviews = new ArrayList<>();
+	private List<ComentarioEntity> reviews = new ArrayList<>();
 }
