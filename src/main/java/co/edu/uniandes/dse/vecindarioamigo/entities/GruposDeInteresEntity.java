@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.sql.Date;
 import java.util.ArrayList;
-
 import uk.co.jemos.podam.common.PodamExclude;
 import antlr.collections.List;
 import lombok.Data;
@@ -27,7 +26,7 @@ public class GruposDeInteresEntity {
 
     @PodamExclude
     @ManyToOne
-    private VecinoEntity editorial;
+    private ArrayList<VecinoEntity> miembros = new ArrayList<>();
 
 
     
