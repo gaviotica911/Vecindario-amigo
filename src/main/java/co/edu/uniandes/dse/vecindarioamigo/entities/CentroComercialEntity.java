@@ -18,10 +18,10 @@ public class CentroComercialEntity {
     private String ubicacion;
     private float calificacion;
 
-    @OneToMany(mappedBy = "lista_negocios", fetch = FetchType.LAZY)
-    private List<NegocioEntity> lista_negocios = new ArrayList<>();
+    @OneToMany(mappedBy = "centroComercial", fetch = FetchType.LAZY)
+    private List<NegocioEntity> lista_negocios= new ArrayList<>();
 
-    @OneToMany(mappedBy = "comentarios", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "centroComercial", fetch = FetchType.LAZY)
     private List<ComentarioEntity> comentarios = new ArrayList<>();
 
     @ManyToOne

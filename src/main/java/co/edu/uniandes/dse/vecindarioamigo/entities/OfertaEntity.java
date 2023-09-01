@@ -1,11 +1,8 @@
 package co.edu.uniandes.dse.vecindarioamigo.entities;
 
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
+
 
 import lombok.Data;
 
@@ -13,6 +10,7 @@ import lombok.Data;
 @Entity
 public class OfertaEntity {
     private int ID;
+    private String descripcion;
 
     @ManyToOne
     private NegocioEntity negocio;
