@@ -16,13 +16,13 @@ public class VecindarioEntity extends BaseEntity{
     private String ciudad;
     private String localidad;
 
-    @OneToMany(mappedBy = "habitantes", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vecindario", fetch = FetchType.LAZY)
     private List<VecinoEntity> habitantes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "negocios", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "Vecindario", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<NegocioEntity> negocios = new ArrayList<>();
 
-    @OneToMany(mappedBy = "centrosComerciales", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "vecindario", fetch = FetchType.LAZY,
                cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CentroComercialEntity> centrosComerciales = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class VecindarioEntity extends BaseEntity{
                cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<VecindarioEntity> vecindariosCercanos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "zonasVerdes", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "vecindario", fetch = FetchType.LAZY,
                cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Zona_VerdeEntity> zonasVerdes = new ArrayList<>();
 
