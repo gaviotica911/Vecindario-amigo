@@ -11,8 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class VecindarioEntity {
-    private int ID;
+public class VecindarioEntity extends BaseEntity{
     private String nombre;
     private String ciudad;
     private String localidad;

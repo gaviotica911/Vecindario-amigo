@@ -15,8 +15,6 @@ import lombok.Data;
 @Data
 @Entity
 public class VecinoEntity extends BaseEntity {
-
-    private int ID;
     private String nombre;
     private int edad;
     private String porfile_pic;

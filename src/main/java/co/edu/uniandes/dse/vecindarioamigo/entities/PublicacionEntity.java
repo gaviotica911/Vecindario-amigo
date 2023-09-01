@@ -16,8 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 
-public class PublicacionEntity {
-    private int ID;
+public class PublicacionEntity extends BaseEntity{
     private String contenido;
     private Date fecha ;
     private String foto;
