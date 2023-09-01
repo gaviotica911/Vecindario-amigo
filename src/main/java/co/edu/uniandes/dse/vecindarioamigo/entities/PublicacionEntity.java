@@ -26,9 +26,9 @@ public class PublicacionEntity {
     private int compartidos;
 
     @ManyToOne
-    private VecinoEntity autor;
+    private VecinoEntity vecino;
 
-    @OneToMany(mappedBy="comentarios", fetch= FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy="publicacion", fetch= FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ComentarioEntity> comentarios= new ArrayList<>();
 
 

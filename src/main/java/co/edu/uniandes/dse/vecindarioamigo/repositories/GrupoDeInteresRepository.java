@@ -9,6 +9,6 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.GruposDeInteresEntity;
 
 @Repository
 public interface GrupoDeInteresRepository extends JpaRepository<GruposDeInteresEntity, Long> {
-    List<GruposDeInteresEntity> findByIsbn(String isbn);
+   
 
 }

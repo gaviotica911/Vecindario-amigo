@@ -20,9 +20,8 @@ import lombok.Data;
 @Entity
 public class GruposDeInteresEntity {
     private int ID;
-    private String autor;
-    private Date fecha;
-    private String contenido;
+    private String nombre;
+    private String descripcion;
 
     @PodamExclude
     @ManyToOne

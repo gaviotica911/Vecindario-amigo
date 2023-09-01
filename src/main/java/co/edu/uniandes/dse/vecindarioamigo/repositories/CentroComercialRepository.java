@@ -13,5 +13,4 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.*;
 
 @Repository
 public interface CentroComercialRepository extends JpaRepository<CentroComercialEntity, Long> {
-        List<CentroComercialEntity> findByID(int ID);
 }

@@ -13,7 +13,7 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
 
 @Repository
 public interface PublicacionRepository extends JpaRepository<PublicacionEntity, Long> {
-        List<PublicacionEntity> findByID(int ID);
 }
+
 
 

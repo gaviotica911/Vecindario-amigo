@@ -9,5 +9,5 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.*;
 
 @Repository
 public interface OfertaRepository extends JpaRepository<OfertaEntity, Long> {
-    List<OfertaEntity> findByID(int ID);
+    
 }

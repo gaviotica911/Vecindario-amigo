@@ -9,6 +9,6 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 
 @Repository
 public interface ComentarioRepository extends JpaRepository<ComentarioEntity, Long> {
-    List<ComentarioEntity> findByIsbn(String isbn);
+    
 
 }

@@ -24,7 +24,7 @@ public class VecinoEntity extends BaseEntity {
     @OneToMany(mappedBy = "perteneceA", fetch = FetchType.LAZY)
     private List<GruposDeInteresEntity> perteneceA = new ArrayList<>();
 
-    @OneToMany(mappedBy = "publicaciones", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "vecino", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<PublicacionEntity> publicaicones = new ArrayList<>();
 
     @ManyToOne
