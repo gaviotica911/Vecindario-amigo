@@ -28,7 +28,7 @@ public class NegocioEntity extends BaseEntity {
 	private List<ComentarioEntity> comentarios = new ArrayList<>();
 
 	@ManyToOne
-	private CentroComercialEntity CentroComercial;
+	private CentroComercialEntity centroComercial;
 
 	@ManyToOne
 	private VecindarioEntity Vecindario;
