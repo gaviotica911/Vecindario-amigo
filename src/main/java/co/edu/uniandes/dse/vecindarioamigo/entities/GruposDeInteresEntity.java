@@ -3,8 +3,8 @@ import javax.persistence.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 import uk.co.jemos.podam.common.PodamExclude;
-import antlr.collections.List;
 import lombok.Data;
 
 
@@ -17,7 +17,7 @@ public class GruposDeInteresEntity extends BaseEntity{
 
     @PodamExclude
     @ManyToMany
-    private ArrayList<VecinoEntity> miembros = new ArrayList<>();
+    private List<VecinoEntity> miembros = new ArrayList<>();
 
 
     
