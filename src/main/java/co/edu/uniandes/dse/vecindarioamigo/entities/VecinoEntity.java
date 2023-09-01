@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class VecinoEntity extends BaseEntity {
     private String porfile_pic;
     private String descripcion;
 
-    @OneToMany(mappedBy = "perteneceA", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "vecino", fetch = FetchType.LAZY)
     private List<GruposDeInteresEntity> perteneceA = new ArrayList<>();
 
     @OneToMany(mappedBy = "vecino", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
