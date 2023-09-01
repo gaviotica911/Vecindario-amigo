@@ -19,7 +19,7 @@ public class CentroComercialEntity {
     private float calificacion;
 
     @OneToMany(mappedBy = "lista_negocios", fetch = FetchType.LAZY)
-    private List<NegocioEntity> lista_negocios = new ArrayList<>();
+    private List<NegocioEntity>  centroComercial= new ArrayList<>();
 
     @OneToMany(mappedBy = "comentarios", fetch = FetchType.LAZY)
     private List<ComentarioEntity> comentarios = new ArrayList<>();
