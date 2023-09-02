@@ -8,8 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class OfertaEntity {
-    private int ID;
+public class OfertaEntity extends BaseEntity{
     private String descripcion;
 
     @ManyToOne

@@ -16,9 +16,11 @@ public class NegocioEntity extends BaseEntity {
 
 	private Integer ID;
 
-	private String Nombre;
-	private String Descripcion;
-	private Integer NumeroDeTelefonico;
+
+	private String nombre;
+	private String descripcion;
+	private Integer numeroDeTelefonico;
+
 	private Float Calificacion;
 
 	@OneToMany(mappedBy = "negocio", cascade = CascadeType.PERSIST, orphanRemoval = true)

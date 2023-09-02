@@ -11,8 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class CentroComercialEntity {
-    private int ID;
+public class CentroComercialEntity extends BaseEntity{
     private String nombre;
     private String descripcion;
     private String ubicacion;
