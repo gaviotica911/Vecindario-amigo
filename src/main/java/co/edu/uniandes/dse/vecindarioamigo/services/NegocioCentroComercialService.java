@@ -51,12 +51,11 @@ public class NegocioCentroComercialService {
         if (NegocioEntity.isEmpty())
             throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
 
-        Optional<CentroComercialEntity> CentroComercialEntity = centrocomercialRepository
-                .findById(NegocioEntity.get().getCentroComercial().getId());
-        CentroComercialEntity
-                .ifPresent(CentroComercial -> CentroComercial.getLista_negocios().remove(NegocioEntity.get()));
+        Optional<CentroComercialEntity> CentroComercialEntity = centrocomercialRepository.findById(NegocioEntity.get().getCentroComercial().getId());
+        CentroComercialEntity.ifPresent(CentroComercial -> CentroComercial.getLista_negocios().remove(NegocioEntity.get()));
 
         NegocioEntity.get().setCentroComercial(null);
         log.info("Termina proceso de borrar la CentroComercial del libro con id = {0}", NegocioId);
     }
+
 }
