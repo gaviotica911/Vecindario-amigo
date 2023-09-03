@@ -1,6 +1,7 @@
 package co.edu.uniandes.dse.vecindarioamigo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -12,34 +13,33 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.Zona_VerdeRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
+
 @Service
 
 public class Zona_VerdeService {
 	@Autowired
 	Zona_VerdeRepository Zona_VerdeRepository;
 	
-	
+	//creo zonan verde
 	@Transactional
-	public Zona_VerdeEntity createZona_Verde (Zona_VerdeEntity Zona_VerdeEntity) throws EntityNotFoundException, IllegalOperationException {
+	public Zona_VerdeEntity createZona_Verde (Zona_VerdeEntity zona_VerdeEntity) throws EntityNotFoundException, IllegalOperationException {
 	                
-		if (!Zona_VerdeRepository.findByName(Zona_VerdeEntity.getNombre()).isEmpty()) {
+		if (!Zona_VerdeRepository.findByNombre(zona_VerdeEntity.getNombre()).isEmpty()) {
 			throw new IllegalOperationException("Zona_Verde name already exists");
 		}
 
-	        return Zona_VerdeRepository.save(Zona_VerdeEntity);
+	        return Zona_VerdeRepository.save(zona_VerdeEntity);
 	}
 	
-	
+	//retorna una lista con todas las zona verdes
 	@Transactional
 	public List<Zona_VerdeEntity> getZona_Verdes() {
-
 		return Zona_VerdeRepository.findAll();
 	}
 	
-	
+	//retorno una zona verde dado un id
 	@Transactional
 	public Zona_VerdeEntity getZona_Verde(Long Zona_VerdeId) throws EntityNotFoundException {
 		
