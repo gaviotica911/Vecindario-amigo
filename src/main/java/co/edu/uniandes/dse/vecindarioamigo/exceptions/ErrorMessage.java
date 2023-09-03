@@ -6,6 +6,8 @@ public final class ErrorMessage {
     public static final String NEIGHBORHOOD_NOT_FOUND = "The neighborhood with the given id was not found";
     public static final String BUSINESS_NOT_FOUND = "The business with the given id was not found";
     public static final String GREEN_ZONE_NOT_FOUND = "The green zone with the given id was not found";
+    public static final String NEIGHBOR_NOT_FOUND = "The neighbor with the given id was not found";
+    public static final String OFFER_NOT_FOUND = "The OFFER with the given id was not found";
 
 	private ErrorMessage() {
 		throw new IllegalStateException("Utility class");

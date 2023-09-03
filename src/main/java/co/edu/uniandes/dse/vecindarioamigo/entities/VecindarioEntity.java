@@ -17,7 +17,7 @@ public class VecindarioEntity extends BaseEntity{
     private String localidad;
 
     @OneToMany(mappedBy = "vecindario", fetch = FetchType.LAZY)
-    private List<VecinoEntity> habitantes = new ArrayList<>();
+    private List<VecinoEntity> vecinos = new ArrayList<>();
 
     @OneToMany(mappedBy = "Vecindario", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<NegocioEntity> negocios = new ArrayList<>();
