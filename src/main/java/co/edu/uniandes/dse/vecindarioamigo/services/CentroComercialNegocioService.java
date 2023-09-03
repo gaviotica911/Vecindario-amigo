@@ -18,8 +18,6 @@ import co.edu.uniandes.dse.vecindarioamigo.repositories.NegocioRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.VecindarioRepository;
 
 /**
- * Clase que implementa la conexión con la persistencia para la relación entre
- * la entidad Vecindario y CentroComercial.
  *
  * @author ISIS2603
  */
