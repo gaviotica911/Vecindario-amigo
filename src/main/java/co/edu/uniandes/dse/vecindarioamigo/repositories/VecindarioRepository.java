@@ -13,5 +13,7 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.*;
 
 @Repository
 public interface VecindarioRepository extends JpaRepository<VecindarioEntity, Long> {
-        
+
+    List<VecindarioEntity> findByNombre(String nombre);
+
 }

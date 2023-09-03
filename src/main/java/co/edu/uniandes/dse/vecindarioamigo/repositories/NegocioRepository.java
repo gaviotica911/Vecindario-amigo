@@ -9,5 +9,5 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 
 @Repository
 public interface  NegocioRepository extends JpaRepository<NegocioEntity, Long> {
-        
+    List<NegocioEntity> findByNombre(String nombre);  
 }

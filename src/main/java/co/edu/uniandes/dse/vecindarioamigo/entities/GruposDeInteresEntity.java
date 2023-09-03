@@ -1,7 +1,6 @@
 package co.edu.uniandes.dse.vecindarioamigo.entities;
-import javax.persistence.*;
 
-import java.sql.Date;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -17,7 +16,7 @@ public class GruposDeInteresEntity extends BaseEntity{
 
     @PodamExclude
     @ManyToMany
-    private List<VecinoEntity> miembros = new ArrayList<>();
+    private List<VecinoEntity> vecinos = new ArrayList<>();
 
 
     

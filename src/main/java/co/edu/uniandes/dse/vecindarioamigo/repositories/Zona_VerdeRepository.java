@@ -1,4 +1,3 @@
-
 package co.edu.uniandes.dse.vecindarioamigo.repositories;
 
 import java.util.List;
@@ -10,5 +9,5 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
 
 @Repository
 public interface  Zona_VerdeRepository extends JpaRepository<Zona_VerdeEntity, Long> {
-        
+    List<Zona_VerdeEntity> findByNombre(String nombre); 
 }

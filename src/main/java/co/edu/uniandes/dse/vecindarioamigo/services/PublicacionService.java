@@ -1,14 +1,11 @@
 package co.edu.uniandes.dse.vecindarioamigo.services;
 
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.VecinoRepository;
