@@ -92,7 +92,7 @@ public class GrupoDeInteresService {
 		if (GruposDeInteresEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 
-		List<VecinoEntity> vecino = GruposDeInteresEntity.get().getMiembros();
+		List<VecinoEntity> vecino = GruposDeInteresEntity.get().getVecinos();
 		if (!vecino.isEmpty())
 			throw new IllegalOperationException("Unable to delete the GruposDeInteres because he/she has associated books");
 

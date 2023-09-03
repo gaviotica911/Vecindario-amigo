@@ -16,7 +16,7 @@ public class GruposDeInteresEntity extends BaseEntity{
 
     @PodamExclude
     @ManyToMany
-    private List<VecinoEntity> miembros = new ArrayList<>();
+    private List<VecinoEntity> vecinos = new ArrayList<>();
 
 
     

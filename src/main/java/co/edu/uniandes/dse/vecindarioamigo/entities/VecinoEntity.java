@@ -20,8 +20,8 @@ public class VecinoEntity extends BaseEntity {
     private String porfile_pic;
     private String descripcion;
 
-    @ManyToMany(mappedBy = "miembros", fetch = FetchType.LAZY)
-    private List<GruposDeInteresEntity> perteneceA = new ArrayList<>();
+    @ManyToMany(mappedBy = "vecinos", fetch = FetchType.LAZY)
+    private List<GruposDeInteresEntity> GruposDeInteres = new ArrayList<>();
 
     @OneToMany(mappedBy = "vecino", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<PublicacionEntity> publicaicones = new ArrayList<>();
