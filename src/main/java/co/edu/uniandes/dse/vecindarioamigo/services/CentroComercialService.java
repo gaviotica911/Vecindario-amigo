@@ -1,6 +1,7 @@
 package co.edu.uniandes.dse.vecindarioamigo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +25,7 @@ public class CentroComercialService {
     public CentroComercialEntity createCentroComercial(CentroComercialEntity centroComercial)
             throws EntityNotFoundException, IllegalOperationException {
 
-        if (!CentroComercialEntity.findByName(centroComercial.getNombre()).isEmpty()) {
+        if (!CentroComercialRepository.findById(centroComercial.getId()).isEmpty()) {
             throw new IllegalOperationException("Centro comercial name already exists");
         }
 
@@ -42,16 +43,16 @@ public class CentroComercialService {
 
         Optional<CentroComercialEntity> centroComercial = CentroComercialRepository.findById(centroComercialID);
         if (centroComercial.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.centroComercial_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.SHOPPING_MALL_NOT_FOUND);
         return centroComercial.get();
     }
 
     @Transactional
     public CentroComercialEntity updateCentroComercial(Long centroComercialID, CentroComercialEntity centroComercial)
             throws EntityNotFoundException, IllegalOperationException {
-        Optional<CentroComercialEntity> centroComercial = CentroComercialRepository.findById(centroComercialID);
-        if (centroComercial.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.centroComercial_NOT_FOUND);
+        Optional<CentroComercialEntity> centroComercial2 = CentroComercialRepository.findById(centroComercialID);
+        if (centroComercial2.isEmpty())
+            throw new EntityNotFoundException(ErrorMessage.SHOPPING_MALL_NOT_FOUND);
 
         centroComercial.setId(centroComercialID);
         return CentroComercialRepository.save(centroComercial);
@@ -61,8 +62,8 @@ public class CentroComercialService {
     public void deleteCentroComercial(Long centroComercialID)
             throws EntityNotFoundException, IllegalOperationException {
         Optional<CentroComercialEntity> centroComercial = CentroComercialRepository.findById(centroComercialID);
-        if (CentroComercialRepository.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.centroComercial_NOT_FOUND);
+        if (centroComercial.isEmpty())
+            throw new EntityNotFoundException(ErrorMessage.SHOPPING_MALL_NOT_FOUND);
         CentroComercialRepository.deleteById(centroComercialID);
     }
 }
