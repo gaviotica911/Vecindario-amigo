@@ -13,7 +13,7 @@ import lombok.Data;
 public class Zona_VerdeEntity extends BaseEntity {
 	private String nombre;
 	private String descripcion;
-	private List<String> preferencias = new ArrayList<>();
+	private String preferencias;
 	private Float calificacion;
 
 	@ManyToOne
