@@ -118,7 +118,7 @@ public class OfertaNegocioService {
 		if (ofertaEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.OFFER_NOT_FOUND);
 
-		if (ofertaEntity.get().getNegocio() != null) {
+		if (ofertaEntity.get().getNegocio() == null) {
 			throw new EntityNotFoundException("The offer has no associated business");
 		}
 		Optional<NegocioEntity> negocioEntity = negocioRepository.findById(ofertaEntity.get().getNegocio().getId());
