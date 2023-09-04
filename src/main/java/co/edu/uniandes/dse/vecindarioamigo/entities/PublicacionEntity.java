@@ -27,7 +27,7 @@ public class PublicacionEntity extends BaseEntity{
     @ManyToOne
     private VecinoEntity vecino;
 
-    @OneToMany(mappedBy="publicacion", fetch= FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy="publicacion", fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios= new ArrayList<>();
 
 

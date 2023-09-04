@@ -35,7 +35,7 @@ public class VecindarioZona_VerdeService {
 	private VecindarioRepository vecindarioRepository;
 
     /**
-	 * Agregar un negocio al vecindario
+	 * Agregar unA ZONA al vecindario
 	 *
 	 * @param zona_VerdeId     El id de la zona verde a guardar
 	 * @param vecindarioId      El id del vecindario en el cual se va a guardar el negocio.

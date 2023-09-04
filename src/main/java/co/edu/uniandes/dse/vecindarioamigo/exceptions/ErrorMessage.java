@@ -2,6 +2,8 @@ package co.edu.uniandes.dse.vecindarioamigo.exceptions;
 
 public final class ErrorMessage {
 	public static final String VECINDARIO_NOT_FOUND = "The neighborhood with the given id was not found";
+    public static final String PUBLICACION_NOT_FOUND = "The post with the given id was not found";
+    public static final String VECINO_NOT_FOUND = "The neighbor with the given id was not found";
     public static final String SHOPPING_MALL_NOT_FOUND = "The shopping mall with the given id was not found";
     public static final String NEIGHBORHOOD_NOT_FOUND = "The neighborhood with the given id was not found";
     public static final String BUSINESS_NOT_FOUND = "The business with the given id was not found";
