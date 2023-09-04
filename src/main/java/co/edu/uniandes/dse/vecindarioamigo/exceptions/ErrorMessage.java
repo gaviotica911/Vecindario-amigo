@@ -16,7 +16,7 @@ public final class ErrorMessage {
     public static final String COMENTARIO_NOT_FOUND = "The Comentario is not found";
     public static final String CentroComercial_NOT_FOUND = null;
     public static final String GRUPO_DE_INTERES_NOT_FOUND = "The Grupo de interes is not found";
-    public static final String PUBLICACION_NOT_FOUND = "The Publication is not found";
+
 
 
 
