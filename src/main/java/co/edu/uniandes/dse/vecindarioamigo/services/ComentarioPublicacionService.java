@@ -1,8 +1,5 @@
 package co.edu.uniandes.dse.vecindarioamigo.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;

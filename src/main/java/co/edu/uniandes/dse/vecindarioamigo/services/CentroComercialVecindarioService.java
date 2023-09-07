@@ -2,17 +2,13 @@ package co.edu.uniandes.dse.vecindarioamigo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
-
-import co.edu.uniandes.dse.vecindarioamigo.repositories.NegocioRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.VecindarioRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.CentroComercialRepository;
 import lombok.extern.slf4j.Slf4j;

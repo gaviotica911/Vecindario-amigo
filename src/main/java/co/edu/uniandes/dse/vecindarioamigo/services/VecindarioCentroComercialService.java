@@ -112,6 +112,7 @@ public class VecindarioCentroComercialService {
 	 * @return La lista de centros comerciales actualizada.
 	 * @throws EntityNotFoundException Si el vecindario o un centro comercial de la lista no se encuentran
 	 */
+	
 	@Transactional
 	public List<CentroComercialEntity> replaceCentrosComerciales(Long vecindarioId, List<CentroComercialEntity> CentrosComerciales) throws EntityNotFoundException {
 		log.info("Start process of updating the neighborhood with id = {0}", vecindarioId);
