@@ -7,21 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
+
+import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
+import co.edu.uniandes.dse.vecindarioamigo.repositories.VecindarioRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.VecinoRepository;
 import lombok.extern.slf4j.Slf4j;
+
 
 @Service
 @Slf4j
 public class VecinoService {
      @Autowired  
     VecinoRepository vecinoRepository;
+
+	@Autowired  
+    VecindarioRepository vecindarioRepository;
 
 	/**
 	 * Crea un vecino en la persistencia.
@@ -35,7 +39,18 @@ public class VecinoService {
 
 	public VecinoEntity createVecino(VecinoEntity vecinoEntity) throws EntityNotFoundException, IllegalOperationException {
 		log.info("The neighbor creation process begins");
-		if (!vecinoRepository.findById(vecinoEntity.getId()).isEmpty()) {
+
+		if (vecinoEntity.getVecindario() == null)
+                throw new IllegalOperationException("Vecindario is not valid");
+
+		if (vecinoEntity.getNombre() == null)
+                throw new IllegalOperationException("Nombre is not valid");
+				
+        Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(vecinoEntity.getVecindario().getId());
+        if (vecindarioEntity.isEmpty())
+                throw new IllegalOperationException("vecindario is not valid");
+
+		if (!vecinoRepository.findByNombre(vecinoEntity.getNombre()).isEmpty()) {
 			throw new IllegalOperationException("neighbor name already exists");
 		}
 		log.info("End of neighbor creation process");
@@ -86,6 +101,9 @@ public class VecinoService {
 		if (vecinoEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
 
+		if (vecino.getNombre().isEmpty())
+		throw new IllegalOperationException("nombre is not valid");
+
 		vecino.setId(vecinoId);
 		log.info("Finish process of updating the neighborhood with id = {0}", vecinoId);
 		return vecinoRepository.save(vecino);
@@ -101,6 +119,8 @@ public class VecinoService {
 	@Transactional
 	public void deleteVecino(Long vecinoId) throws EntityNotFoundException, IllegalOperationException {
 		log.info("Start process of deleting the neighbor with id = {0}", vecinoId);
+
+
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
 		if (vecinoEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);

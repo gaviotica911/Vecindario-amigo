@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.PublicacionRepository;
+import co.edu.uniandes.dse.vecindarioamigo.repositories.VecinoRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 public class PublicacionService {
       @Autowired 
     PublicacionRepository publicacionRepository;
+	@Autowired 
+    VecinoRepository vecinoRepository;
 
 	/**
 	 * Crea una publicacion  en la persistencia.
@@ -32,12 +36,23 @@ public class PublicacionService {
 	@Transactional 
 
 	public PublicacionEntity createPublicacion(PublicacionEntity publicacionEntity) throws EntityNotFoundException, IllegalOperationException {
-		log.info("The post creation process begins");
-		if (!publicacionRepository.findById(publicacionEntity.getId()).isEmpty()) {
-			throw new IllegalOperationException("post name already exists");
-		}
-		log.info("End of post creation process");
-		return publicacionRepository.save(publicacionEntity);
+		log.info("Inicia proceso de creación del post");
+                
+        if (publicacionEntity.getVecino() == null)
+                throw new IllegalOperationException("vecino is not valid");
+                
+        Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(publicacionEntity.getVecino().getId());
+        if (vecinoEntity.isEmpty())
+                throw new IllegalOperationException("vecino is not valid");
+
+        if ( publicacionEntity.getContenido().isEmpty() || publicacionEntity.getContenido()== null)
+                throw new IllegalOperationException("contenido is not valid");
+
+       
+        publicacionEntity.setVecino(vecinoEntity.get());
+        log.info("Termina proceso de creación del libro");
+        return publicacionRepository.save(publicacionEntity);
+
 		}
 	
 	/**
@@ -47,7 +62,7 @@ public class PublicacionService {
 	 * @return una lista de publicaciones.
 	 */
 	@Transactional
-	public List<PublicacionEntity> getPublicacion() {
+	public List<PublicacionEntity> getPublicaciones() {
 		log.info("The process of consulting all the posts begins");
 		return publicacionRepository.findAll();
 	}
