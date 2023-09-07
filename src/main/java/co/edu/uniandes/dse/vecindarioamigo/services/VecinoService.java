@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
