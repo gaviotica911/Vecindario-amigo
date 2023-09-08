@@ -106,7 +106,7 @@ public class CentroComercialServiceTest {
         assertThrows(IllegalOperationException.class, () -> {
             CentroComercialEntity newEntity = factory.manufacturePojo(CentroComercialEntity.class);
             newEntity.setVecindario(listaVecindario.get(0));
-            newEntity.setNombre(null);
+            newEntity.setNombre("");
             centroComercialService.createCentroComercial(newEntity);
         });
     }

@@ -14,9 +14,6 @@ import lombok.Data;
 @Entity
 public class NegocioEntity extends BaseEntity {
 
-	private Integer ID;
-
-
 	private String nombre;
 	private String descripcion;
 	private Integer numeroDeTelefonico;

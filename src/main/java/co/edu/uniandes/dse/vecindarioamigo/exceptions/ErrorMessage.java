@@ -18,8 +18,6 @@ public final class ErrorMessage {
     public static final String GRUPO_DE_INTERES_NOT_FOUND = "The Grupo de interes is not found";
 
 
-
-
 	private ErrorMessage() {
 		throw new IllegalStateException("Utility class");
 	}
