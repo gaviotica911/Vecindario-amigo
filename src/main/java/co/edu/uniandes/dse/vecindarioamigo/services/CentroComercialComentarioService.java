@@ -15,7 +15,6 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.CentroComercialRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.ComentarioRepository;
 
-
 /**
  *
  * @author ISIS2603
@@ -97,5 +96,20 @@ public class CentroComercialComentarioService {
             c.get().setCentroComercial(centroComercialEntity.get());
         }
         return comentarios;
+    }
+
+    @Transactional
+    public void removeComentario(Long centroComercialId, Long comentarioId) throws EntityNotFoundException {
+        log.info("Inicia proceso de borrar un comentario del centro comercial con id = {0}", centroComercialId);
+        Optional<CentroComercialEntity> centroComercialEntity = centroComercialRepository.findById(centroComercialId);
+        if (centroComercialEntity.isEmpty())
+            throw new EntityNotFoundException(ErrorMessage.SHOPPING_MALL_NOT_FOUND);
+
+        Optional<ComentarioEntity> comentarioEntity = comentarioRepository.findById(comentarioId);
+        if (comentarioEntity.isEmpty())
+            throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
+
+        centroComercialEntity.get().getComentarios().remove(comentarioEntity.get());
+        log.info("Finaliza proceso de borrar un comentario del centro comercial con id = {0}", centroComercialId);
     }
 }
