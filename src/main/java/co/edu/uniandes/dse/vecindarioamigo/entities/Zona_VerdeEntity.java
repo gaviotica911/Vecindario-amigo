@@ -15,12 +15,12 @@ public class Zona_VerdeEntity extends BaseEntity {
 	private String descripcion;
 	private String preferencias;
 	private Float calificacion;
+	private String ubicacion;
 
 	@ManyToOne
 	private VecindarioEntity vecindario;
 
 	@OneToMany(mappedBy = "zonaVerde", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<ComentarioEntity> reviews = new ArrayList<>();
-	
 
 }
