@@ -211,7 +211,7 @@ public class CentroComercialComentarioServiceTest {
     }
 
     @Test
-    void testReplaceInvalidBooks() {
+    void testReplaceInvalidComentarios() {
         assertThrows(EntityNotFoundException.class, () -> {
             List<ComentarioEntity> nuevaLista = new ArrayList<>();
             ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
@@ -233,7 +233,7 @@ public class CentroComercialComentarioServiceTest {
     }
 
     @Test
-    void testRemoveBookInvalidCentroComercial() {
+    void testRemoveComentarioInvalidCentroComercial() {
         assertThrows(EntityNotFoundException.class, () -> {
             for (ComentarioEntity comentario : comentarioList) {
                 centroComercialComentarioService.removeComentario(0L, comentario.getId());

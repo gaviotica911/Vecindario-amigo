@@ -8,13 +8,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.CentroComercialRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.NegocioRepository;
-
 
 /**
  *
@@ -96,6 +96,21 @@ public class CentroComercialNegocioService {
             n.get().setCentroComercial(centroComercialEntity.get());
         }
         return negocios;
+    }
+
+    @Transactional
+    public void removeNegocio(Long centroComercialId, Long negocioId) throws EntityNotFoundException {
+        log.info("Inicia proceso de borrar un negocio del centro comercial con id = {0}", centroComercialId);
+        Optional<CentroComercialEntity> centroComercialEntity = centroComercialRepository.findById(centroComercialId);
+        if (centroComercialEntity.isEmpty())
+            throw new EntityNotFoundException(ErrorMessage.SHOPPING_MALL_NOT_FOUND);
+
+        Optional<NegocioEntity> negocioEntity = negocioRepository.findById(negocioId);
+        if (negocioEntity.isEmpty())
+            throw new EntityNotFoundException(ErrorMessage.BUSINESS_NOT_FOUND);
+
+        centroComercialEntity.get().getLista_negocios().remove(negocioEntity.get());
+        log.info("Finaliza proceso de borrar un negocio del centro comercial con id = {0}", centroComercialId);
     }
 
 }
