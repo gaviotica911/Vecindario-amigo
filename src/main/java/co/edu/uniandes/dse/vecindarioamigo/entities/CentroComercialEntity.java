@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 
 import lombok.Data;
+import uk.co.jemos.podam.common.PodamExclude;
 
 @Data
 @Entity
@@ -17,12 +18,15 @@ public class CentroComercialEntity extends BaseEntity{
     private String ubicacion;
     private float calificacion;
 
+    @PodamExclude
     @OneToMany(mappedBy = "centroComercial", fetch = FetchType.LAZY)
     private List<NegocioEntity> lista_negocios= new ArrayList<>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "centroComercial", fetch = FetchType.LAZY)
     private List<ComentarioEntity> comentarios = new ArrayList<>();
 
+    @PodamExclude
     @ManyToOne
     private VecindarioEntity vecindario;
 }

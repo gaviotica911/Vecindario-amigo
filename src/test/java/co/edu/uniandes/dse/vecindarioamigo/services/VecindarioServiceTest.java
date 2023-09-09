@@ -22,6 +22,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
+// import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
+// import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 
@@ -50,7 +52,7 @@ public class VecindarioServiceTest {
 	private PodamFactory factory = new PodamFactoryImpl();
 
 	private List<VecindarioEntity> vecindarioList = new ArrayList<>();
-
+	
 	/**
 	 * Configuración inicial de la prueba.
 	 */
@@ -82,6 +84,7 @@ public class VecindarioServiceTest {
 			entityManager.persist(vecindarioEntity);
 			vecindarioList.add(vecindarioEntity);
 		}
+
 	}
 
     /**

@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 
 import lombok.Data;
+import uk.co.jemos.podam.common.PodamExclude;
 
 @Data
 @Entity
@@ -20,12 +21,15 @@ public class VecinoEntity extends BaseEntity {
     private String porfile_pic;
     private String descripcion;
 
+    @PodamExclude
     @ManyToMany(mappedBy = "vecinos", fetch = FetchType.LAZY)
     private List<GruposDeInteresEntity> GruposDeInteres = new ArrayList<>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "vecino", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PublicacionEntity> publicaciones = new ArrayList<>();
 
+    @PodamExclude
     @ManyToOne
     private VecindarioEntity vecindario;
 
