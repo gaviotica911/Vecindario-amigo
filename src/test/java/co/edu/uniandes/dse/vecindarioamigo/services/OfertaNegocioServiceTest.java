@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Import;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
-import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.OfertaEntity;
 
