@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import lombok.Data;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 @Data
@@ -24,14 +25,12 @@ public class PublicacionEntity extends BaseEntity{
     private int likes;
     private int compartidos;
 
+    @PodamExclude
     @ManyToOne
     private VecinoEntity vecino;
 
+    @PodamExclude
     @OneToMany(mappedBy="publicacion", fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios= new ArrayList<>();
-
-
-
-
-    
+ 
 }

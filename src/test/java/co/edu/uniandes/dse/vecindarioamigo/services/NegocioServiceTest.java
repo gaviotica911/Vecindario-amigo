@@ -1,4 +1,4 @@
-package co;
+package co.edu.uniandes.dse.vecindarioamigo.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,39 +9,35 @@ import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.vecindarioamigo.services.Zona_VerdeService;
 
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-@ExtendWith(SpringExtension.class)
 @DataJpaTest
 @Transactional
-@Import(Zona_VerdeService.class)
+@Import(NegocioService.class)
 
-public class Zona_verdeServiceTest {
+public class NegocioServiceTest {
 
     @Autowired
-    private Zona_VerdeService zona_VerdeService;
+    private NegocioService negocioService;
 
     @Autowired
     private TestEntityManager entityManager;
 
     private PodamFactory factory = new PodamFactoryImpl();
 
-    private List<Zona_VerdeEntity> listaZona_Verde = new ArrayList<>();
+    private List<NegocioEntity> listaNegocio = new ArrayList<>();
     private List<VecindarioEntity> listaVecindario = new ArrayList<>();
     private VecindarioEntity vecindarioEntity;
 
@@ -55,7 +51,7 @@ public class Zona_verdeServiceTest {
     }
 
     private void clearData() {
-        entityManager.getEntityManager().createQuery("delete from Zona_VerdeEntity");
+        entityManager.getEntityManager().createQuery("delete from NegocioEntity");
         entityManager.getEntityManager().createQuery("delete from VecindarioEntity");
 
     }
@@ -71,111 +67,111 @@ public class Zona_verdeServiceTest {
             listaVecindario.add(vecindarioEntity);
         }
         for (int i = 0; i < 3; i++) {
-            Zona_VerdeEntity zona_VerdeEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
-            zona_VerdeEntity.setVecindario(listaVecindario.get(0));
-            entityManager.persist(zona_VerdeEntity);
-            listaZona_Verde.add(zona_VerdeEntity);
+            NegocioEntity negocioEntity = factory.manufacturePojo(NegocioEntity.class);
+            negocioEntity.setVecindario(listaVecindario.get(0));
+            entityManager.persist(negocioEntity);
+            listaNegocio.add(negocioEntity);
         }
 
     }
 
     /**
-     * Prueba para crear un Zona_Verde
+     * Prueba para crear un Negocio
      */
     @Test
-    void testCreateZona_Verde() throws EntityNotFoundException, IllegalOperationException {
-        Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
+    void testCreateNegocio() throws EntityNotFoundException, IllegalOperationException {
+        NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
         newEntity.setVecindario(vecindarioEntity);
-        newEntity.setNombre("Parque el Contry");
+        newEntity.setNombre("ANDRES CARNE DE RES");
 
-        Zona_VerdeEntity result = zona_VerdeService.createZona_Verde(newEntity);
+        NegocioEntity result = negocioService.createNegocio(newEntity);
 
         assertNotNull(result);
-        Zona_VerdeEntity entity = entityManager.find(Zona_VerdeEntity.class, result.getId());
+        NegocioEntity entity = entityManager.find(NegocioEntity.class, result.getId());
         assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
-        assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
+        assertEquals(newEntity.getNumeroDeTelefonico(), entity.getNumeroDeTelefonico());
         assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
 
     }
 
     @Test
-    void testCreateZona_VerdeWithNoValidName() {
+    void testCreateNegocioWithNoValidName() {
         assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
+            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
             newEntity.setVecindario(listaVecindario.get(0));
             newEntity.setNombre("");
-            zona_VerdeService.createZona_Verde(newEntity);
+            negocioService.createNegocio(newEntity);
         });
     }
 
     @Test
-    void testCreateZona_VerdeWithNoValidName2() {
+    void testCreateNegocioWithNoValidName2() {
         assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
+            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
             newEntity.setVecindario(listaVecindario.get(0));
             newEntity.setNombre(null);
-            zona_VerdeService.createZona_Verde(newEntity);
+            negocioService.createNegocio(newEntity);
         });
 
     }
 
     @Test
 
-    void testCreateZona_VerdeConNombreExistente() {
+    void testCreateNegocioConNombreExistente() {
         assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
+            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
             newEntity.setVecindario(listaVecindario.get(0));
-            newEntity.setNombre(listaZona_Verde.get(0).getNombre());
-            zona_VerdeService.createZona_Verde(newEntity);
+            newEntity.setNombre(listaNegocio.get(0).getNombre());
+            negocioService.createNegocio(newEntity);
         });
     }
 
     @Test
-    void testCreateZona_VerdeConVecindarioInvalido() {
+    void testCreateNegocioConVecindarioInvalido() {
         assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
-            newEntity.setNombre("Jaime duque");
+            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
+            newEntity.setNombre("HARRY'S");
             VecindarioEntity vecindarioEntity = new VecindarioEntity();
             vecindarioEntity.setId(0L);
             newEntity.setVecindario(vecindarioEntity);
-            zona_VerdeService.createZona_Verde(newEntity);
+            negocioService.createNegocio(newEntity);
         });
     }
 
     @Test
-    void testCreateZona_VerdeConVecindarioNulo() {
+    void testCreateNegocioConVecindarioNulo() {
         assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
-            newEntity.setNombre("XCOLI");
+            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
+            newEntity.setNombre("NORTH FACE");
             newEntity.setVecindario(null);
-            zona_VerdeService.createZona_Verde(newEntity);
+            negocioService.createNegocio(newEntity);
         });
     }
 
     @Test
-    void testDaleteZona_Verde() throws EntityNotFoundException, IllegalOperationException {
-        Zona_VerdeEntity entity = listaZona_Verde.get(1);
-        zona_VerdeService.deleteZona_Verde(entity.getId());
-        Zona_VerdeEntity deleted = entityManager.find(Zona_VerdeEntity.class, entity.getId());
+    void testDaleteNegocio() throws EntityNotFoundException, IllegalOperationException {
+        NegocioEntity entity = listaNegocio.get(1);
+        negocioService.deleteNegocio(entity.getId());
+        NegocioEntity deleted = entityManager.find(NegocioEntity.class, entity.getId());
         assertNull(deleted);
     }
 
     @Test
-    void testDeleteZona_VerdeInvalido() {
+    void testDeleteNegocioInvalido() {
         assertThrows(EntityNotFoundException.class, () -> {
-            zona_VerdeService.deleteZona_Verde(0L);
+            negocioService.deleteNegocio(0L);
         });
     }
 
     @Test
-    void testGetZona_Verdes() {
-        List<Zona_VerdeEntity> list = zona_VerdeService.getZona_Verdes();
-        assertEquals(listaZona_Verde.size(), list.size());
-        for (Zona_VerdeEntity entity : list) {
+    void testGetNegocios() {
+        List<NegocioEntity> list = negocioService.getNegocios();
+        assertEquals(listaNegocio.size(), list.size());
+        for (NegocioEntity entity : list) {
             boolean found = false;
-            for (Zona_VerdeEntity storedEntity : listaZona_Verde) {
+            for (NegocioEntity storedEntity : listaNegocio) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -185,29 +181,29 @@ public class Zona_verdeServiceTest {
     }
 
     @Test
-    void testGetZona_Verde() throws EntityNotFoundException {
-        Zona_VerdeEntity entity = listaZona_Verde.get(0);
-        Zona_VerdeEntity resultEntity = zona_VerdeService.getZona_Verde(entity.getId());
+    void testGetNegocio() throws EntityNotFoundException {
+        NegocioEntity entity = listaNegocio.get(0);
+        NegocioEntity resultEntity = negocioService.getNegocio(entity.getId());
         assertNotNull(resultEntity);
         assertEquals(entity.getId(), resultEntity.getId());
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getCalificacion(), resultEntity.getCalificacion());
         assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
-        assertEquals(entity.getUbicacion(), resultEntity.getUbicacion());
+        assertEquals(entity.getNumeroDeTelefonico(), resultEntity.getNumeroDeTelefonico());
     }
 
     @Test
-    void testUpdateZona_Verde() throws EntityNotFoundException, IllegalOperationException {
-        Zona_VerdeEntity entity = listaZona_Verde.get(0);
-        Zona_VerdeEntity pojoEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
+    void testUpdateNegocio() throws EntityNotFoundException, IllegalOperationException {
+        NegocioEntity entity = listaNegocio.get(0);
+        NegocioEntity pojoEntity = factory.manufacturePojo(NegocioEntity.class);
         pojoEntity.setId(entity.getId());
-        zona_VerdeService.updateZona_Verde(entity.getId(), pojoEntity);
+        negocioService.updateNegocio(entity.getId(), pojoEntity);
 
-        Zona_VerdeEntity resultEntity = entityManager.find(Zona_VerdeEntity.class, entity.getId());
+        NegocioEntity resultEntity = entityManager.find(NegocioEntity.class, entity.getId());
         assertEquals(entity.getId(), resultEntity.getId());
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getCalificacion(), resultEntity.getCalificacion());
         assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
-        assertEquals(entity.getUbicacion(), resultEntity.getUbicacion());
+        assertEquals(entity.getNumeroDeTelefonico(), resultEntity.getNumeroDeTelefonico());
     }
 }
