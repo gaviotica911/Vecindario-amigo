@@ -20,8 +20,6 @@ import org.springframework.context.annotation.Import;
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
-// import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
-// import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 
@@ -31,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * Pruebas de logica de Editorials
+ * Pruebas de logica de Vecindario
  *
  * @author ISIS2603
  */
