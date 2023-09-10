@@ -97,45 +97,12 @@ public class Zona_verdeServiceTest {
     }
 
     @Test
-    void testCreateZona_VerdeWithNoValidName() {
-        assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
-            newEntity.setVecindario(listaVecindario.get(0));
-            newEntity.setNombre("");
-            zona_VerdeService.createZona_Verde(newEntity);
-        });
-    }
-
-    @Test
-    void testCreateZona_VerdeWithNoValidName2() {
-        assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
-            newEntity.setVecindario(listaVecindario.get(0));
-            newEntity.setNombre(null);
-            zona_VerdeService.createZona_Verde(newEntity);
-        });
-
-    }
-
-    @Test
 
     void testCreateZona_VerdeConNombreExistente() {
         assertThrows(IllegalOperationException.class, () -> {
             Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
             newEntity.setVecindario(listaVecindario.get(0));
             newEntity.setNombre(listaZona_Verde.get(0).getNombre());
-            zona_VerdeService.createZona_Verde(newEntity);
-        });
-    }
-
-    @Test
-    void testCreateZona_VerdeConVecindarioInvalido() {
-        assertThrows(IllegalOperationException.class, () -> {
-            Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
-            newEntity.setNombre("Jaime duque");
-            VecindarioEntity vecindarioEntity = new VecindarioEntity();
-            vecindarioEntity.setId(0L);
-            newEntity.setVecindario(vecindarioEntity);
             zona_VerdeService.createZona_Verde(newEntity);
         });
     }

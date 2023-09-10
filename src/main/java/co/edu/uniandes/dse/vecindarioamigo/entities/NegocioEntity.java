@@ -35,6 +35,5 @@ public class NegocioEntity extends BaseEntity {
 	@PodamExclude
 	@ManyToOne
 	private VecindarioEntity Vecindario;
-	
-	
+
 }

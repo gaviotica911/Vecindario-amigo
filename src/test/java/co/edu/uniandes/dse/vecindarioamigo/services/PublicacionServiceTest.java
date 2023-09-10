@@ -1,12 +1,10 @@
 package co.edu.uniandes.dse.vecindarioamigo.services;
-package co.edu.uniandes.dse.vecindarioamigo.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @Transactional
 @Import(PublicacionService.class)
 
-
 public class PublicacionServiceTest {
     @Autowired
     private PublicacionService PublicacionService;
@@ -42,49 +39,50 @@ public class PublicacionServiceTest {
 
     private PodamFactory factory = new PodamFactoryImpl();
 
-    private List<PublicacionEntity> listaPublicaciones= new ArrayList<>();
+    private List<PublicacionEntity> listaPublicaciones = new ArrayList<>();
     private List<VecinoEntity> listaVecinos = new ArrayList<>();
 
     @BeforeEach
-	void setUp() {
-		clearData();
-		insertData();
-	}
+    void setUp() {
+        clearData();
+        insertData();
+    }
+
     /**
-	 * Limpia las tablas que están implicadas en la prueba.
-	 */
-	private void clearData() {
-		entityManager.getEntityManager().createQuery("delete from PublicacionEntity");
-		entityManager.getEntityManager().createQuery("delete from PublicacionEntity");
-		entityManager.getEntityManager().createQuery("delete from ComentarioEntity");
-	}
+     * Limpia las tablas que están implicadas en la prueba.
+     */
+    private void clearData() {
+        entityManager.getEntityManager().createQuery("delete from PublicacionEntity");
+        entityManager.getEntityManager().createQuery("delete from PublicacionEntity");
+        entityManager.getEntityManager().createQuery("delete from ComentarioEntity");
+    }
 
     /*
      *
-	 * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
-	 */
+     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     */
 
-	private void insertData() {
-        //vecinoEntity = factory.manufacturePojo(vecinoEntity.class);
-		//entityManager.persist(vecinoEntity);
+    private void insertData() {
+        // vecinoEntity = factory.manufacturePojo(vecinoEntity.class);
+        // entityManager.persist(vecinoEntity);
 
-		for (int i = 0; i < 3; i++) {
-			VecinoEntity vecinoEntity = factory.manufacturePojo(VecinoEntity.class);
-			entityManager.persist(vecinoEntity);
-			listaVecinos.add(vecinoEntity);
-		}
+        for (int i = 0; i < 3; i++) {
+            VecinoEntity vecinoEntity = factory.manufacturePojo(VecinoEntity.class);
+            entityManager.persist(vecinoEntity);
+            listaVecinos.add(vecinoEntity);
+        }
         for (int i = 0; i < 3; i++) {
             PublicacionEntity PublicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
             PublicacionEntity.setVecino(listaVecinos.get(0));
             entityManager.persist(PublicacionEntity);
             listaPublicaciones.add(PublicacionEntity);
-    }
+        }
 
         ComentarioEntity commentEntity = factory.manufacturePojo(ComentarioEntity.class);
         entityManager.persist(commentEntity);
         commentEntity.setPublicacion(listaPublicaciones.get(0));
         listaPublicaciones.get(0).getComentarios().add(commentEntity);
-	}
+    }
 
     @Test
     void testCreatePost() throws EntityNotFoundException, IllegalOperationException {
@@ -96,63 +94,66 @@ public class PublicacionServiceTest {
         PublicacionEntity entity = entityManager.find(PublicacionEntity.class, result.getId());
         assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getComentarios(), entity.getComentarios());
-       
+
     }
 
     @Test
     void testCreatePostWithNoValidContent() {
         assertThrows(IllegalOperationException.class, () -> {
-                PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
-                newEntity.setVecino(listaVecinos.get(0));
-                newEntity.setContenido("");
-                PublicacionService.createPublicacion(newEntity);
+            PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
+            newEntity.setVecino(listaVecinos.get(0));
+            newEntity.setContenido("");
+            PublicacionService.createPublicacion(newEntity);
         });
     }
 
-     @Test
+    @Test
     void testCreatePostWithNoValidContent2() {
         assertThrows(IllegalOperationException.class, () -> {
-                PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
-                newEntity.setVecino(listaVecinos.get(0));
-                newEntity.setContenido(null);
-                PublicacionService.createPublicacion(newEntity);
+            PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
+            newEntity.setVecino(listaVecinos.get(0));
+            newEntity.setContenido(null);
+            PublicacionService.createPublicacion(newEntity);
         });
     }
 
     @Test
     void testCreatePostWithInvalidVecino() {
-            assertThrows(IllegalOperationException.class, () -> {
-                    PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
-                    newEntity.setContenido("solomillos");
-                    VecinoEntity vecinoEntity = new VecinoEntity();
-                    vecinoEntity.setId(0L);
-                    newEntity.setVecino(vecinoEntity);
-                    PublicacionService.createPublicacion(newEntity);
-            });
+        assertThrows(IllegalOperationException.class, () -> {
+            PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
+            newEntity.setContenido("solomillos");
+            VecinoEntity vecinoEntity = new VecinoEntity();
+            vecinoEntity.setId(0L);
+            newEntity.setVecino(vecinoEntity);
+            PublicacionService.createPublicacion(newEntity);
+        });
     }
+
     @Test
     void testCreatePostWithNullVecino() {
         assertThrows(IllegalOperationException.class, () -> {
-                PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
-                newEntity.setContenido("holaaaa");
-                newEntity.setVecino(null);
-                PublicacionService.createPublicacion(newEntity);
+            PublicacionEntity newEntity = factory.manufacturePojo(PublicacionEntity.class);
+            newEntity.setContenido("holaaaa");
+            newEntity.setVecino(null);
+            PublicacionService.createPublicacion(newEntity);
         });
     }
+
     @Test
     void testGetPosts() {
         List<PublicacionEntity> list = PublicacionService.getPublicaciones();
         assertEquals(listaPublicaciones.size(), list.size());
         for (PublicacionEntity entity : list) {
-                boolean found = false;
-                for (PublicacionEntity storedEntity : listaPublicaciones) {
-                        if (entity.getId().equals(storedEntity.getId())) {
-                                found = true;
-                        }
+            boolean found = false;
+            for (PublicacionEntity storedEntity : listaPublicaciones) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
                 }
-                assertTrue(found);
+            }
+            assertTrue(found);
         }
     }
+
     @Test
     void testGetpost() throws EntityNotFoundException {
         PublicacionEntity entity = listaPublicaciones.get(0);
@@ -167,10 +168,11 @@ public class PublicacionServiceTest {
         assertEquals(entity.getLikes(), resultEntity.getLikes());
         assertEquals(entity.getCompartidos(), resultEntity.getCompartidos());
     }
+
     @Test
     void testGetInvalidPost() {
-        assertThrows(EntityNotFoundException.class,()->{
-                PublicacionService.getPublicacion(0L);
+        assertThrows(EntityNotFoundException.class, () -> {
+            PublicacionService.getPublicacion(0L);
         });
     }
 
@@ -190,49 +192,52 @@ public class PublicacionServiceTest {
         assertEquals(pojoEntity.getVideo(), resp.getVideo());
         assertEquals(pojoEntity.getLikes(), resp.getLikes());
         assertEquals(pojoEntity.getCompartidos(), resp.getCompartidos());
-    }   
+    }
+
     @Test
     void testUpdatePostInvalid() {
         assertThrows(EntityNotFoundException.class, () -> {
-                PublicacionEntity pojoEntity = factory.manufacturePojo(PublicacionEntity.class);
-                pojoEntity.setId(0L);
-                PublicacionService.updatePublicacion(0L, pojoEntity);
+            PublicacionEntity pojoEntity = factory.manufacturePojo(PublicacionEntity.class);
+            pojoEntity.setId(0L);
+            PublicacionService.updatePublicacion(0L, pojoEntity);
         });
     }
-@Test
+
+    @Test
     void testUpdatePostWithNoValidContenido() {
         assertThrows(IllegalOperationException.class, () -> {
-                PublicacionEntity entity = listaPublicaciones.get(0);
-                PublicacionEntity pojoEntity = factory.manufacturePojo(PublicacionEntity.class);
-                pojoEntity.setContenido("");
-                pojoEntity.setId(entity.getId());
-                PublicacionService.updatePublicacion(entity.getId(), pojoEntity);
+            PublicacionEntity entity = listaPublicaciones.get(0);
+            PublicacionEntity pojoEntity = factory.manufacturePojo(PublicacionEntity.class);
+            pojoEntity.setContenido("");
+            pojoEntity.setId(entity.getId());
+            PublicacionService.updatePublicacion(entity.getId(), pojoEntity);
         });
     }
-@Test
+
+    @Test
     void testUpdatePublicacionWithNoValidContenido2() {
         assertThrows(IllegalOperationException.class, () -> {
-                PublicacionEntity entity = listaPublicaciones.get(0);
-                PublicacionEntity pojoEntity = factory.manufacturePojo(PublicacionEntity.class);
-                pojoEntity.setContenido(null);
-                pojoEntity.setId(entity.getId());
-                PublicacionService.updatePublicacion(entity.getId(), pojoEntity);
+            PublicacionEntity entity = listaPublicaciones.get(0);
+            PublicacionEntity pojoEntity = factory.manufacturePojo(PublicacionEntity.class);
+            pojoEntity.setContenido(null);
+            pojoEntity.setId(entity.getId());
+            PublicacionService.updatePublicacion(entity.getId(), pojoEntity);
         });
     }
-@Test
+
+    @Test
     void testDeletePublicacion() throws EntityNotFoundException, IllegalOperationException {
         PublicacionEntity entity = listaPublicaciones.get(1);
         PublicacionService.deletePublicacion(entity.getId());
         PublicacionEntity deleted = entityManager.find(PublicacionEntity.class, entity.getId());
         assertNull(deleted);
     }
-@Test
+
+    @Test
     void testDeleteInvalidPublicacion() {
-        assertThrows(EntityNotFoundException.class, ()->{
-                PublicacionService.deletePublicacion(0L);
+        assertThrows(EntityNotFoundException.class, () -> {
+            PublicacionService.deletePublicacion(0L);
         });
     }
 
-
-    
 }
