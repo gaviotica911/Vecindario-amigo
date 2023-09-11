@@ -36,22 +36,34 @@ public class VecinoGrupoDeInteresService {
 	 * @param vecinoId      El id del vecino en el cual se va a guardar el grupoDeInteres.
 	 * @return El grupoDeInteres creado.
 	 * @throws EntityNotFoundException 
+     * @throws IllegalOperationException
 	 */
 	
 	@Transactional
-	public GruposDeInteresEntity addGrupoDeInteres(Long grupoDeInteresId, Long vecinoId) throws EntityNotFoundException {
+	public GruposDeInteresEntity addGrupoDeInteres(Long grupoDeInteresId, Long vecinoId) throws EntityNotFoundException, IllegalOperationException {
 		log.info("Start the process of adding a neighbor to the neighborhood with id = {0}", vecinoId);
-		
+		if (grupoDeInteresId ==null)
+		throw new IllegalOperationException("Id null");
+
+	
+
 		Optional<GruposDeInteresEntity> gruposDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteresId);
-		if(gruposDeInteresEntity.isEmpty())
+		if(gruposDeInteresEntity== null)
 			throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
+		if (gruposDeInteresEntity.isEmpty())
+				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 		
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
-		if(vecinoEntity.isEmpty())
+		if(vecinoEntity== null )
 			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
-
-
-        gruposDeInteresEntity.get().getVecinos().add(vecinoEntity.get());
+		if (vecinoEntity.isEmpty())
+				throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
+			
+		if ((vecinoEntity.get()).getGruposDeInteres().contains(gruposDeInteresEntity.get()))
+			throw new IllegalOperationException("el vecino ya hace parte de este grupo");
+		
+		vecinoEntity.get().getGruposDeInteres().add(gruposDeInteresEntity.get());
+	
 		log.info("Finish process of adding a interest group to a neighbor with id = {0}", vecinoId);
 		return gruposDeInteresEntity.get();
 	}
@@ -103,23 +115,26 @@ public class VecinoGrupoDeInteresService {
 	}
 
     /**
-	 * Remplazar grupoDeInteress de un vecino
+	 * Remplazar los grupos de interes de un vecino
 	 *
 	 * @param grupoDeInteresId Lista de grupoDeInteress que serán los de un vecino.
 	 * @param vecinoId El id del vecino que se quiere actualizar.
 	 * @return La lista de grupoDeInteress actualizada.
 	 * @throws EntityNotFoundException Si el vecino o un grupoDeInteres de la lista no se encuentran
+     * @throws IllegalOperationException
 	 */
 	@Transactional
-	public List<GruposDeInteresEntity> replaceGrupoDeInteres(Long vecinoId, List<GruposDeInteresEntity> gruposDeInteres) throws EntityNotFoundException {
+	public List<GruposDeInteresEntity> replaceGrupoDeInteres(Long vecinoId, List<GruposDeInteresEntity> gruposDeInteres) throws EntityNotFoundException, IllegalOperationException {
 		log.info("Start process of updating the group with id = {0}", vecinoId);
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
-		if(vecinoEntity.isEmpty())
+		if(vecinoEntity.isEmpty() || vecinoEntity == null )
 			throw new EntityNotFoundException(ErrorMessage.NEIGHBORHOOD_NOT_FOUND);
+		if(gruposDeInteres== null )
+			throw new IllegalOperationException("Lista invalida");
 		
 		for(GruposDeInteresEntity grupoDeInteres : gruposDeInteres) {
 			Optional<GruposDeInteresEntity> gruposDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteres.getId());
-			if (gruposDeInteresEntity.isEmpty())
+			if (gruposDeInteresEntity.isEmpty() || gruposDeInteresEntity== null )
 				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 
 			if (!gruposDeInteresEntity.get().getVecinos().contains(vecinoEntity.get()))
@@ -129,4 +144,20 @@ public class VecinoGrupoDeInteresService {
 		vecinoEntity.get().setGruposDeInteres(gruposDeInteres);
 		return vecinoEntity.get().getGruposDeInteres();
 	}
+	@Transactional
+    public void removeGrupoDeInteres(Long vecinoId, Long grupoId) throws EntityNotFoundException {
+            log.info("Inicia proceso de borrar un grupo del vecino con id = {0}", vecinoId);
+            Optional<GruposDeInteresEntity> grupoEntity = grupoDeInteresRepository.findById(grupoId);
+            Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
+
+            if (grupoEntity.isEmpty())
+                throw new EntityNotFoundException("No se ha encontrado el grupo con ese id.");
+
+            if (vecinoEntity.isEmpty())
+                    throw new EntityNotFoundException("No se ha encontrado el vecino con ese id.");
+
+            vecinoEntity.get().getGruposDeInteres().remove(grupoEntity.get());
+
+            log.info("Termina proceso de borrar un grupo de interes  del vecino con id = {0}", vecinoId);
+    }
 }

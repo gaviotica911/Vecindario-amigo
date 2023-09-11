@@ -10,7 +10,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ComentarioEntity extends BaseEntity{
     private String nombre;
-    private Date descripcion;
+    private Date fecha;
+    private String descripcion;
+
 
     @PodamExclude
     @ManyToOne

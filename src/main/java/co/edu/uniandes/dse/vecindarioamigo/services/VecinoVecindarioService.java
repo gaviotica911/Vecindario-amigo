@@ -85,7 +85,7 @@ public class VecinoVecindarioService {
 	 */
 
 	@Transactional
-	public VecindarioEntity replaceVeicndario(Long vecinoId, Long vecindarioId) throws EntityNotFoundException {
+	public VecindarioEntity replaceVecindario(Long vecinoId, Long vecindarioId) throws EntityNotFoundException {
 		log.info("Start the process of updating the neighborhood of the neighbor with id = {0}", vecinoId);
 		Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(vecindarioId);
 		if (vecindarioEntity.isEmpty())
@@ -114,7 +114,7 @@ public class VecinoVecindarioService {
 		if (vecinoEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
 
-		if (vecinoEntity.get().getVecindario() != null) {
+		if (vecinoEntity.get().getVecindario() == null) {
 			throw new EntityNotFoundException("The neighbor has no associated neighborhood");
 		}
 		Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(vecinoEntity.get().getVecindario().getId());

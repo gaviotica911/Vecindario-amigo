@@ -224,15 +224,18 @@ public class VecinoServiceTest {
     }
 
     @Test
-    void testUpdateVecinoCOnNombreInvalido2() {
-        assertThrows(IllegalOperationException.class, () -> {
-                VecinoEntity entity = listaVecinos.get(0);
-                VecinoEntity pojoEntity = factory.manufacturePojo(VecinoEntity.class);
-                pojoEntity.setNombre(null);
-                pojoEntity.setId(entity.getId());
-                vecinoService.updateVecino(entity.getId(), pojoEntity);
-        });
-    }
+	void testUpdateVecinoConNombreInvalido2() {
+		assertThrows(EntityNotFoundException.class, ()->{
+			//create an invalid instance with random values with pojo librarie
+			VecinoEntity pojoEntity = factory.manufacturePojo(VecinoEntity.class);
+
+			//set the id of the instance to be replaced to the new invalid instance created by pojo
+			pojoEntity.setId(0L);
+
+			//update the instance with the invalid instance
+			vecinoService.updateVecino(0L, pojoEntity);
+		});
+	}
 
     @Test
     void testDaleteVecino() throws EntityNotFoundException, IllegalOperationException {

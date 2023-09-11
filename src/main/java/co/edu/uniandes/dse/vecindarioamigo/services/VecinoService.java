@@ -45,6 +45,8 @@ public class VecinoService {
 
 		if (vecinoEntity.getNombre() == null)
                 throw new IllegalOperationException("Nombre is not valid");
+		if (vecinoEntity.getNombre() == "")
+                throw new IllegalOperationException("Nombre is not valid");
 				
         Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(vecinoEntity.getVecindario().getId());
         if (vecindarioEntity.isEmpty())

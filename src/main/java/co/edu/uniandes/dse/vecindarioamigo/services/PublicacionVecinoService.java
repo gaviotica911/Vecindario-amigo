@@ -114,7 +114,7 @@ public class PublicacionVecinoService {
 		if (publicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
 
-		if (publicacionEntity.get().getVecino() != null) {
+		if (publicacionEntity.get().getVecino() == null) {
 			throw new EntityNotFoundException("The post has no associated neighbor");
 		}
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(publicacionEntity.get().getVecino().getId());
