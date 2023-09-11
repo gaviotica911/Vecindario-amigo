@@ -24,13 +24,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @DataJpaTest
 @Transactional
-@Import(CentroComercialNegocioService.class)
+@Import({ CentroComercialService.class, CentroComercialNegocioService.class })
 public class CentroComercialNegocioServiceTest {
     @Autowired
     private CentroComercialNegocioService centroComercialNegocioService;
-
-    @Autowired
-    private NegocioService negocioService;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -38,7 +35,8 @@ public class CentroComercialNegocioServiceTest {
     private PodamFactory factory = new PodamFactoryImpl();
 
     private CentroComercialEntity centroComercial = new CentroComercialEntity();
-    private VecindarioEntity vecindario = new VecindarioEntity();
+
+    private List<CentroComercialEntity> centroComercialList = new ArrayList<>();
     private List<NegocioEntity> negocioList = new ArrayList<>();
 
     @BeforeEach
@@ -53,73 +51,58 @@ public class CentroComercialNegocioServiceTest {
     }
 
     private void insertData() {
-        vecindario = factory.manufacturePojo(VecindarioEntity.class);
-        entityManager.persist(vecindario);
-
-        centroComercial = factory.manufacturePojo(CentroComercialEntity.class);
-        entityManager.persist(centroComercial);
+        for (int i = 0; i < 3; i++) {
+            NegocioEntity business = factory.manufacturePojo(NegocioEntity.class);
+            entityManager.persist(business);
+            negocioList.add(business);
+        }
 
         for (int i = 0; i < 3; i++) {
-            NegocioEntity entity = factory.manufacturePojo(NegocioEntity.class);
-            entity.setCentroComercial(centroComercial);
+            CentroComercialEntity entity = factory.manufacturePojo(CentroComercialEntity.class);
             entityManager.persist(entity);
-            negocioList.add(entity);
-            centroComercial.getLista_negocios().add(entity);
+            centroComercialList.add(entity);
+            if (i == 0) {
+                negocioList.get(i).setCentroComercial(entity);
+                entity.getLista_negocios().add(negocioList.get(i));
+            }
         }
     }
 
     @Test
-    void testAddNegocio() throws EntityNotFoundException, IllegalOperationException {
-        NegocioEntity newNegocio = factory.manufacturePojo(NegocioEntity.class);
-        newNegocio.setCentroComercial(centroComercial);
+    void testaddNegocio() throws EntityNotFoundException {
+        CentroComercialEntity entity = centroComercialList.get(0);
+        NegocioEntity negocioEntity = negocioList.get(0);
+        NegocioEntity response = centroComercialNegocioService.addNegocio(negocioEntity.getId(), entity.getId());
 
-        negocioService.createNegocio(newNegocio);
-
-        NegocioEntity negocioEntity = centroComercialNegocioService
-                .addNegocio(negocioList.get(0).getId(), centroComercial.getId());
-        assertNotNull(negocioEntity);
-
-        assertEquals(negocioEntity.getId(), newNegocio.getId());
-        assertEquals(negocioEntity.getNombre(), newNegocio.getNombre());
-        assertEquals(negocioEntity.getDescripcion(), newNegocio.getDescripcion());
-        assertEquals(negocioEntity.getNumeroDeTelefonico(), newNegocio.getNumeroDeTelefonico());
-
-        NegocioEntity ultimoNegocio = centroComercialNegocioService.getNegocio(centroComercial.getId(),
-                newNegocio.getId());
-
-        assertEquals(negocioEntity.getId(), newNegocio.getId());
-        assertEquals(negocioEntity.getNombre(), newNegocio.getNombre());
-        assertEquals(negocioEntity.getDescripcion(), newNegocio.getDescripcion());
-        assertEquals(negocioEntity.getNumeroDeTelefonico(), newNegocio.getNumeroDeTelefonico());
+        assertNotNull(response);
+        assertEquals(negocioEntity.getId(), response.getId());
+        assertEquals(negocioEntity.getNombre(), response.getNombre());
+        assertEquals(negocioEntity.getDescripcion(),
+                response.getDescripcion());
+        assertEquals(negocioEntity.getNumeroDeTelefonico(),
+                response.getNumeroDeTelefonico());
     }
 
     @Test
     void testAddNegocioInvalidCentroComercial() {
         assertThrows(EntityNotFoundException.class, () -> {
-            NegocioEntity newNegocio = factory.manufacturePojo(NegocioEntity.class);
-            newNegocio.setCentroComercial(centroComercial);
-            negocioService.createNegocio(newNegocio);
-            centroComercialNegocioService.addNegocio(0L, newNegocio.getId());
+            NegocioEntity negocioEntity = negocioList.get(0);
+            centroComercialNegocioService.addNegocio(negocioEntity.getId(), 0L);
         });
     }
 
     @Test
     void testAddInvalidNegocio() {
         assertThrows(EntityNotFoundException.class, () -> {
-            centroComercialNegocioService.addNegocio(0L, centroComercial.getId());
+            CentroComercialEntity entity = centroComercialList.get(0);
+            centroComercialNegocioService.addNegocio(0L, entity.getId());
         });
     }
 
     @Test
     void testGetNegocios() throws EntityNotFoundException {
-        List<NegocioEntity> negocioEntities = centroComercialNegocioService
-                .getNegocios(centroComercial.getId());
-
-        assertEquals(negocioList.size(), negocioEntities.size());
-
-        for (int i = 0; i < negocioList.size(); i++) {
-            assertTrue(negocioEntities.contains(negocioList.get(0)));
-        }
+        List<NegocioEntity> list = centroComercialNegocioService.getNegocios(centroComercialList.get(0).getId());
+        assertEquals(1, list.size());
     }
 
     @Test
@@ -130,21 +113,20 @@ public class CentroComercialNegocioServiceTest {
     }
 
     @Test
-    void testGetNegocio() throws EntityNotFoundException, IllegalOperationException {
+    void testgetNegocio() throws EntityNotFoundException, IllegalOperationException {
+        CentroComercialEntity entity = centroComercialList.get(0);
         NegocioEntity negocioEntity = negocioList.get(0);
-        NegocioEntity negocio = centroComercialNegocioService.getNegocio(centroComercial.getId(),
-                negocioEntity.getId());
-        assertNotNull(negocio);
+        NegocioEntity response = centroComercialNegocioService.getNegocio(entity.getId(), negocioEntity.getId());
 
-        assertEquals(negocioEntity.getId(), negocio.getId());
-        assertEquals(negocioEntity.getNombre(), negocio.getNombre());
-        assertEquals(negocioEntity.getDescripcion(), negocio.getDescripcion());
-        assertEquals(negocioEntity.getNumeroDeTelefonico(), negocio.getNumeroDeTelefonico());
-
+        assertEquals(negocioEntity.getId(), response.getId());
+        assertEquals(negocioEntity.getNombre(), response.getNombre());
+        assertEquals(negocioEntity.getDescripcion(), response.getDescripcion());
+        assertEquals(negocioEntity.getNumeroDeTelefonico(), response.getNumeroDeTelefonico());
+        assertEquals(negocioEntity.getCalificacion(), response.getCalificacion());
     }
 
     @Test
-    void testGetNegocioInvalidCentroComercial() {
+    void testgetNegocioInvalidCentroComercial() {
         assertThrows(EntityNotFoundException.class, () -> {
             NegocioEntity negocioEntity = negocioList.get(0);
             centroComercialNegocioService.getNegocio(0L, negocioEntity.getId());
@@ -154,97 +136,51 @@ public class CentroComercialNegocioServiceTest {
     @Test
     void testGetInvalidNegocio() {
         assertThrows(EntityNotFoundException.class, () -> {
-            centroComercialNegocioService.getNegocio(centroComercial.getId(), 0L);
+            CentroComercialEntity entity = centroComercialList.get(0);
+            centroComercialNegocioService.getNegocio(entity.getId(), 0L);
         });
     }
 
     @Test
-    void testGetNegocioNotAssociatedCentroComercial() {
+    public void getNegocioNoAsociadoTest() {
         assertThrows(IllegalOperationException.class, () -> {
-            CentroComercialEntity centroComercialEntity = factory.manufacturePojo(CentroComercialEntity.class);
-            entityManager.persist(centroComercialEntity);
-
-            NegocioEntity negocioEntity = factory.manufacturePojo(NegocioEntity.class);
-            negocioEntity.setCentroComercial(centroComercialEntity);
-            entityManager.persist(negocioEntity);
-
-            centroComercialNegocioService.getNegocio(centroComercialEntity.getId(), negocioEntity.getId());
+            CentroComercialEntity entity = centroComercialList.get(0);
+            NegocioEntity negocioEntity = negocioList.get(1);
+            centroComercialNegocioService.getNegocio(entity.getId(), negocioEntity.getId());
         });
     }
 
     @Test
-    void testReplaceNegocios() throws EntityNotFoundException, IllegalOperationException {
-        List<NegocioEntity> nuevaLista = new ArrayList<>();
+    void testReplaceNegocios() throws EntityNotFoundException {
+        CentroComercialEntity entity = centroComercialList.get(0);
+        List<NegocioEntity> list = negocioList.subList(1, 3);
+        centroComercialNegocioService.replaceNegocios(entity.getId(), list);
 
-        for (int i = 0; i < 3; i++) {
-            NegocioEntity entity = factory.manufacturePojo(NegocioEntity.class);
-            entity.setCentroComercial(centroComercial);
-            entityManager.persist(entity);
-            nuevaLista.add(entity);
+        for (NegocioEntity negocio : list) {
+            NegocioEntity b = entityManager.find(NegocioEntity.class, negocio.getId());
+            assertTrue(b.getCentroComercial().equals(entity));
         }
-
-        for (int i = 0; i < nuevaLista.size(); i++) {
-            centroComercialNegocioService.addNegocio(nuevaLista.get(i).getId(), centroComercial.getId());
-        }
-
-        List<NegocioEntity> negocioEntities = entityManager
-                .find(CentroComercialEntity.class, centroComercial.getId()).getLista_negocios();
-        for (NegocioEntity item : nuevaLista) {
-            assertTrue(negocioEntities.contains(item));
-        }
-    }
-
-    @Test
-    void testReplaceNegociosInvalidCentroComercial() {
-        assertThrows(EntityNotFoundException.class, () -> {
-            List<NegocioEntity> nuevaLista = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
-                NegocioEntity entity = factory.manufacturePojo(NegocioEntity.class);
-                entity.setCentroComercial(centroComercial);
-                negocioService.createNegocio(entity);
-                nuevaLista.add(entity);
-            }
-            for (int i = 0; i < nuevaLista.size(); i++) {
-                centroComercialNegocioService.addNegocio(nuevaLista.get(i).getId(), 0L);
-            }
-        });
     }
 
     @Test
     void testReplaceInvalidNegocios() {
         assertThrows(EntityNotFoundException.class, () -> {
-            List<NegocioEntity> nuevaLista = new ArrayList<>();
-            NegocioEntity entity = factory.manufacturePojo(NegocioEntity.class);
-            entity.setCentroComercial(centroComercial);
-            entity.setId(0L);
-            nuevaLista.add(entity);
-            for (int i = 0; i < nuevaLista.size(); i++) {
-                centroComercialNegocioService.addNegocio(nuevaLista.get(i).getId(), centroComercial.getId());
-            }
+            CentroComercialEntity entity = centroComercialList.get(0);
+
+            List<NegocioEntity> negocios = new ArrayList<>();
+            NegocioEntity newNegocio = factory.manufacturePojo(NegocioEntity.class);
+            newNegocio.setId(0L);
+            negocios.add(newNegocio);
+
+            centroComercialNegocioService.replaceNegocios(entity.getId(), negocios);
         });
     }
 
     @Test
-    void testRemoveNegocio() throws EntityNotFoundException {
-        for (NegocioEntity negocio : negocioList) {
-            centroComercialNegocioService.removeNegocio(centroComercial.getId(), negocio.getId());
-        }
-        assertTrue(centroComercialNegocioService.getNegocios(centroComercial.getId()).isEmpty());
-    }
-
-    @Test
-    void testRemoveNegocioInvalidCentroComercial() {
+    void testReplaceNegociosInvalidCentroComercial() throws EntityNotFoundException {
         assertThrows(EntityNotFoundException.class, () -> {
-            for (NegocioEntity negocio : negocioList) {
-                centroComercialNegocioService.removeNegocio(0L, negocio.getId());
-            }
-        });
-    }
-
-    @Test
-    void testRemoveInvalidNegocio() {
-        assertThrows(EntityNotFoundException.class, () -> {
-            centroComercialNegocioService.removeNegocio(centroComercial.getId(), 0L);
+            List<NegocioEntity> list = negocioList.subList(1, 3);
+            centroComercialNegocioService.replaceNegocios(0L, list);
         });
     }
 

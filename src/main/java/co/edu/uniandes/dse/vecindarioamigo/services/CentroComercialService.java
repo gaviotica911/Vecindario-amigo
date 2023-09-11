@@ -28,7 +28,12 @@ public class CentroComercialService {
         if (!centroComercialRepository.findByNombre(centroComercialEntity.getNombre()).isEmpty()) {
             throw new IllegalOperationException("Centro comercial name already exists");
         }
-
+        if (centroComercialEntity.getNombre().equals("")) {
+            throw new IllegalOperationException("Centro comercial name cannot be empty");
+        }
+        if (centroComercialEntity.getVecindario() == null) {
+            throw new IllegalOperationException("Neighbourhood cannot be null");
+        }
         return centroComercialRepository.save(centroComercialEntity);
     }
 
@@ -53,7 +58,6 @@ public class CentroComercialService {
         Optional<CentroComercialEntity> centroComercialEntity = centroComercialRepository.findById(centroComercialID);
         if (centroComercialEntity.isEmpty())
             throw new EntityNotFoundException(ErrorMessage.SHOPPING_MALL_NOT_FOUND);
-
         centroComercial.setId(centroComercialID);
         return centroComercialRepository.save(centroComercial);
     }

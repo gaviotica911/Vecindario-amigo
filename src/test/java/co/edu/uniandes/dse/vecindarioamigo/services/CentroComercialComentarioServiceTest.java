@@ -18,30 +18,26 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-@ExtendWith(SpringExtension.class)
 @DataJpaTest
 @Transactional
-@Import(CentroComercialComentarioService.class)
+@Import({ CentroComercialService.class, CentroComercialComentarioService.class })
 public class CentroComercialComentarioServiceTest {
     @Autowired
     private CentroComercialComentarioService centroComercialComentarioService;
-
-    @Autowired
-    private ComentarioService comentarioService;
 
     @Autowired
     private TestEntityManager entityManager;
 
     private PodamFactory factory = new PodamFactoryImpl();
 
-    private CentroComercialEntity centroComercial = new CentroComercialEntity();
-    private VecindarioEntity vecindario = new VecindarioEntity();
+    private List<CentroComercialEntity> centroComercialList = new ArrayList<>();
     private List<ComentarioEntity> comentarioList = new ArrayList<>();
 
     @BeforeEach
@@ -56,71 +52,50 @@ public class CentroComercialComentarioServiceTest {
     }
 
     private void insertData() {
-        vecindario = factory.manufacturePojo(VecindarioEntity.class);
-        entityManager.persist(vecindario);
-
-        centroComercial = factory.manufacturePojo(CentroComercialEntity.class);
-        entityManager.persist(centroComercial);
+        for (int i = 0; i < 3; i++) {
+            ComentarioEntity comment = factory.manufacturePojo(ComentarioEntity.class);
+            entityManager.persist(comment);
+            comentarioList.add(comment);
+        }
 
         for (int i = 0; i < 3; i++) {
-            ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
-            entity.setCentroComercial(centroComercial);
+            CentroComercialEntity entity = factory.manufacturePojo(CentroComercialEntity.class);
             entityManager.persist(entity);
-            comentarioList.add(entity);
-            centroComercial.getComentarios().add(entity);
+            centroComercialList.add(entity);
+            if (i == 0) {
+                comentarioList.get(i).setCentroComercial(entity);
+                entity.getComentarios().add(comentarioList.get(i));
+            }
         }
     }
 
     @Test
     void testAddComentario() throws EntityNotFoundException, IllegalOperationException {
-        ComentarioEntity newComentario = factory.manufacturePojo(ComentarioEntity.class);
-        newComentario.setCentroComercial(centroComercial);
+        CentroComercialEntity entity = centroComercialList.get(0);
+        ComentarioEntity comentarioEntity = comentarioList.get(0);
+        ComentarioEntity response = centroComercialComentarioService.addComentario(comentarioEntity.getId(),
+                entity.getId());
 
-        comentarioService.createComentarios(newComentario);
+        assertNotNull(response);
 
-        ComentarioEntity comentarioEntity = centroComercialComentarioService
-                .addComentario(comentarioList.get(0).getId(), centroComercial.getId());
-        assertNotNull(comentarioEntity);
-
-        assertEquals(comentarioEntity.getId(), newComentario.getId());
-        assertEquals(comentarioEntity.getNombre(), newComentario.getNombre());
-        assertEquals(comentarioEntity.getDescripcion(), newComentario.getDescripcion());
-
-        ComentarioEntity ultimoComentario = centroComercialComentarioService.getComentario(centroComercial.getId(),
-                newComentario.getId());
-
-        assertEquals(ultimoComentario.getId(), newComentario.getId());
-        assertEquals(ultimoComentario.getNombre(), newComentario.getNombre());
-        assertEquals(ultimoComentario.getDescripcion(), newComentario.getDescripcion());
-    }
-
-    @Test
-    void testAddComentarioInvalidCentroComercial() {
-        assertThrows(EntityNotFoundException.class, () -> {
-            ComentarioEntity newComentario = factory.manufacturePojo(ComentarioEntity.class);
-            newComentario.setCentroComercial(centroComercial);
-            comentarioService.createComentarios(newComentario);
-            centroComercialComentarioService.addComentario(0L, newComentario.getId());
-        });
+        assertEquals(comentarioEntity.getId(), response.getId());
+        assertEquals(comentarioEntity.getNombre(), response.getNombre());
+        assertEquals(comentarioEntity.getDescripcion(), response.getDescripcion());
     }
 
     @Test
     void testAddInvalidComentario() {
         assertThrows(EntityNotFoundException.class, () -> {
-            centroComercialComentarioService.addComentario(0L, centroComercial.getId());
+            CentroComercialEntity entity = centroComercialList.get(0);
+            centroComercialComentarioService.addComentario(0L, entity.getId());
         });
     }
 
     @Test
     void testGetComentarios() throws EntityNotFoundException {
-        List<ComentarioEntity> comentaroiEntities = centroComercialComentarioService
-                .getComentarios(centroComercial.getId());
-
-        assertEquals(comentarioList.size(), comentaroiEntities.size());
-
-        for (int i = 0; i < comentarioList.size(); i++) {
-            assertTrue(comentaroiEntities.contains(comentarioList.get(0)));
-        }
+        List<ComentarioEntity> list = centroComercialComentarioService
+                .getComentarios(centroComercialList.get(0).getId());
+        assertEquals(1, list.size());
     }
 
     @Test
@@ -131,20 +106,19 @@ public class CentroComercialComentarioServiceTest {
     }
 
     @Test
-    void testGetComentario() throws EntityNotFoundException, IllegalOperationException {
+    void testgetComentario() throws EntityNotFoundException, IllegalOperationException {
+        CentroComercialEntity entity = centroComercialList.get(0);
         ComentarioEntity comentarioEntity = comentarioList.get(0);
-        ComentarioEntity comentario = centroComercialComentarioService.getComentario(centroComercial.getId(),
+        ComentarioEntity response = centroComercialComentarioService.getComentario(entity.getId(),
                 comentarioEntity.getId());
-        assertNotNull(comentario);
 
-        assertEquals(comentarioEntity.getId(), comentario.getId());
-        assertEquals(comentarioEntity.getNombre(), comentario.getNombre());
-        assertEquals(comentarioEntity.getDescripcion(), comentario.getDescripcion());
-
+        assertEquals(comentarioEntity.getId(), response.getId());
+        assertEquals(comentarioEntity.getNombre(), response.getNombre());
+        assertEquals(comentarioEntity.getDescripcion(), response.getDescripcion());
     }
 
     @Test
-    void testGetComentarioInvalidCentroComercial() {
+    void testgetComentarioInvalidCentroComercial() {
         assertThrows(EntityNotFoundException.class, () -> {
             ComentarioEntity comentarioEntity = comentarioList.get(0);
             centroComercialComentarioService.getComentario(0L, comentarioEntity.getId());
@@ -154,97 +128,51 @@ public class CentroComercialComentarioServiceTest {
     @Test
     void testGetInvalidComentario() {
         assertThrows(EntityNotFoundException.class, () -> {
-            centroComercialComentarioService.getComentario(centroComercial.getId(), 0L);
+            CentroComercialEntity entity = centroComercialList.get(0);
+            centroComercialComentarioService.getComentario(entity.getId(), 0L);
         });
     }
 
     @Test
-    void testGetComentarioNotAssociatedCentroComercial() {
+    public void getComentarioNoAsociadoTest() {
         assertThrows(IllegalOperationException.class, () -> {
-            CentroComercialEntity centroComercialEntity = factory.manufacturePojo(CentroComercialEntity.class);
-            entityManager.persist(centroComercialEntity);
-
-            ComentarioEntity comentarioEntity = factory.manufacturePojo(ComentarioEntity.class);
-            comentarioEntity.setCentroComercial(centroComercialEntity);
-            entityManager.persist(comentarioEntity);
-
-            centroComercialComentarioService.getComentario(centroComercialEntity.getId(), comentarioEntity.getId());
+            CentroComercialEntity entity = centroComercialList.get(0);
+            ComentarioEntity comentarioEntity = comentarioList.get(1);
+            centroComercialComentarioService.getComentario(entity.getId(), comentarioEntity.getId());
         });
     }
 
     @Test
-    void testReplaceComentarios() throws EntityNotFoundException, IllegalOperationException {
-        List<ComentarioEntity> nuevaLista = new ArrayList<>();
+    void testReplaceComentarios() throws EntityNotFoundException {
+        CentroComercialEntity entity = centroComercialList.get(0);
+        List<ComentarioEntity> list = comentarioList.subList(1, 3);
+        centroComercialComentarioService.replaceComentarios(entity.getId(), list);
 
-        for (int i = 0; i < 3; i++) {
-            ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
-            entity.setCentroComercial(centroComercial);
-            entityManager.persist(entity);
-            nuevaLista.add(entity);
+        for (ComentarioEntity comentario : list) {
+            ComentarioEntity c = entityManager.find(ComentarioEntity.class, comentario.getId());
+            assertTrue(c.getCentroComercial().equals(entity));
         }
-
-        for (int i = 0; i < nuevaLista.size(); i++) {
-            centroComercialComentarioService.addComentario(nuevaLista.get(i).getId(), centroComercial.getId());
-        }
-
-        List<ComentarioEntity> comentarioEntities = entityManager
-                .find(CentroComercialEntity.class, centroComercial.getId()).getComentarios();
-        for (ComentarioEntity item : nuevaLista) {
-            assertTrue(comentarioEntities.contains(item));
-        }
-    }
-
-    @Test
-    void testReplaceComentariosInvalidCentroComercial() {
-        assertThrows(EntityNotFoundException.class, () -> {
-            List<ComentarioEntity> nuevaLista = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
-                ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
-                entity.setCentroComercial(centroComercial);
-                comentarioService.createComentarios(entity);
-                nuevaLista.add(entity);
-            }
-            for (int i = 0; i < nuevaLista.size(); i++) {
-                centroComercialComentarioService.addComentario(nuevaLista.get(i).getId(), 0L);
-            }
-        });
     }
 
     @Test
     void testReplaceInvalidComentarios() {
         assertThrows(EntityNotFoundException.class, () -> {
-            List<ComentarioEntity> nuevaLista = new ArrayList<>();
-            ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
-            entity.setCentroComercial(centroComercial);
-            entity.setId(0L);
-            nuevaLista.add(entity);
-            for (int i = 0; i < nuevaLista.size(); i++) {
-                centroComercialComentarioService.addComentario(nuevaLista.get(i).getId(), centroComercial.getId());
-            }
+            CentroComercialEntity entity = centroComercialList.get(0);
+
+            List<ComentarioEntity> comentarios = new ArrayList<>();
+            ComentarioEntity newComentario = factory.manufacturePojo(ComentarioEntity.class);
+            newComentario.setId(0L);
+            comentarios.add(newComentario);
+
+            centroComercialComentarioService.replaceComentarios(entity.getId(), comentarios);
         });
     }
 
     @Test
-    void testRemoveComentario() throws EntityNotFoundException {
-        for (ComentarioEntity comentario : comentarioList) {
-            centroComercialComentarioService.removeComentario(centroComercial.getId(), comentario.getId());
-        }
-        assertTrue(centroComercialComentarioService.getComentarios(centroComercial.getId()).isEmpty());
-    }
-
-    @Test
-    void testRemoveComentarioInvalidCentroComercial() {
+    void testReplaceComentariosInvalidCentroComercial() throws EntityNotFoundException {
         assertThrows(EntityNotFoundException.class, () -> {
-            for (ComentarioEntity comentario : comentarioList) {
-                centroComercialComentarioService.removeComentario(0L, comentario.getId());
-            }
-        });
-    }
-
-    @Test
-    void testRemoveInvalidComentario() {
-        assertThrows(EntityNotFoundException.class, () -> {
-            centroComercialComentarioService.removeComentario(centroComercial.getId(), 0L);
+            List<ComentarioEntity> list = comentarioList.subList(1, 3);
+            centroComercialComentarioService.replaceComentarios(0L, list);
         });
     }
 

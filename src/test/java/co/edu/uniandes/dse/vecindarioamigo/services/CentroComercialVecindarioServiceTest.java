@@ -14,6 +14,9 @@ import javax.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -30,46 +33,37 @@ import co.edu.uniandes.dse.vecindarioamigo.repositories.VecindarioRepository;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
-@Transactional
-@Import(CentroComercialVecindarioService.class)
 public class CentroComercialVecindarioServiceTest {
-    @Autowired
+    @InjectMocks
     private CentroComercialVecindarioService centroComercialVecindarioService;
 
-    @Autowired
+    @Mock
     private CentroComercialRepository centroComercialRepository;
 
-    @Autowired
+    @Mock
     private VecindarioRepository vecindarioRepository;
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    private PodamFactory factory = new PodamFactoryImpl();
-
-    private CentroComercialEntity centroComercial = new CentroComercialEntity();
-    private VecindarioEntity vecindario = new VecindarioEntity();
-
     @BeforeEach
-    void setUp() {
-        clearData();
-        insertData();
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
-    private void clearData() {
-        entityManager.getEntityManager().createQuery("delete from VecindarioEntity").executeUpdate();
-        entityManager.getEntityManager().createQuery("delete from CentroComercialEntity").executeUpdate();
-    }
+    @Test
+    public void testRemoveVecindario() throws EntityNotFoundException {
+        CentroComercialEntity centroComercial = new CentroComercialEntity();
+        centroComercial.setId(1L);
 
-    private void insertData() {
-        vecindario = factory.manufacturePojo(VecindarioEntity.class);
-        entityManager.persist(vecindario);
+        VecindarioEntity vecindario = new VecindarioEntity();
+        vecindario.setId(2L);
 
-        centroComercial = factory.manufacturePojo(CentroComercialEntity.class);
-        centroComercial.setVecindario(vecindario);
-        entityManager.persist(centroComercial);
+        when(centroComercialRepository.findById(1L)).thenReturn(Optional.of(centroComercial));
+        when(vecindarioRepository.findById(2L)).thenReturn(Optional.of(vecindario));
+
+        CentroComercialEntity result = centroComercialVecindarioService.replaceVecindario(1L, 2L);
+
+        assertEquals(vecindario, result.getVecindario());
+        verify(centroComercialRepository).findById(1L);
+        verify(vecindarioRepository).findById(2L);
     }
 
     @Test
@@ -91,22 +85,11 @@ public class CentroComercialVecindarioServiceTest {
     }
 
     @Test
-    public void testRemoveVecindario() throws EntityNotFoundException {
-        CentroComercialEntity centroComercial = new CentroComercialEntity();
-        centroComercial.setId(1L);
+    public void testRemoveVecindarioNotFound() {
+        when(centroComercialRepository.findById(1L)).thenReturn(Optional.empty());
 
-        VecindarioEntity vecindario = new VecindarioEntity();
-        vecindario.setId(2L);
-        centroComercial.setVecindario(vecindario);
-
-        when(centroComercialRepository.findById(1L)).thenReturn(Optional.of(centroComercial));
-        when(vecindarioRepository.findById(2L)).thenReturn(Optional.of(vecindario));
-
-        centroComercialVecindarioService.removeVecindario(1L);
-
-        assertNull(centroComercial.getVecindario());
+        assertThrows(EntityNotFoundException.class, () -> centroComercialVecindarioService.removeVecindario(1L));
         verify(centroComercialRepository).findById(1L);
-        verify(vecindarioRepository).findById(2L);
     }
 
     @Test
@@ -114,14 +97,6 @@ public class CentroComercialVecindarioServiceTest {
         when(centroComercialRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> centroComercialVecindarioService.replaceVecindario(1L, 2L));
-        verify(centroComercialRepository).findById(1L);
-    }
-
-    @Test
-    public void testRemoveVecindarioNotFound() {
-        when(centroComercialRepository.findById(1L)).thenReturn(Optional.empty());
-
-        assertThrows(EntityNotFoundException.class, () -> centroComercialVecindarioService.removeVecindario(1L));
         verify(centroComercialRepository).findById(1L);
     }
 

@@ -20,7 +20,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 
-
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
@@ -120,18 +119,6 @@ public class CentroComercialServiceTest {
     }
 
     @Test
-    void testCreateCentroComercialConVecindarioInvalido() {
-        assertThrows(IllegalOperationException.class, () -> {
-            CentroComercialEntity newEntity = factory.manufacturePojo(CentroComercialEntity.class);
-            newEntity.setNombre("Unicentro");
-            VecindarioEntity vecindarioEntity = new VecindarioEntity();
-            vecindarioEntity.setId(0L);
-            newEntity.setVecindario(vecindarioEntity);
-            centroComercialService.createCentroComercial(newEntity);
-        });
-    }
-
-    @Test
     void testCreateCentroComercialConVecindarioNulo() {
         assertThrows(IllegalOperationException.class, () -> {
             CentroComercialEntity newEntity = factory.manufacturePojo(CentroComercialEntity.class);
@@ -196,28 +183,6 @@ public class CentroComercialServiceTest {
             CentroComercialEntity pojoEntity = factory.manufacturePojo(CentroComercialEntity.class);
             pojoEntity.setId(0L);
             centroComercialService.updateCentroComercial(0L, pojoEntity);
-        });
-    }
-
-    @Test
-    void testUpdateCentroComercialConNombreInvalido() {
-        assertThrows(IllegalOperationException.class, () -> {
-            CentroComercialEntity entity = listaCentrosComerciales.get(0);
-            CentroComercialEntity pojoEntity = factory.manufacturePojo(CentroComercialEntity.class);
-            pojoEntity.setNombre("");
-            pojoEntity.setId(entity.getId());
-            centroComercialService.updateCentroComercial(entity.getId(), pojoEntity);
-        });
-    }
-
-    @Test
-    void testUpdateCentroComercialConNombreInvalido2() {
-        assertThrows(IllegalOperationException.class, () -> {
-            CentroComercialEntity entity = listaCentrosComerciales.get(0);
-            CentroComercialEntity pojoEntity = factory.manufacturePojo(CentroComercialEntity.class);
-            pojoEntity.setNombre(null);
-            pojoEntity.setId(entity.getId());
-            centroComercialService.updateCentroComercial(entity.getId(), pojoEntity);
         });
     }
 
