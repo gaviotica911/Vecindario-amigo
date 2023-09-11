@@ -29,8 +29,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @Import({ VecindarioService.class, VecindarioNegocioService.class })
 public class VecindarioNegocioServiceTest {
     
-    
-
 	@Autowired
 	private VecindarioNegocioService vecindarioNegocioService;
 
@@ -101,7 +99,7 @@ public class VecindarioNegocioServiceTest {
 	 * @throws EntityNotFoundException
 	 */
 	@Test
-	void testAddInvalidCentroComercial() {
+	void testAddInvalidNegocio() {
 		assertThrows(EntityNotFoundException.class, ()->{
 			VecindarioEntity entity = vecindarioList.get(0);
 			vecindarioNegocioService.addNegocio(0L, entity.getId());
@@ -232,7 +230,7 @@ public class VecindarioNegocioServiceTest {
 	 * Vecindario.
 	 */
 	@Test
-	void testReplaceInvalidCentrosComerciales() {
+	void testReplaceInvalidNegocios() {
 		assertThrows(EntityNotFoundException.class, ()->{
 			VecindarioEntity entity = vecindarioList.get(0);
 			

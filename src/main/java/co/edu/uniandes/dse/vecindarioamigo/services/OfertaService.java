@@ -39,7 +39,7 @@ public class OfertaService {
 
 	public OfertaEntity createOffer(OfertaEntity ofertaEntity) throws IllegalOperationException {
 		log.info("The offer creation process begins");
-		if (!ofertaRepository.findById(ofertaEntity.getId()).isEmpty()) {
+		if (ofertaEntity.getId() != null && !ofertaRepository.findById(ofertaEntity.getId()).isEmpty()) {
 			throw new IllegalOperationException("Offer id already exists");
 		}
 		log.info("End of offer creation process");
@@ -103,14 +103,14 @@ public class OfertaService {
 	 *  								-negocio asociado
 	 */
 	@Transactional
-	public void deleteVecindario(Long ofertaId) throws EntityNotFoundException, IllegalOperationException {
+	public void deleteOferta(Long ofertaId) throws EntityNotFoundException, IllegalOperationException {
 		log.info("Start process of deleting the offer with id = {0}", ofertaId);
 		Optional<OfertaEntity> OfertaEntity = ofertaRepository.findById(ofertaId);
 		if (OfertaEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.OFFER_NOT_FOUND);
 
 		//checking business logic constraints
-			//checking no relation with malls
+			//checking no relation with business
 			NegocioEntity business = OfertaEntity.get().getNegocio();
 			if (business != null) {
 				throw new IllegalOperationException(

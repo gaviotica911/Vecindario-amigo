@@ -103,7 +103,7 @@ public class GrupoDeInteresVecinoService {
 	 * @return Nueva colección de VecinoEntity asociada a la instancia de Author
 	 */
 	@Transactional
-	public List<VecinoEntity> addGrupoDeInteres(Long grupoDeInteresId, List<VecinoEntity> vecinos) throws EntityNotFoundException {
+	public List<VecinoEntity> addVecinos(Long grupoDeInteresId, List<VecinoEntity> vecinos) throws EntityNotFoundException {
 		log.info("Inicia proceso de reemplazar los vecinos asociados al grupo con id = {0}", grupoDeInteresId);
 		Optional<GruposDeInteresEntity> grupoDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteresId);
 		if (grupoDeInteresEntity.isEmpty())
