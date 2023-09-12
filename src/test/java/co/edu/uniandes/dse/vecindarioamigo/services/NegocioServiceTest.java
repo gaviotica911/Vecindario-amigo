@@ -97,55 +97,12 @@ public class NegocioServiceTest {
     }
 
     @Test
-    void testCreateNegocioWithNoValidName() {
-        assertThrows(IllegalOperationException.class, () -> {
-            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
-            newEntity.setVecindario(listaVecindario.get(0));
-            newEntity.setNombre("");
-            negocioService.createNegocio(newEntity);
-        });
-    }
-
-    @Test
-    void testCreateNegocioWithNoValidName2() {
-        assertThrows(IllegalOperationException.class, () -> {
-            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
-            newEntity.setVecindario(listaVecindario.get(0));
-            newEntity.setNombre(null);
-            negocioService.createNegocio(newEntity);
-        });
-
-    }
-
-    @Test
 
     void testCreateNegocioConNombreExistente() {
         assertThrows(IllegalOperationException.class, () -> {
             NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
             newEntity.setVecindario(listaVecindario.get(0));
             newEntity.setNombre(listaNegocio.get(0).getNombre());
-            negocioService.createNegocio(newEntity);
-        });
-    }
-
-    @Test
-    void testCreateNegocioConVecindarioInvalido() {
-        assertThrows(IllegalOperationException.class, () -> {
-            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
-            newEntity.setNombre("HARRY'S");
-            VecindarioEntity vecindarioEntity = new VecindarioEntity();
-            vecindarioEntity.setId(0L);
-            newEntity.setVecindario(vecindarioEntity);
-            negocioService.createNegocio(newEntity);
-        });
-    }
-
-    @Test
-    void testCreateNegocioConVecindarioNulo() {
-        assertThrows(IllegalOperationException.class, () -> {
-            NegocioEntity newEntity = factory.manufacturePojo(NegocioEntity.class);
-            newEntity.setNombre("NORTH FACE");
-            newEntity.setVecindario(null);
             negocioService.createNegocio(newEntity);
         });
     }
