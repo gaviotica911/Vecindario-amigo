@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "c078a9ae-0581-4131-881d-d23834da5195",
+		"name": "Zona_VerdeComentario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29659214"
+	},
+	"item": [
+		{
+			"name": "Agregar comentario a Zona_verde",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/zonas_verdes/{{zona_verde_id_1}}/comentario/{{comentario_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"zonas_verdes",
+						"{{zona_verde_id_1}}",
+						"comentario",
+						"{{comentario_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver todos los comentarios de una Zona Verde",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/zonas_verdes/{{zona_verde_id_1}}/comentarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"zonas_verdes",
+						"{{zona_verde_id_1}}",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
