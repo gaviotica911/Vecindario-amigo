@@ -1,7 +1,7 @@
 package co.edu.uniandes.dse.vecindarioamigo.exceptions;
 
 public final class ErrorMessage {
-	public static final String VECINDARIO_NOT_FOUND = "The neighborhood with the given id was not found";
+    public static final String VECINDARIO_NOT_FOUND = "The neighborhood with the given id was not found";
     public static final String PUBLICACION_NOT_FOUND = "The post with the given id was not found";
     public static final String VECINO_NOT_FOUND = "The neighbor with the given id was not found";
     public static final String SHOPPING_MALL_NOT_FOUND = "The shopping mall with the given id was not found";
@@ -16,9 +16,9 @@ public final class ErrorMessage {
     public static final String COMENTARIO_NOT_FOUND = "The Comentario is not found";
     public static final String CentroComercial_NOT_FOUND = null;
     public static final String GRUPO_DE_INTERES_NOT_FOUND = "The Grupo de interes is not found";
+    public static final String OFERTA_NOT_ASSOCIATED_WITH_NEGOCIO = null;
 
-
-	private ErrorMessage() {
-		throw new IllegalStateException("Utility class");
-	}
+    private ErrorMessage() {
+        throw new IllegalStateException("Utility class");
+    }
 }

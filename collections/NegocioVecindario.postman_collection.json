@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "8a693397-82c5-4986-8c83-9d46f2261411",
+		"name": "NegocioVecindario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29659214"
+	},
+	"item": [
+		{
+			"name": "Reemplazar Vecindario de un Negocio",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/vecindario/{{vecindario_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"vecindario",
+						"{{vecindario_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Reemplazar Vecindario de un Negocio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/vecindario/{{vecindario_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"vecindario",
+								"{{vecindario_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar negocio de Vecindario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/vecindario/{{vecindario_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"vecindario",
+						"{{vecindario_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar negocio de Vecindario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/vecindario/{{vecindario_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"vecindario",
+								"{{vecindario_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
