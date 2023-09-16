@@ -48,14 +48,11 @@ public class VecinoGrupoDeInteresService {
 	
 
 		Optional<GruposDeInteresEntity> gruposDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteresId);
-		if(gruposDeInteresEntity== null)
-			throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 		if (gruposDeInteresEntity.isEmpty())
 				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 		
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
-		if(vecinoEntity== null )
-			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
+
 		if (vecinoEntity.isEmpty())
 				throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
 			
@@ -127,14 +124,14 @@ public class VecinoGrupoDeInteresService {
 	public List<GruposDeInteresEntity> replaceGrupoDeInteres(Long vecinoId, List<GruposDeInteresEntity> gruposDeInteres) throws EntityNotFoundException, IllegalOperationException {
 		log.info("Start process of updating the group with id = {0}", vecinoId);
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
-		if(vecinoEntity.isEmpty() || vecinoEntity == null )
+		if(vecinoEntity.isEmpty() )
 			throw new EntityNotFoundException(ErrorMessage.NEIGHBORHOOD_NOT_FOUND);
 		if(gruposDeInteres== null )
 			throw new IllegalOperationException("Lista invalida");
 		
 		for(GruposDeInteresEntity grupoDeInteres : gruposDeInteres) {
 			Optional<GruposDeInteresEntity> gruposDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteres.getId());
-			if (gruposDeInteresEntity.isEmpty() || gruposDeInteresEntity== null )
+			if (gruposDeInteresEntity.isEmpty() )
 				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 
 			if (!gruposDeInteresEntity.get().getVecinos().contains(vecinoEntity.get()))
