@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "557649ff-ba18-4ee8-bb98-c89f6d568f09",
-		"name": "ComentarioNegocioTest",
+		"_postman_id": "ab7dbda3-33c2-48e3-81d7-38bfc7d42f8b",
+		"name": "ComentarioZonaVerde Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29103184"
 	},
@@ -49,14 +49,14 @@
 			"response": []
 		},
 		{
-			"name": "Crear un negocio",
+			"name": "Crear un centro comercial",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"negocio_id\", data.id);\r",
+							"pm.globals.set(\"centroComercial_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"nombre\":\"Panaderia Don juan\",\r\n\t\"descripcion\": \"pan para pan pan pam pan\",\r\n\t\"numeroDeTelefonico\": 3103559985,\r\n\t\"Calificacion\": 5,\r\n    \"vecindario\": {\r\n        \"id\" : {{vecindario_id}}\r\n}\r\n}",
+					"raw": "{\r\n\"nombre\": \"cedritos\",\r\n\"descripcion\": \"un centro comercial muy bonito\",\r\n\"preferencias\": \"Que sea muy verde\",\r\n\"calificacion\": 5,\r\n\"ubicacion\": \"Calle 152-d #10-12\",\r\n\"vecindario\": {\r\n        \"id\" : {{vecindario_id}}\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,19 +79,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio",
+					"raw": "{{baseUrl}}/ZonasVerdes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio"
+						"ZonasVerdes"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crearle un comentario a un negocio",
+			"name": "Crearle un comentario a un centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -122,13 +122,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/negocio/{{negocio_id}}/comentarios",
+					"raw": "{{base_url}}/publicaciones/{{publicacion_id}}/comentarios",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"publicaciones",
+						"{{publicacion_id}}",
 						"comentarios"
 					]
 				}
@@ -136,14 +136,14 @@
 			"response": []
 		},
 		{
-			"name": "crearle un comentario 2 a un  negocio",
+			"name": "crearle un comentario 2 a un  centro comercial",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"negocio_id_2\", data.id);\r",
+							"pm.globals.set(\"centroComercial_id_2\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -167,13 +167,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios",
+					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"centrosComerciales",
+						"{{centroComercial_id}}",
 						"comentarios"
 					]
 				}
@@ -181,7 +181,7 @@
 			"response": []
 		},
 		{
-			"name": "crearle un comentario a un negocioque no existe",
+			"name": "crearle un comentario a un comentario que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -193,7 +193,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The negocio with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The centroComercial with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -213,12 +213,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/0/comentrarios",
+					"raw": "{{baseUrl}}/zonasVerdes/0/comentrarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
+						"zonasVerdes",
 						"0",
 						"comentrarios"
 					]
@@ -227,7 +227,7 @@
 			"response": []
 		},
 		{
-			"name": "obtener los comentarios de un negocio",
+			"name": "obtener los comentarios de un centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -262,13 +262,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios"
 					]
 				}
@@ -276,7 +276,7 @@
 			"response": []
 		},
 		{
-			"name": "obtener un comentariode un negocio",
+			"name": "obtener una reseña de un libro",
 			"event": [
 				{
 					"listen": "test",
@@ -306,22 +306,22 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios",
-						"{{comentario_id_1}}"
+						"{{comentario_id_}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Editarle el comentario a un negocio",
+			"name": "Editarle el comentario a un centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -348,13 +348,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios",
 						"{{comentario_id_1}}"
 					]
@@ -363,7 +363,7 @@
 			"response": []
 		},
 		{
-			"name": "Editarle un comentario que no existe a un negocio",
+			"name": "Editarle un comentario que no existe a un centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -395,13 +395,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios",
 						"0"
 					]
@@ -410,7 +410,7 @@
 			"response": []
 		},
 		{
-			"name": "Editarle un comentario a un negociol que no existe",
+			"name": "Editarle un comentario a un centro comercial que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -422,7 +422,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The negocio with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The zonaVerde with the given id was not found\");\r",
 							"});\r",
 							""
 						],
@@ -443,12 +443,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/0/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/zonasVerdes/0/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
+						"zonasVerdes",
 						"0",
 						"comentarios",
 						"{{comentario_id_1}}"
@@ -458,7 +458,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar un comentrario que no existe a un negocio",
+			"name": "Borrar un comentrario que no existe a un centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -490,13 +490,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios",
 						"0"
 					]
@@ -505,7 +505,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrarle un comentario a un negociol que no existe",
+			"name": "Borrarle un comentario a un centro comencial que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -517,7 +517,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The negocio with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The zonaVerde with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -537,12 +537,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/0/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/zonasVerdes/0/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
+						"zonasVerdes",
 						"0",
 						"comentarios",
 						"{{comentario_id_1}}"
@@ -552,7 +552,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrarle un comentario a un negocio",
+			"name": "Borrarle un comentario a un centro comenrcial",
 			"event": [
 				{
 					"listen": "test",
@@ -580,13 +580,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios",
 						"{{comentario_id_1}}"
 					]
@@ -595,7 +595,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrarle un comentario 2 a un negocio",
+			"name": "Borrarle un comentario 2 a un centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -623,13 +623,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_2}}",
+					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"zonasVerdes",
+						"{{zonaVerde_id}}",
 						"comentarios",
 						"{{comentario_id_2}}"
 					]
@@ -638,7 +638,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar un negocio",
+			"name": "Borrar una ZonaVerde",
 			"event": [
 				{
 					"listen": "test",
@@ -666,13 +666,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}",
+					"raw": "{{baseUrl}}/zonasVerdes/{{centroComercial_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}"
+						"zonasVerdes",
+						"{{centroComercial_id}}"
 					]
 				}
 			},

@@ -213,12 +213,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/controsComerciales/0/comentrarios",
+					"raw": "{{baseUrl}}/centrosComerciales/0/comentrarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"controsComerciales",
+						"centrosComerciales",
 						"0",
 						"comentrarios"
 					]
@@ -707,13 +707,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/comentarios/{{comentario_id}}",
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"comentarios",
-						"{{comentario_id}}"
+						"vecindarios",
+						"{{vecindario_id}}"
 					]
 				}
 			},
