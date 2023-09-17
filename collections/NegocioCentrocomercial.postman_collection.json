@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "cdfb5b05-430c-4d19-bcbc-4b7f49bb6e0e",
+		"name": "NegocioCentrocomercial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29659214"
+	},
+	"item": [
+		{
+			"name": "Reemplazar centro comercial de un negocio",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/centrocomercial/{{centrocomercial_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"centrocomercial",
+						"{{centrocomercial_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar negocio de centro comercial",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/centrocomercial",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"centrocomercial"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar negocio de centro comercial",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": []
+					},
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

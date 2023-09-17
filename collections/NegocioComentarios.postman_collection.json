@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "aab42691-2461-412a-a833-63eac212a97e",
+		"name": "NegocioComentarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29659214"
+	},
+	"item": [
+		{
+			"name": "Agregar comentario a Negocio",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/comentarios/{{comentario_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"comentarios",
+						"{{comentario_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar comentario a Negocio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/comentario/{{comentario_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"comentario",
+								"{{comentario_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Ver todos los comentarios de Negocio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/comentarios/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"comentarios",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Ver todos los comentarios de Negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/comentarios/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"comentarios",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

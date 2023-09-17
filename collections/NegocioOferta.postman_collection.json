@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "3e1036d1-3206-41f6-84a1-e1b182a91e3d",
+		"name": "NegocioOferta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29659214"
+	},
+	"item": [
+		{
+			"name": "Agregar oferta a Negocio",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/oferta/{{oferta_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"oferta",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar oferta a Negocio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/oferta/{{oferta_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"oferta",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Traer todas las Ofertas de un Negocio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/oferta",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"oferta"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Traer todas las Ofertas de un Negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/oferta",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"oferta"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar Oferta de Negocio",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/oferta/{{oferta_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id_1}}",
+						"oferta",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar Oferta de Negocio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/oferta/{{oferta_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id_1}}",
+								"oferta",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
