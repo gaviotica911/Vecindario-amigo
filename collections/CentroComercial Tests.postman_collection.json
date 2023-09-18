@@ -1,0 +1,481 @@
+{
+	"info": {
+		"_postman_id": "cb64dc9c-2180-449e-83a7-f226fad53d80",
+		"name": "CentroComercial Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29229317"
+	},
+	"item": [
+		{
+			"name": "Crear un centro comercial",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Unicentro\",\r\n    \"description\": \"centro comercial en el vecindario\",\r\n    \"ubicacion\": \"norte\",\r\n    \"celificacion\": \"4.3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un centro comercial",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Unicentro\",\r\n    \"description\": \"centro comercial en el vecindario\",\r\n    \"ubicacion\": \"norte\",\r\n    \"celificacion\": \"4.3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"nombre\": \"Unicentro\",\n    \"description\": \"centro comercial en el vecindario\",\n    \"ubicacion\": \"norte\",\n    \"celificacion\": \"4.3\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los centros comerciales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los centros comerciales",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n        \"id\": 1,\r\n        \"nombre\": \"Unicentro\",\r\n        \"description\": \"centro comercial en el vecindario\",\r\n        \"ubicacion\": \"norte\",\r\n        \"celificacion\": \"4.3\",\r\n        \"negocios\":[],\r\n        \"comentarios\":[]\r\n        \r\n    }"
+				}
+			]
+		},
+		{
+			"name": "Obtener un centro comercial",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales/shopping_centers_id_1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales",
+						"shopping_centers_id_1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un centro comercial",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales/shopping_centers_id_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales",
+								"shopping_centers_id_1"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n        \"id\": 1,\r\n        \"nombre\": \"Unicentro\",\r\n        \"description\": \"centro comercial en el vecindario\",\r\n        \"ubicacion\": \"norte\",\r\n        \"celificacion\": \"4.3\",\r\n        \"negocios\":[],\r\n        \"comentarios\":[]\r\n        \r\n    }"
+				}
+			]
+		},
+		{
+			"name": "Obtener un centro comercial que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un centro comercial que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales/0http://localhost:8080/api/centrosComerciales/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales",
+								"0http:",
+								"",
+								"localhost:8080",
+								"api",
+								"centrosComerciales",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:01:09\",\n        \"message\": \"El centro comercial con el id dado no fue encontrado\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Editar un centro comercial",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Unicentro\",\r\n    \"description\": \"centro comercial en el vecindario\",\r\n    \"ubicacion\": \"centro\",\r\n    \"celificacion\": \"4.3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales/shopping_centers_id_1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales",
+						"shopping_centers_id_1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editar un centro comercial",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Unicentro\",\r\n    \"description\": \"centro comercial en el vecindario\",\r\n    \"ubicacion\": \"centro\",\r\n    \"celificacion\": \"4.3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales/shopping_centers_id_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales",
+								"shopping_centers_id_1"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Unicentro\",\r\n    \"description\": \"centro comercial en el vecindario\",\r\n    \"ubicacion\": \"centro\",\r\n    \"celificacion\": \"4.3\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Editar un centro comercial que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editar un centro comercial que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:04:10\",\n        \"message\": \"El centro comercial con el id dado no fue encontrado\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un centro comercial que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un centro comercial que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales",
+								"0"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:04:10\",\n        \"message\": \"El centro comercial con el id dado no fue encontrado\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un centro comercial",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/centrosComerciales/shopping_centers_id_1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"centrosComerciales",
+						"shopping_centers_id_1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un centro comercial",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/centrosComerciales/shopping_centers_id_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"centrosComerciales",
+								"shopping_centers_id_1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
