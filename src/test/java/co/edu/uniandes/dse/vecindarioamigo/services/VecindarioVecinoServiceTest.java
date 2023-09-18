@@ -162,7 +162,7 @@ public class VecindarioVecinoServiceTest {
 		assertEquals(VecinoEntity.getId(), response.getId());
 		assertEquals(VecinoEntity.getNombre(), response.getNombre());
         assertEquals(VecinoEntity.getDescripcion(), response.getDescripcion());
-		assertEquals(VecinoEntity.getPorfile_pic(), response.getPorfile_pic());
+		assertEquals(VecinoEntity.getProfilePic(), response.getProfilePic());
 		assertEquals(VecinoEntity.getEdad(), response.getEdad());
 	}
 	

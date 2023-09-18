@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class VecinoEntity extends BaseEntity {
     private String nombre;
     private int edad;
-    private String porfilePic;
+    private String profilePic;
     private String descripcion;
 
     @PodamExclude

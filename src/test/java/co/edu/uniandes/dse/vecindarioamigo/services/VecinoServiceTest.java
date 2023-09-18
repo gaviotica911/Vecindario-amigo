@@ -98,7 +98,7 @@ public class VecinoServiceTest {
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getEdad(), entity.getEdad());
         assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        assertEquals(newEntity.getPorfile_pic(), entity.getPorfile_pic());
+        assertEquals(newEntity.getProfilePic(), entity.getProfilePic());
         assertEquals(newEntity.getGruposDeInteres(), entity.getGruposDeInteres());
     }
 
@@ -178,7 +178,7 @@ public class VecinoServiceTest {
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getEdad(), resultEntity.getEdad());
         assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
-        assertEquals(entity.getPorfile_pic(), resultEntity.getPorfile_pic());
+        assertEquals(entity.getProfilePic(), resultEntity.getProfilePic());
     }
 
     @Test
@@ -200,7 +200,7 @@ public class VecinoServiceTest {
         assertEquals(pojoEntity.getNombre(), resp.getNombre());
         assertEquals(pojoEntity.getEdad(), resp.getEdad());
         assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
-        assertEquals(pojoEntity.getPorfile_pic(), resp.getPorfile_pic());
+        assertEquals(pojoEntity.getProfilePic(), resp.getProfilePic());
     }
 
     @Test
