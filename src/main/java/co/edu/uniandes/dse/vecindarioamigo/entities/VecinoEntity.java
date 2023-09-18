@@ -18,12 +18,12 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class VecinoEntity extends BaseEntity {
     private String nombre;
     private int edad;
-    private String porfile_pic;
+    private String porfilePic;
     private String descripcion;
 
     @PodamExclude
     @ManyToMany(mappedBy = "vecinos", fetch = FetchType.LAZY)
-    private List<GruposDeInteresEntity> GruposDeInteres = new ArrayList<>();
+    private List<GruposDeInteresEntity> gruposDeInteres = new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "vecino", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

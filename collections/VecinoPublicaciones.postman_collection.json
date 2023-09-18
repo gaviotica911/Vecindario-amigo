@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "072d2df0-98d8-4891-818c-8da214f268ce",
+		"name": "VecinoPublicaciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29200318"
+	},
+	"item": [
+		{
+			"name": "Agregar una publicación a un vecino",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones",
+						"{{publicacion_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una publicación a un vecino",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones",
+								"{{publicacion_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"contenido\": \"hola, me llamo gabriela\",\n    \"fecha\": \"11/9/2023\",\n    \"foto\": \"none\",\n    \"video\": \"none\",\n    \"likes\": 10000000,\n    \"compartidos\": 234543,\n    \"vecino\": {\n        \"id\": 1,\n        \"nombre\": \"Gabriela\",\n        \"edad\": 19,\n        \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n        \"descripcion\": \"Estudio ISIS\"\n    },\n    \"comentarios\":[\n        {\n        \"id\":1,\n        \"autor\":\"Francois\",\n        \"fecha\":\"2023/11/09\",\n        \"contenido\": \"Hola me gustas\"\n        }\n]\n\n\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un post que no existe a un vecino",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un post que no existe a un vecino",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:15:29\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un post de un vecino",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones",
+						"{{publicacion_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un post de un vecino",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones",
+								"{{publicacion_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\"id\":1,\n\"contenido\": \"hola, me llamo gabriela\",\n\"fecha\": \"11/9/2023\",\n\"foto\": \"none\",\n\"video\": \"none\",\n\"likes\": 10000000,\n\"compartidos\": 234543,\n\"vecino\": {\n    \"id\": 1,\n\"nombre\": \"Gabriela\",\n\"edad\": 19,\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n\"descripcion\": \"Estudio ISIS\"\n},\n\"comentarios\":[{\n\"id\":1,\n\"autor\":\"Francois\",\n\"fecha\":\"2023/11/09\",\n\"contenido\": \"Hola me gustas\"\n}]\n}\n"
+				}
+			]
+		},
+		{
+			"name": "Obtener un post que no existe de un vecino",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un post que no existe de un vecino",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:17:39\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un post que no está asociado a un autor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones",
+						"{{publicacion_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un post que no está asociado a un autor",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones",
+								"{{publicacion_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"PRECONDITION_FAILED\",\n        \"timestamp\": \"21-02-2023 10:19:03\",\n        \"message\": \"The post is not associated to the neighbor\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener los posts de un vecino",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"vecinos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener los posts de un vecino",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\r\n   {\r\n\"id\":1,\r\n\"contenido\": \"hola, me llamo gabriela\",\r\n\"fecha\": \"11/9/2023\",\r\n\"foto\": \"none\",\r\n\"video\": \"none\",\r\n\"likes\": 10000000,\r\n\"compartidos\": 234543,\r\n\"vecino\": {\r\n    \"id\": 1,\r\n\"nombre\": \"Gabriela\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\"\r\n},\r\n\"comentarios\":[{\r\n    \"id\":1,\r\n\"autor\":\"Francois\",\r\n\"fecha\":\"2023/11/09\",\r\n\"contenido\": \"Hola me gustas\"\r\n}]\r\n\r\n\r\n}\r\n\r\n\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Asociar posts a un autor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[ \r\n    {\r\n        \"id\":{{new_id_p}},\r\n        \"contenido\": \"hola, me llamo gabriela\",\r\n        \"fecha\": \"11/9/2023\",\r\n        \"foto\": \"none\",\r\n        \"video\": \"none\",\r\n        \"likes\": 10000000,\r\n        \"compartidos\": 234543,\r\n        \"vecino\": {\r\n            \"id\": {{new_id_v}},\r\n            \"nombre\": \"Gabriela\",\r\n            \"edad\": 19,\r\n            \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n            \"descripcion\": \"Estudio ISIS\"\r\n            },\r\n        \"comentarios\":[\r\n                {\r\n             \"id\": {{new_id_c}},\r\n            \"autor\":\"Francois\",\r\n            \"fecha\":\"2023/11/09\",\r\n            \"contenido\": \"Hola me gustas\"\r\n                }\r\n            ]\r\n    },\r\n    {\r\n    \"id\": {{new_id_p2}},\r\n    \"contenido\": \"felizz\",\r\n    \"fecha\": \"12/9/2023\",\r\n    \"foto\": \"none\",\r\n    \"video\": \"none\",\r\n    \"likes\": 1232,\r\n    \"compartidos\": 10,\r\n    \"vecino\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"Gabriela\",\r\n        \"edad\": 19,\r\n        \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n        \"descripcion\": \"Estudio ISIS\"\r\n        },\r\n    \"comentarios\":[\r\n            {\r\n        \"id\": {{new_id_c2}},\r\n        \"autor\":\"Francois\",\r\n        \"fecha\":\"2023/11/09\",\r\n        \"contenido\": \"feli x2\"\r\n            }\r\n        ]\r\n    }\r\n]\r\n\r\n\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecinoid}}/publicacion",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecinoid}}",
+						"publicacion"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar posts a un autor",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecinoid}}/publicacion",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecinoid}}",
+								"publicacion"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[{\n    \"id\":1,\n\"contenido\": \"hola, me llamo gabriela\",\n\"fecha\": \"11/9/2023\",\n\"foto\": \"none\",\n\"video\": \"none\",\n\"likes\": 10000000,\n\"compartidos\": 234543,\n\"vecino\": {\n    \"id\": 1,\n\"nombre\": \"Gabriela\",\n\"edad\": 19,\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n\"descripcion\": \"Estudio ISIS\"\n},\n\"comentarios\":[]\n},\n{\n    \"id\":2,\n\"contenido\": \"felizz\",\n\"fecha\": \"12/9/2023\",\n\"foto\": \"none\",\n\"video\": \"none\",\n\"likes\": 1232,\n\"compartidos\": 10,\n\"vecino\": {\n    \"id\": 1,\n\"nombre\": \"Gabriela\",\n\"edad\": 19,\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n\"descripcion\": \"Estudio ISIS\"\n},\n\"comentarios\":[]\n}\n]\n\n"
+				}
+			]
+		},
+		{
+			"name": "Asociar publicaciones que no existen a un vecino",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\":0,\r\n        \"contenido\": \"nada\",\r\n        \"fecha\": 11/08/2023,\r\n        \"foto\": none,\r\n        \"video\": none,\r\n        \"likes\": 0,\r\n        \"compartidos\": 0\r\n\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar publicaciones que no existen a un vecino",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:25:21\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una publicación de un vecino",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones{{publicacion_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones{{publicacion_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una publicación de un vecino",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones{{publicacion_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones{{publicacion_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una publicacion a un vecino que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/0/publicaciones/{{publicacion_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"0",
+						"publicaciones",
+						"{{publicacion_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una publicacion a un autor que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/0/publicaciones/{{publicacion_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"0",
+								"publicaciones",
+								"{{publicacion_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:05:19\",\r\n        \"message\": \"The neighbor with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un post que no existe de un vecino",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos",
+						"{{vecino_id}}",
+						"publicaciones",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un post que no existe de un vecino",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos",
+								"{{vecino_id}}",
+								"publicaciones",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:05:19\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
+				}
+			]
+		}
+	]
+}

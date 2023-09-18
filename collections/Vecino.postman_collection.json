@@ -404,13 +404,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/vecinos/{{vecinos_id_1}}",
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"vecinos",
-								"{{vecinos_id_1}}"
+								"{{vecino_id_1}}"
 							]
 						}
 					},
