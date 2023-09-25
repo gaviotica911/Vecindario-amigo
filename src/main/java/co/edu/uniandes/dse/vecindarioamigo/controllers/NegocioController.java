@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
-@RequestMapping("/negocio")
+@RequestMapping("/negocios")
 public class NegocioController {
 
     @Autowired
