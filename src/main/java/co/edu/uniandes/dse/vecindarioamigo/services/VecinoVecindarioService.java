@@ -85,7 +85,7 @@ public class VecinoVecindarioService {
 	 */
 
 	@Transactional
-	public VecindarioEntity replaceVecindario(Long vecinoId, Long vecindarioId) throws EntityNotFoundException {
+	public VecinoEntity replaceVecindario(Long vecinoId, Long vecindarioId) throws EntityNotFoundException {
 		log.info("Start the process of updating the neighborhood of the neighbor with id = {0}", vecinoId);
 		Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(vecindarioId);
 		if (vecindarioEntity.isEmpty())
@@ -97,7 +97,7 @@ public class VecinoVecindarioService {
 
 		vecinoEntity.get().setVecindario(vecindarioEntity.get());
 		log.info("End process of associating the deal with id = {0} to the offer with id = " + vecinoId, vecindarioId);
-		return vecindarioEntity.get();
+		return vecinoEntity.get();
 	}
 
 	/**
