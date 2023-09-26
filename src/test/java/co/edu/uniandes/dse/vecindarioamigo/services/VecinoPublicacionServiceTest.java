@@ -130,7 +130,7 @@ public class VecinoPublicacionServiceTest {
 
 	@Test
 	void testGetPublicacions() throws EntityNotFoundException {
-		List<PublicacionEntity> list = vecinoPublicacionService.getPubliaciones(vecinoList.get(0).getId());
+		List<PublicacionEntity> list = vecinoPublicacionService.getPublicaciones(vecinoList.get(0).getId());
 		assertEquals(1, list.size());
 	}
 	
@@ -143,7 +143,7 @@ public class VecinoPublicacionServiceTest {
 	@Test
 	void testGetPublicacionsInvalidVecino() {
 		assertThrows(EntityNotFoundException.class,()->{
-			vecinoPublicacionService.getPubliaciones(0L);
+			vecinoPublicacionService.getPublicaciones(0L);
 		});
 	}
 
