@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
-@RequestMapping("/zona_verde")
+@RequestMapping("/zonas_verdes")
 public class Zona_VerdeController {
 
     @Autowired

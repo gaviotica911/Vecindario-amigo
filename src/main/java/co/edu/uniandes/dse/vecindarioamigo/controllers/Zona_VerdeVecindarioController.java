@@ -14,7 +14,7 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.services.Zona_VerdeVecindarioService;
 
 @RestController
-@RequestMapping("/zona_verde/{zonaVerdeId}/vecindario")
+@RequestMapping("/zonas_verdes/{zonaVerdeId}/vecindarios")
 public class Zona_VerdeVecindarioController {
 
     @Autowired

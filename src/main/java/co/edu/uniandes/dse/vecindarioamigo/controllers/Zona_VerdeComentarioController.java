@@ -16,7 +16,7 @@ import co.edu.uniandes.dse.vecindarioamigo.services.Zona_VerdeComentarioService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/zona_verde/{zonaVerdeId}/comentarios")
+@RequestMapping("/zonas_verdes/{zonaVerdeId}/comentarios")
 public class Zona_VerdeComentarioController {
 
     @Autowired
