@@ -80,12 +80,12 @@ public class PublicacionVecinoService {
 	 *
 	 * @param publicacionId  el id de la publicacion que se quiere actualizar.
 	 * @param vecinoId El id del nuevo Vecino asociado al post.
-	 * @return el nuevo vecino asociado.
+	 * @return la publicacion
 	 * @throws EntityNotFoundException
 	 */
 
 	@Transactional
-	public VecinoEntity replaceVecino(Long publicacionId, Long vecinoId) throws EntityNotFoundException {
+	public PublicacionEntity replaceVecino(Long publicacionId, Long vecinoId) throws EntityNotFoundException {
 		log.info("Start the process of updating the neighbor of the post with id = {0}", publicacionId);
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
 		if (vecinoEntity.isEmpty())
@@ -97,7 +97,7 @@ public class PublicacionVecinoService {
 
 		publicacionEntity.get().setVecino(vecinoEntity.get());
 		log.info("End process of associating the deal with id = {0} to the post with id = " + publicacionId, vecinoId);
-		return vecinoEntity.get();
+		return publicacionEntity.get();
 	}
 
 	/**

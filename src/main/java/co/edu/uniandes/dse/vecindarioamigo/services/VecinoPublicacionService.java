@@ -62,7 +62,7 @@ public class VecinoPublicacionService {
 	 * @throws EntityNotFoundException si el vecino no existe
 	 */
 	@Transactional
-	public List<PublicacionEntity> getPubliaciones(Long vecinoId) throws EntityNotFoundException {
+	public List<PublicacionEntity> getPublicaciones(Long vecinoId) throws EntityNotFoundException {
 		log.info("Start the process of consulting the posts associated with the neighbor with id = {0}", vecinoId);
 		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
 		if(vecinoEntity.isEmpty())
