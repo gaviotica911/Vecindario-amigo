@@ -76,7 +76,7 @@ public class Zona_verdeServiceTest {
     }
 
     /**
-     * Prueba para crear un Zona_Verde
+     * Prueba para crear un Zona_Verdee
      */
     @Test
     void testCreateZona_Verde() throws EntityNotFoundException, IllegalOperationException {
