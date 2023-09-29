@@ -15,7 +15,7 @@ import co.edu.uniandes.dse.vecindarioamigo.services.CentroComercialVecindarioSer
 import co.edu.uniandes.dse.vecindarioamigo.services.Zona_VerdeVecindarioService;
 
 @RestController
-@RequestMapping("/centroComercial/{centroComercialId}/vecindario")
+@RequestMapping("/centrosComerciales/{centroComercialId}/vecindario")
 public class CentroComercialVecindarioController {
     @Autowired
     private CentroComercialVecindarioService centroComercialVecindarioService;

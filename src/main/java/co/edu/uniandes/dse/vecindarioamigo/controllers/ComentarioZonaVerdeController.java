@@ -1,42 +1,36 @@
 package co.edu.uniandes.dse.vecindarioamigo.controllers;
 
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.uniandes.dse.vecindarioamigo.dto.*;
-import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.GruposDeInteresEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
+import co.edu.uniandes.dse.vecindarioamigo.dto.Zona_VerdeDTO;
+import co.edu.uniandes.dse.vecindarioamigo.dto.PublicacionDetailDTO;
+import co.edu.uniandes.dse.vecindarioamigo.dto.Zona_VerdeDTO;
+import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.Zona_VerdeEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
-import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioCentroComercialService;
 import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioPublicacionService;
-import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioService;
-import co.edu.uniandes.dse.vecindarioamigo.services.GrupoDeInteresService;
+import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioZonaVerdeService;
+
 @RestController
 @RequestMapping("/comentarios")
-public class ComentarioPublicacionController {
-    /**
+public class ComentarioZonaVerdeController {
+        /**
  * Clase que implementa el recurso "prize/{id}/publicacion".
  *
  * @publicacion ISIS2603
  */
 
 	@Autowired
-	private ComentarioPublicacionService comentarioPublicacionService;
+	private ComentarioZonaVerdeService comentarioZonaVerdeService;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -48,14 +42,14 @@ public class ComentarioPublicacionController {
 	 *                 debe ser una cadena de dígitos.
 	 * @param publicacionId Identificador del autor que se desea guardar. Este debe ser
 	 *                 una cadena de dígitos.
-	 * @return JSON {@link PublicacionDTO} - El autor guardado en el premio.
+	 * @return JSON {@link Zona_VerdeDTO} - El autor guardado en el premio.
 	 */
-	@PostMapping(value = "/{comentarioId}/publicaciones/{publicacionId}")
+	@PostMapping(value = "/{comentarioId}/zonas_verdes/{zonaVerdeId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public PublicacionDTO addAuthor(@PathVariable("comentarioId") Long comentarioId, @PathVariable("publicacionId") Long publicacionId)
+	public Zona_VerdeDTO addAuthor(@PathVariable("comentarioId") Long comentarioId, @PathVariable("zonaVerdeId") Long publicacionId)
 			throws EntityNotFoundException {
-		PublicacionEntity publicacionEntity = comentarioPublicacionService.addpublicacion(publicacionId, comentarioId);
-		return modelMapper.map(publicacionEntity, PublicacionDTO.class);
+		Zona_VerdeEntity publicacionEntity = comentarioZonaVerdeService.addZonaVerde(publicacionId, comentarioId);
+		return modelMapper.map(publicacionEntity, Zona_VerdeDTO.class);
 	}
 
 	/**
@@ -65,10 +59,10 @@ public class ComentarioPublicacionController {
 	 *                una cadena de dígitos.
 	 * @return JSON {@link PublicacionDetailDTO} - El autor buscado
 	 */
-	@GetMapping(value = "/{comentarioId}/publicaciones")
+	@GetMapping(value = "/{comentarioId}/zonas_verdes")
 	@ResponseStatus(code = HttpStatus.OK)
 	public PublicacionDetailDTO getAuthor(@PathVariable("comentarioId") Long comentarioId) throws EntityNotFoundException {
-		PublicacionEntity publicacionEntity = comentarioPublicacionService.getPublicacion(comentarioId);
+		Zona_VerdeEntity publicacionEntity = comentarioZonaVerdeService.getZonaVerde(comentarioId);
 		return modelMapper.map(publicacionEntity, PublicacionDetailDTO.class);
 	}
 
@@ -78,11 +72,9 @@ public class ComentarioPublicacionController {
 	 *
 	 * @param comentarioId El ID del premio al cual se le va a desasociar el autor
 	 */
-	@DeleteMapping(value = "/{comentarioId}/publicaciones")
+	@DeleteMapping(value = "/{comentarioId}/zonas_verdes")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void removeAuthor(@PathVariable("comentarioId") Long comentarioId) throws EntityNotFoundException {
-		comentarioPublicacionService.removepublicacion(comentarioId);
+		comentarioZonaVerdeService.removeZonaVerde(comentarioId);
 	}
-
 }
-
