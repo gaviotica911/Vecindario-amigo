@@ -28,6 +28,9 @@ public class Zona_VerdeService {
 		if (!Zona_VerdeRepository.findByNombre(zona_VerdeEntity.getNombre()).isEmpty()) {
 			throw new IllegalOperationException("Zona_Verde name already exists");
 		}
+		if (zona_VerdeEntity.getVecindario() == null) {
+			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+		}
 		return Zona_VerdeRepository.save(zona_VerdeEntity);
 	}
 

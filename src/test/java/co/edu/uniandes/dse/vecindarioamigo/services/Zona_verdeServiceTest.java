@@ -109,7 +109,7 @@ public class Zona_verdeServiceTest {
 
     @Test
     void testCreateZona_VerdeConVecindarioNulo() {
-        assertThrows(IllegalOperationException.class, () -> {
+        assertThrows(EntityNotFoundException.class, () -> {
             Zona_VerdeEntity newEntity = factory.manufacturePojo(Zona_VerdeEntity.class);
             newEntity.setNombre("XCOLI");
             newEntity.setVecindario(null);
