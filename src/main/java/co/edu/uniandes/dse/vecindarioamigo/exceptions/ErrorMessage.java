@@ -13,9 +13,9 @@ public final class ErrorMessage {
     public static final String Negocio_NOT_FOUND = "The negocio is not found";
     public static final String Zona_Verde_NOT_FOUND = "The zona verde is not found";
     public static final String OFERTA_NOT_FOUND = null;
-    public static final String COMENTARIO_NOT_FOUND = "The Comentario is not found";
+    public static final String COMENTARIO_NOT_FOUND = "The Comentario was not found";
     public static final String CentroComercial_NOT_FOUND = null;
-    public static final String GRUPO_DE_INTERES_NOT_FOUND = "The Grupo de interes is not found";
+    public static final String GRUPO_DE_INTERES_NOT_FOUND = "The Grupo de interes was not found";
     public static final String OFERTA_NOT_ASSOCIATED_WITH_NEGOCIO = null;
 
     private ErrorMessage() {

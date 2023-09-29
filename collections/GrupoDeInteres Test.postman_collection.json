@@ -8,6 +8,49 @@
 	},
 	"item": [
 		{
+			"name": "Crear Vecindario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"vecindario_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"LaCalleja\",\n    \"ciudad\": \"Bogota\",\n  \"localidad\": \"Usaquen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/Vecindarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"Vecindarios"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
 			"name": "Crear un grupo",
 			"event": [
 				{
@@ -32,7 +75,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Piscina\",\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\"\n\n}",
+					"raw": "{\n\t\"nombre\": \"nuestros\",\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,9 +83,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/gruposDeInteres",
+					"raw": "{{baseUrl}}/gruposDeInteres",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres"
@@ -60,7 +103,7 @@
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"grupo_de_interes_2\", data.id);\r",
+							"pm.globals.set(\"grupo_de_interes_id_2\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -76,7 +119,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n    \"name\": \"perritos\",\r\n    \"descripcion\": \"Un grupo para pasear a nuestros peludos, comentar sobre noticias y nuevos juegos que podemos hacer con nuestra mascota\"\r\n\r\n}",
+					"raw": "{ \r\n    \"nombre\": \"pasear\",\r\n    \"descripcion\": \"Un grupo para pasear a nuestros peludos, comentar sobre noticias y nuevos juegos que podemos hacer con nuestra mascota\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,9 +127,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/gruposDeInteres",
+					"raw": "{{baseUrl}}/gruposDeInteres",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres"
@@ -119,9 +162,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/gruposDeInteres",
+					"raw": "{{baseUrl}}/gruposDeInteres",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres"
@@ -150,12 +193,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/grupoDeInteres/{{grupoDeInteres_id_1}}",
+					"raw": "{{baseUrl}}/gruposDeInteres/{{grupoDeInteres_id_1}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"grupoDeInteres",
+						"gruposDeInteres",
 						"{{grupoDeInteres_id_1}}"
 					]
 				}
@@ -175,7 +218,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The author with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Grupo de interes was not found\");\r",
 							"});\r",
 							""
 						],
@@ -187,9 +230,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/gruposDeInteres/0",
+					"raw": "{{baseUrl}}/gruposDeInteres/0",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres",
@@ -229,12 +272,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/info/{{grupoDeInteres_id_1}}",
+					"raw": "{{baseUrl}}/gruposDeInteres/{{grupoDeInteres_id_1}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"info",
+						"gruposDeInteres",
 						"{{grupoDeInteres_id_1}}"
 					]
 				},
@@ -255,7 +298,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The GrupoDeInteres with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Grupo de interes was not found\");\r",
 							"});\r",
 							""
 						],
@@ -276,12 +319,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/GruposDeInteres/0",
+					"raw": "{{baseUrl}}/gruposDeInteres/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"GruposDeInteres",
+						"gruposDeInteres",
 						"0"
 					]
 				}
@@ -317,13 +360,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/GruposDeInteres/{{gruposDeInteres_id_1}}",
+					"raw": "{{baseUrl}}/gruposDeInteres/{{grupo_de_interes_id_1}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"GruposDeInteres",
-						"{{gruposDeInteres_id_1}}"
+						"gruposDeInteres",
+						"{{grupo_de_interes_id_1}}"
 					]
 				},
 				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
@@ -350,13 +393,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/gruposDeInteres/{{grupoDeInteres_id_2}}",
+					"raw": "{{baseUrl}}/gruposDeInteres/{{grupo_de_interes_id_2}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres",
-						"{{grupoDeInteres_id_2}}"
+						"{{grupo_de_interes_id_2}}"
 					]
 				}
 			},
@@ -375,7 +418,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The grupoDeInteres with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Grupo de interes was not found\");\r",
 							"});\r",
 							""
 						],
@@ -387,9 +430,9 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/gruposDeInteres/0",
+					"raw": "{{baseUrl}}/gruposDeInteres/0",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres",
