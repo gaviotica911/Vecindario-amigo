@@ -33,7 +33,7 @@ public class ComentarioService {
 		log.info("Inicia proceso de creación del Grupo de interes");
 
         if (!ComentarioRepository.findByNombre(Comentario.getNombre()).isEmpty()) {
-			throw new IllegalOperationException("El nombre del grupo de interes ya existe");
+			throw new IllegalOperationException("El nombre del comentario ya existe");
         }
 		return ComentarioRepository.save(Comentario);
 	}
@@ -59,7 +59,7 @@ public class ComentarioService {
 		log.info("Inicia proceso de consultar el Comentario con id = {0}", ComentarioId);
 		Optional<ComentarioEntity> ComentarioEntity = ComentarioRepository.findById(ComentarioId);
 		if (ComentarioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 		log.info("Termina proceso de consultar el Comentario con id = {0}", ComentarioId);
 		return ComentarioEntity.get();
 	}

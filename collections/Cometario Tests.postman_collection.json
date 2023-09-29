@@ -37,7 +37,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"No me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
+					"raw": "{\r\n  \r\n    \"nombre\": \"me gustoo la antencion\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios",
@@ -80,7 +80,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
+					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"2020-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios",
@@ -178,7 +178,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The prize with the given id was not found\");",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");",
 							"});",
 							"",
 							""
@@ -229,7 +229,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \n    \"nombre\": \"Me gusto la antencion\",\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\n    \"descripcion\": \"El personal de atencion es muy bueno, siempre buscando ayudarte en cualquier ocacion\"\n}"
+					"raw": " {\n        \"publicacion\": \"hola\",\n        \"zonaVerde\": null,\n        \"negocio\": null,\n        \"centroComercial\": null\n    }"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}",
@@ -275,7 +275,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \n    \"nombre\": \"Me disgusto la antencion\",\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\n}"
+					"raw": "{\n  \n    \"nombre\": \"Me disgusto la antencion\",\n    \"fecha\": \"2000/01/01\",\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios/0",
@@ -352,13 +352,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"comentarios",
-						"{{comentario_id_1}}"
+						"{{comentario_id_2}}"
 					]
 				},
 				"description": "**Release: Paso-5**\n\nBorra un premio. Se envía el id del premio creado anteriormente.\n\n**Código HTTP esperado: 204**"
