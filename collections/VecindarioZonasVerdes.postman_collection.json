@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "8a0eb1b5-38a2-48e1-b4b7-1fcfd537902c",
+		"name": "VecindarioZonasVerdes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29786649"
+	},
+	"item": [
+		{
+			"name": "Agregar una Zona Verde un vecindario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/{{zonaverde_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"{{zonaverde_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una Zona Verde un vecindario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonaverde/{{zonaverde_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonaverde",
+								"{{zonaverde_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": \"2\",\r\n        \"nombre\": \"El Coll\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Gràcia\"\r\n    },\r\n    \"reviews\": []\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Agregar una Zona Verde que no existe a un vecindario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una Zona Verde que no existe a un vecindario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonaverde/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonaverde",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n        \"message\": \"The 'vecino' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una Zona Verde de un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/{{zonaverde_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"{{zonaverde_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una Zona Verde de un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/{{zonaverde_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonasverdes",
+								"{{zonaverde_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": \"2\",\r\n        \"nombre\": \"El Coll\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Gràcia\"\r\n    },\r\n    \"reviews\": []\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Obtener una Zona Verde que no existe de un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una Zona Verde que no existe de un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonaverde/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonaverde",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:17:39\",\r\n        \"message\": \"The 'zona verde' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una Zona Verde que no está asociado a un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/{{zonaverde_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"{{zonaverde_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una Zona Verde que no está asociado a un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonaverde/{{vecino_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonaverde",
+								"{{vecino_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"PRECONDITION_FAILED\",\r\n        \"timestamp\": \"21-02-2023 10:19:03\",\r\n        \"message\": \"The 'vecino' is not associated to the 'vecindario'\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener las Zonas Verdes de un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener las Zonas Verdes de un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonasverdes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n    \"id\": 1,\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": \"2\",\r\n        \"nombre\": \"El Coll\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Gràcia\"\r\n    },\r\n    \"reviews\": []\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Asociar Zonas Verdes a un vecindario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"id\": {{new_id_zv}},\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"reviews\": []\r\n    },\r\n    {\r\n    \"id\": {{new_id_zv2}},\r\n    \"nombre\": \"Parc de la Ciutadella\",\r\n    \"descripcion\": \"El Parc de la Ciutadella es uno de los parques más grandes y populares de Barcelona. Fue creado en el siglo XIX y es el pulmón verde del distrito de Ciutat Vella. Dentro del parque, puedes encontrar el Zoológico de Barcelona, el Parlamento de Cataluña y una gran cantidad de estatuas y monumentos. Es un lugar ideal para pasear, hacer picnics y disfrutar de la naturaleza en pleno centro de la ciudad.\",\r\n    \"preferencias\": \"Paseos, lagos, monumentos, zoológico\",\r\n    \"calificacion\": \"4.7\",\r\n    \"ubicacion\": \"Passeig de Picasso, 21, 08003 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"reviews\": []\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar Zonas Verdes a un vecindario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n    \"id\": {{new_id_zv}},\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"El Coll\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Gràcia\"\r\n    },\r\n    \"reviews\": []\r\n    },\r\n    {\r\n    \"id\": {{new_id_zv2}},\r\n    \"nombre\": \"Parc de la Ciutadella\",\r\n    \"descripcion\": \"El Parc de la Ciutadella es uno de los parques más grandes y populares de Barcelona. Fue creado en el siglo XIX y es el pulmón verde del distrito de Ciutat Vella. Dentro del parque, puedes encontrar el Zoológico de Barcelona, el Parlamento de Cataluña y una gran cantidad de estatuas y monumentos. Es un lugar ideal para pasear, hacer picnics y disfrutar de la naturaleza en pleno centro de la ciudad.\",\r\n    \"preferencias\": \"Paseos, lagos, monumentos, zoológico\",\r\n    \"calificacion\": \"4.7\",\r\n    \"ubicacion\": \"Passeig de Picasso, 21, 08003 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"Ciutat Vella\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sant Pere, Santa Caterina i la Ribera\"\r\n    },\r\n    \"reviews\": []\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonasverdes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n    \"id\": 1,\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"reviews\": []\r\n    },\r\n    {\r\n    \"id\": 2,\r\n    \"nombre\": \"Parc de la Ciutadella\",\r\n    \"descripcion\": \"El Parc de la Ciutadella es uno de los parques más grandes y populares de Barcelona. Fue creado en el siglo XIX y es el pulmón verde del distrito de Ciutat Vella. Dentro del parque, puedes encontrar el Zoológico de Barcelona, el Parlamento de Cataluña y una gran cantidad de estatuas y monumentos. Es un lugar ideal para pasear, hacer picnics y disfrutar de la naturaleza en pleno centro de la ciudad.\",\r\n    \"preferencias\": \"Paseos, lagos, monumentos, zoológico\",\r\n    \"calificacion\": \"4.7\",\r\n    \"ubicacion\": \"Passeig de Picasso, 21, 08003 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"reviews\": []\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Asociar Zonas Verdes que no existen a un vecindario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"id\": 0,\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"reviews\": []\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar Zonas Verdes que no existen a un vecindario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n    \"id\": 0,\r\n    \"nombre\": \"Parque Güell\",\r\n    \"descripcion\": \"El Parque Güell es una de las principales obras del arquitecto Antoni Gaudí en Barcelona y es considerado como uno de los mayores exponentes del modernismo catalán. Originalmente concebido como una urbanización, hoy en día es uno de los principales espacios verdes de la ciudad y un importante atractivo turístico.\",\r\n    \"preferencias\": \"Paseos, vistas panorámicas, arquitectura modernista\",\r\n    \"calificacion\": \"4.8\",\r\n    \"ubicacion\": \"Carrer d'Olot, s/n, 08024 Barcelona, España\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"reviews\": []\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonasverdes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n        \"message\": \"The 'vecino' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una Zona Verde a un vecindario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/{{zonaverde_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"{{zonaverde_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una Zona Verde a un vecindario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/vecinos/{{zonaverde_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"{{zonaverde_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una Zona Verde a un vecindario que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/0/zonasverdes/{{artwork_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"0",
+						"zonasverdes",
+						"{{artwork_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una Zona Verde a un vecindario que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/0/vecino/{{zonaverde_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"0",
+								"vecino",
+								"{{zonaverde_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una Zona Verde que no existe a un vecindario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios",
+						"{{vecindario_id_1}}",
+						"zonasverdes",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una Zona Verde que no existe a un vecindario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios/{{vecindario_id_1}}/zonasverdes/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios",
+								"{{vecindario_id_1}}",
+								"zonasverdes",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "artwork_id_2",
+			"value": "0"
+		}
+	]
+}
