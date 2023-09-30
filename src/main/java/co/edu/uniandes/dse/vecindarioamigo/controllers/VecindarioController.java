@@ -114,6 +114,6 @@ public class VecindarioController {
 	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) throws EntityNotFoundException, IllegalOperationException {
-		vecindarioService.deletevecindario(id);
+		vecindarioService.deleteVecindario(id);
 	}
 }
