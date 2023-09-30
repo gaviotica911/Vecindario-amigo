@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "3233214e-085e-4ed9-bc80-b73d181739c2",
+		"name": "Oferta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29786649"
+	},
+	"item": [
+		{
+			"name": "Crear un oferta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/oferta",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un oferta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/oferta",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oferta"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un vecindario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/oferta/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "PUT",
+						"header": []
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una oferta que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 0,\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/oferta/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una oferta que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/oferta/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oferta",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:04:10\",\r\n        \"message\": \"The 'oferta' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una oferta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/oferta/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": []
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una oferta que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/oferta/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una oferta que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/oferta/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oferta",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:05:19\",\r\n        \"message\": \"The 'oferta' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una oferta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/oferta/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/oferta/{{oferta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oferta",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\",\r\n    \"negocio\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las ofertas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las ofertas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n    \"id\": 1,\r\n    \"descripcion\": \"¡Oferta Especial! 20% de descuento en nuestro restaurante del Barrio Gótico. Degusta la auténtica cocina catalana. ¡Hasta fin de mes en Carrer de la Mercè!\",\r\n    \"negocio\": []\r\n}\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una oferta que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/oferta/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oferta",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una oferta que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": []
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:01:09\",\r\n        \"message\": \"The author with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		}
+	]
+}

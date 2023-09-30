@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "04887fd9-42ad-48f5-a0b5-1a10a2a57196",
+		"name": "VecindarioVecinos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29786649"
+	},
+	"item": [
+		{
+			"name": "Agregar un Vecino a un vecindario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/zonaverde/{{zonaverde_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"zonaverde",
+						"{{zonaverde_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un Vecino a un vecindario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"{{vecino_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Agregar un Vecino que no existe a un vecindario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un Vecino que no existe a un vecindario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:15:29\",\r\n        \"message\": \"The 'vecino' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Vecino de un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos",
+						"{{vecino_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un Vecino de un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"{{vecino_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Vecino que no existe de un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un Vecino que no existe de un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:17:39\",\r\n        \"message\": \"The 'negocio' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Vecino que no está asociado a un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos",
+						"{{vecino_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un Vecino que no está asociado a un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"{{vecino_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"PRECONDITION_FAILED\",\r\n        \"timestamp\": \"21-02-2023 10:19:03\",\r\n        \"message\": \"The 'vecino' is not associated to the 'vecindario'\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener los Vecinos de un vecindario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener los Vecinos de un vecindario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n    \"id\": 1,\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Asociar Vecinos a un vecindario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"id\": {{new_id_v}},\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": {{new_id_vec}},\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n    },\r\n    {\r\n    \"id\": {{new_id_v2}},\r\n    \"nombre\": \"Xavier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": {{new_id_vec}},\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar Vecinos a un vecindario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{new_id_v}},\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n    \"id\": 1,\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n    },\r\n    {\r\n    \"id\": 2,\r\n    \"nombre\": \"Xavier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n    }\r\n]\r\n"
+				}
+			]
+		},
+		{
+			"name": "Asociar Vecinos que no existen a un vecindario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 0,\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar Vecinos que no existen a un vecindario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"nombre\": \"Javier Rodriguez\",\r\n    \"edad\": \"34\",\r\n    \"porfile_pic\": \"https://example.com/path/to/profile_pic/javier_rodriguez.jpg\",\r\n    \"descripcion\": \"Javier ha vivido en La Marina de Port durante más de una década. Es apasionado por la historia local, disfruta de los paseos en bicicleta alrededor de Sants - Montjuïc y a menudo participa en actividades comunitarias. Trabaja como diseñador gráfico y tiene un pequeño estudio en su casa.\",\r\n    \"vecindario\": {\r\n        \"id\": \"1\",\r\n        \"nombre\": \"La Marina de Port\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    },\r\n    \"GruposDeInteres\": [],\r\n    \"publicaciones\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n        \"message\": \"The 'vecino' with the given id was not found\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un Vecino a un vecindario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos",
+						"{{vecino_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un Vecino a un vecindario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/{{vecino_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"{{vecino_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un Vecino a un vecindario que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/0/vecino/{{artwork_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"0",
+						"vecino",
+						"{{artwork_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un Vecino a un vecindario que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/0/vecino/{{vecino_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"0",
+								"vecino",
+								"{{vecino_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un Vecino que no existe a un vecindario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindario",
+						"{{vecindario_id_1}}",
+						"vecinos",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un Vecino que no existe a un vecindario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vecindario/{{vecindario_id_1}}/vecinos/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindario",
+								"{{vecindario_id_1}}",
+								"vecinos",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "artwork_id_2",
+			"value": "0"
+		}
+	]
+}
