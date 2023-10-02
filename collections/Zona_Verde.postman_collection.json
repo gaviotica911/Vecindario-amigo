@@ -8,12 +8,28 @@
 	"item": [
 		{
 			"name": "Crear una Zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"zona_verde_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nombre\": \"Central Park\",\n  \"descripcion\": \"A large public park in New York City.\",\n  \"preferencias\": \"Jogging, Picnic, Pets Allowed\",\n  \"calificacion\": 4.7,\n  \"ubicacion\": \"New York, NY, USA\"\n}\n\n",
+					"raw": "{\n  \"nombre\": \"Central Parrk\",\n  \"descripcion\": \"A large public park in New York City.\",\n  \"preferencias\": \"Jogging, Picnic, Pets Allowed\",\n  \"calificacion\": 4.7,\n  \"ubicacion\": \"New York, NY, USA\"\n}\n\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,9 +37,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes",
+					"raw": "{{baseUrl}}/zonas_verdes",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes"
@@ -46,9 +62,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/zonas_verdes",
+							"raw": "{{baseUrl}/zonas_verdes",
 							"host": [
-								"{{baseURL}}"
+								"{{baseUrl}"
 							],
 							"path": [
 								"zonas_verdes"
@@ -66,6 +82,24 @@
 		},
 		{
 			"name": "Obtener las Zonas Verdes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of zonas_verdes > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -133,13 +167,26 @@
 		},
 		{
 			"name": "Obtener una Zona Verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes/{{zona_verde_id_1}}",
+					"raw": "{{baseUrl}}/zonas_verdes/{{zona_verde_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes",
@@ -190,13 +237,31 @@
 		},
 		{
 			"name": "Obtener Zona verde que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The zona verde is not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes/0",
+					"raw": "{{baseUrl}}/zonas_verdes/0",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes",
@@ -248,6 +313,19 @@
 		},
 		{
 			"name": "Actualizar una Zona Verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -261,9 +339,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes/{{zona_verde_id_1}}",
+					"raw": "{{baseUrl}}/zonas_verdes/{{zona_verde_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes",
@@ -315,6 +393,24 @@
 		},
 		{
 			"name": "Actualizar una Zona Verde que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The zona verde is not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -328,9 +424,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes/0",
+					"raw": "{{baseUrl}}/zonas_verdes/0",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes",
@@ -372,13 +468,26 @@
 		},
 		{
 			"name": "Borrar una Zona Verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes/{{zona_verde_id_1}}",
+					"raw": "{{baseUrl}}/zonas_verdes/{{zona_verde_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes",
@@ -404,6 +513,24 @@
 		},
 		{
 			"name": "Borrar un a Zona Verde que no Existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The zona verde is not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],

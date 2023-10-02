@@ -10,4 +10,5 @@ public class Zona_VerdeDTO {
     private String preferencias;
     private Float calificacion;
     private String ubicacion;
+    private VecindarioDTO vecindario;
 }

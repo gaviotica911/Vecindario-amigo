@@ -8,13 +8,26 @@
 	"item": [
 		{
 			"name": "Reemplazar centro comercial de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/centrocomercial/{{centrocomercial_id_1}}",
+					"raw": "{{baseUrl}}/negocios/{{negocio_id_1}}/centrocomercial/{{centrocomercial_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",
@@ -28,13 +41,26 @@
 		},
 		{
 			"name": "Borrar negocio de centro comercial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}/centrocomercial",
+					"raw": "{{baseUrl}}/negocios/{{negocio_id_1}}/centrocomercial",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",

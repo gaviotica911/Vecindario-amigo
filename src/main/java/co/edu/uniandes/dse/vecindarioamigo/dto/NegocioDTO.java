@@ -9,4 +9,5 @@ public class NegocioDTO {
     private String descripcion;
     private Integer numeroDeTelefonico;
     private Float Calificacion;
+    private VecindarioDTO vecindario;
 }

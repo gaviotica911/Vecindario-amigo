@@ -8,13 +8,26 @@
 	"item": [
 		{
 			"name": "Agregar comentario a Zona_verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/zonas_verdes/{{zona_verde_id_1}}/comentario/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/zonas_verdes/{{zona_verde_id_1}}/comentario/{{comentario_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"zonas_verdes",
@@ -28,6 +41,19 @@
 		},
 		{
 			"name": "Ver todos los comentarios de una Zona Verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],

@@ -8,12 +8,28 @@
 	"item": [
 		{
 			"name": "Crear un Negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"negocio_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nombre\": \"John's Cafe\",\n  \"descripcion\": \"A cozy place for coffee and snacks\",\n  \"numeroDeTelefonico\": 1234567890,\n  \"Calificacion\": 4.5\n}\n",
+					"raw": "{\n  \"nombre\": \"John's Cafe 100\",\n  \"descripcion\": \"A cozy place for coffee and snacks\",\n  \"numeroDeTelefonico\": 1234567890,\n  \"Calificacion\": 4.5\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,9 +37,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/negocios",
+					"raw": "{{baseUrl}}/negocios",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios"
@@ -66,6 +82,24 @@
 		},
 		{
 			"name": "Obtener los negocios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of negocios > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -124,13 +158,26 @@
 		},
 		{
 			"name": "Obtener un Negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}",
+					"raw": "{{baseUrl}}/negocios/{{negocio_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",
@@ -167,21 +214,39 @@
 					"cookie": [],
 					"body": null
 				}
-			] 
+			]
 		},
 		{
 			"name": "Obtener Negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The negocio is not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/negocios/0",
+					"raw": "{{baseUrl}}/negocios/90",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",
-						"0"
+						"90"
 					]
 				}
 			},
@@ -219,6 +284,19 @@
 		},
 		{
 			"name": "Actualizar un Negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -232,9 +310,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}",
+					"raw": "{{baseUrl}}/negocios/{{negocio_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",
@@ -276,6 +354,24 @@
 		},
 		{
 			"name": "Actualizar un Negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The negocio is not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -289,9 +385,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/negocios/0",
+					"raw": "{{baseUrl}}/negocios/0",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",
@@ -333,13 +429,26 @@
 		},
 		{
 			"name": "Borrar un Negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/negocios/{{negocio_id_1}}",
+					"raw": "{{baseUrl}}/negocios/{{negocio_id_1}}",
 					"host": [
-						"{{baseURL}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"negocios",
@@ -365,6 +474,25 @@
 		},
 		{
 			"name": "Borrar un Negocio que no Existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The negocio is not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
