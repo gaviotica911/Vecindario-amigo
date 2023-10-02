@@ -21,9 +21,7 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioPublicacionService;
 import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioService;
-import co.edu.uniandes.dse.vecindarioamigo.services.GrupoDeInteresService;
 
 @RestController
 @RequestMapping("/comentarios")
@@ -77,7 +75,8 @@ public class ComentarioController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ComentarioDTO create(@RequestBody ComentarioDTO prizeDTO) throws IllegalOperationException {
-		ComentarioEntity prizeEntity = comentarioService.createComentarios(modelMapper.map(prizeDTO, ComentarioEntity.class));
+		ComentarioEntity prizeEntity = comentarioService
+				.createComentarios(modelMapper.map(prizeDTO, ComentarioEntity.class));
 		return modelMapper.map(prizeEntity, ComentarioDTO.class);
 	}
 
@@ -94,7 +93,8 @@ public class ComentarioController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public ComentarioDetailDTO update(@PathVariable("id") Long id, @RequestBody ComentarioDTO prizeDTO)
 			throws EntityNotFoundException {
-		ComentarioEntity prizeEntity = comentarioService.updateComentarios(id, modelMapper.map(prizeDTO, ComentarioEntity.class));
+		ComentarioEntity prizeEntity = comentarioService.updateComentarios(id,
+				modelMapper.map(prizeDTO, ComentarioEntity.class));
 		return modelMapper.map(prizeEntity, ComentarioDetailDTO.class);
 	}
 

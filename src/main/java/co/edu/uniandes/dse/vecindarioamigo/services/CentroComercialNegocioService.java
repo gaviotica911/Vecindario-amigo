@@ -8,7 +8,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;

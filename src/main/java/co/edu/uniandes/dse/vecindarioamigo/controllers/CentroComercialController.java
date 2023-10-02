@@ -18,17 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniandes.dse.vecindarioamigo.dto.*;
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.GruposDeInteresEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
+
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.CentroComercialService;
-import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioService;
-import co.edu.uniandes.dse.vecindarioamigo.services.GrupoDeInteresService;
-import co.edu.uniandes.dse.vecindarioamigo.services.NegocioService;
 
-@RestController
 @RequestMapping("/centrosComerciales")
 public class CentroComercialController {
     @Autowired

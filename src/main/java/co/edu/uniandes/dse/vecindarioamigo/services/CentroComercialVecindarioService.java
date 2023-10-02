@@ -56,4 +56,5 @@ public class CentroComercialVecindarioService {
         centroComercialEntity.get().setVecindario(null);
         log.info("Termina proceso de borrar el centro comercial={0} de su vecindario", centroComercialID);
     }
+
 }
