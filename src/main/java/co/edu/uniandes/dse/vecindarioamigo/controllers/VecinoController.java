@@ -48,12 +48,13 @@ public class VecinoController {
     }
 
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public VecinoDTO create(@RequestBody VecinoDTO vecinoDTO)
-            throws IllegalOperationException, EntityNotFoundException {
-        VecinoEntity vecinoEntity = vecinoService.createVecino(modelMapper.map(vecinoDTO, VecinoEntity.class));
-        return modelMapper.map(vecinoEntity, VecinoDTO.class);
-    }
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public VecinoDTO create(@RequestBody VecinoDTO authorDTO) throws IllegalOperationException, EntityNotFoundException {
+		
+        
+        VecinoEntity authorEntity = vecinoService.createVecino(modelMapper.map(authorDTO, VecinoEntity.class));
+		return modelMapper.map(authorEntity, VecinoDTO.class);
+	}
 
     @PutMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
