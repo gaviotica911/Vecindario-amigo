@@ -11,6 +11,10 @@ public class ComentarioDTO {
     private String nombre;
     private Date fecha;
     private String descripcion;
+    private PublicacionDTO publicacion;
+    private Zona_VerdeDTO zonaVerde;
+    private NegocioDTO negocio;
+    private CentroComercialDTO centroComercial;
 
 
 }

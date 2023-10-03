@@ -23,6 +23,7 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.CentroComercialService;
 
+@RestController
 @RequestMapping("/centrosComerciales")
 public class CentroComercialController {
     @Autowired

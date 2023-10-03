@@ -24,7 +24,7 @@ public class CentroComercialService {
     @Transactional
     public CentroComercialEntity createCentroComercial(CentroComercialEntity centroComercialEntity)
             throws EntityNotFoundException, IllegalOperationException {
-
+        log.info("The shopping centre creation process begins");
         if (!centroComercialRepository.findByNombre(centroComercialEntity.getNombre()).isEmpty()) {
             throw new IllegalOperationException("Centro comercial name already exists");
         }
@@ -34,6 +34,7 @@ public class CentroComercialService {
         if (centroComercialEntity.getVecindario() == null) {
             throw new IllegalOperationException("Neighbourhood cannot be null");
         }
+        log.info("End of shopping centre creation process");
         return centroComercialRepository.save(centroComercialEntity);
     }
 
