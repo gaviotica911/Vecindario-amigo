@@ -91,7 +91,7 @@ public class ComentarioCentroComercialService {
 
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.OFFER_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 
 		ComentarioEntity.get().setCentroComercial(CentroComercialEntity.get());
 		log.info("End process of associating the deal with id = {0} to the offer with id = " + comentarioId, centroComercialId);
@@ -110,7 +110,7 @@ public class ComentarioCentroComercialService {
 		log.info("Start the process of deleting the business from the offer with id = {0}", comentarioId);
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.OFFER_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 
 		if (ComentarioEntity.get().getCentroComercial() == null) {
 			throw new EntityNotFoundException("The offer has no associated business");

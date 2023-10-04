@@ -60,7 +60,7 @@ public class ComentarioNegocioService {
 		log.info("Start the process of consulting the business of the offer with id = {0}", comentarioId);
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.OFFER_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 
 		NegocioEntity NegocioEntity = ComentarioEntity.get().getNegocio();
 

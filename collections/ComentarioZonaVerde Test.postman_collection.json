@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ab7dbda3-33c2-48e3-81d7-38bfc7d42f8b",
+		"_postman_id": "0f92bca8-7819-4799-be8b-852be957f821",
 		"name": "ComentarioZonaVerde Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29103184"
@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"LaCalleja\",\r\n    \"ciudad\": \"Bogota\",\r\n  \"localidad\": \"Usaquen\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"LaCalllejaaa\",\r\n    \"ciudad\": \"Bogota\",\r\n  \"localidad\": \"Usaquen\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,26 +37,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/Vecindarios",
+					"raw": "{{baseUrl}}/vecindarios",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"Vecindarios"
+						"vecindarios"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un centro comercial",
+			"name": "Crea un vecino",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"centroComercial_id\", data.id);\r",
+							"pm.globals.set(\"vecino_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"nombre\": \"cedritos\",\r\n\"descripcion\": \"un centro comercial muy bonito\",\r\n\"preferencias\": \"Que sea muy verde\",\r\n\"calificacion\": 5,\r\n\"ubicacion\": \"Calle 152-d #10-12\",\r\n\"vecindario\": {\r\n        \"id\" : {{vecindario_id}}\r\n}\r\n}",
+					"raw": "{\r\n\"nombre\": \"cocaaa\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":1,\r\n    \"nombre\": \"cedritoos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,26 +79,69 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/ZonasVerdes",
+					"raw": "{{baseUrl}}/vecinos",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"ZonasVerdes"
+						"vecinos"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crearle un comentario a un centro comercial",
+			"name": "Crear una zona verde",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"comentrario_id_1\", data.id);\r",
+							"pm.globals.set(\"zona_verde_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Centraasl Parrk\",\r\n  \"descripcion\": \"A large public park in New York City.\",\r\n  \"preferencias\": \"Jogging, Picnic, Pets Allowed\",\r\n  \"calificacion\": 4.7,\r\n  \"ubicacion\": \"New York, NY, USA\",\r\n  \"vecindario\":{\r\n        \"id\":1\r\n    }\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/zonas_verdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"zonas_verdes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.globals.set(\"comentario_id_1\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -114,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}",
+					"raw": "{\r\n\r\n  \r\n    \"nombre\": \"me encanta Maxsteel\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -122,13 +165,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/publicaciones/{{publicacion_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"publicaciones",
-						"{{publicacion_id}}",
 						"comentarios"
 					]
 				}
@@ -136,19 +177,15 @@
 			"response": []
 		},
 		{
-			"name": "crearle un comentario 2 a un  centro comercial",
+			"name": "Crearle un comentario a una zona verde",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"centroComercial_id_2\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});\r",
-							""
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -159,7 +196,54 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/zonas_verdes/{{zona_verde_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"{{comentario_id_1}}",
+						"zonas_verdes",
+						"{{zona_verde_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearle un comentario a  una zona verdeque no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The zona verde is not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -167,511 +251,152 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/zonas_verdes/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
+						"comentarios",
+						"{{comentario_id_1}}",
+						"zonas_verdes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener los comentarios de un zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/zonas_verdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"{{comentario_id_1}}",
+						"zonas_verdes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una comentario que no existe de un zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/0/zonas_verdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"0",
+						"zonas_verdes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editarle el comentario a un zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}//comentarios/{{comentario_id_1}}/centrosComerciales/{{centroComercial_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"",
+						"comentarios",
+						"{{comentario_id_1}}",
 						"centrosComerciales",
-						"{{centroComercial_id}}",
-						"comentarios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "crearle un comentario a un comentario que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The centroComercial with the given id was not found\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/0/comentrarios",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"0",
-						"comentrarios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "obtener los comentarios de un centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('Number of comentarios > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "obtener una reseña de un libro",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios",
-						"{{comentario_id_}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editarle el comentario a un centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editarle un comentario que no existe a un centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The comentario with the given id was not found\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/0",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios",
-						"0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editarle un comentario a un centro comercial que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The zonaVerde with the given id was not found\");\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/0/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"0",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar un comentrario que no existe a un centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The comentario with the given id was not found\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/0",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios",
-						"0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrarle un comentario a un centro comencial que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The zonaVerde with the given id was not found\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/0/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"0",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrarle un comentario a un centro comenrcial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrarle un comentario 2 a un centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{zonaVerde_id}}/comentarios/{{comentario_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
-						"{{zonaVerde_id}}",
-						"comentarios",
-						"{{comentario_id_2}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar una ZonaVerde",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/zonasVerdes/{{centroComercial_id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"zonasVerdes",
 						"{{centroComercial_id}}"
 					]
 				}
@@ -679,7 +404,54 @@
 			"response": []
 		},
 		{
-			"name": "Borrar un vecindario",
+			"name": "Editarle un comentario que no existe a un zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The comentario with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publicaciones",
+						"{{publicacion_id}}",
+						"comentarios",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle un comentario a una zona verde",
 			"event": [
 				{
 					"listen": "test",
@@ -707,13 +479,143 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id}}",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/zonas_verdes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"vecindarios",
-						"{{vecindario_id}}"
+						"comentarios",
+						"{{comentario_id_1}}",
+						"zonas_verdes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle un comentario que no existe a un zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/0/zonas_verdes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"0",
+						"zonas_verdes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"{{comentario_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar zona verde",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/zonas_verdes/{{zona_verde_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"zonas_verdes",
+						"{{zona_verde_id_1}}"
 					]
 				}
 			},

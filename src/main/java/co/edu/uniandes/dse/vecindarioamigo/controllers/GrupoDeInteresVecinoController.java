@@ -22,15 +22,15 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.GrupoDeInteresVecinoService;
 
+
+@RestController
+@RequestMapping("/gruposDeInteres")
 public class GrupoDeInteresVecinoController {
 	/**
 	 * Clase que implementa el recurso "gruposdeinteres".
 	 *
 	 * @author ISIS2603
 	 */
-	@RestController
-	@RequestMapping("/gruposDeInteres")
-	public class AuthorBookController {
 
 		@Autowired
 		private GrupoDeInteresVecinoService grupoDeInteresVecinoService;
@@ -125,4 +125,4 @@ public class GrupoDeInteresVecinoController {
 			grupoDeInteresVecinoService.removeVecino(grupoDeInteresId, vecinoId);
 		}
 	}
-}
+
