@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "14f16f8d-df87-449f-b770-987a978c8d06",
-		"name": "Cometario Tests",
+		"name": "Comentario Tests",
 		"description": "Colección de pruebas sobre el recurso Prize",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29103184"
@@ -37,7 +37,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"me gustoo la antencion\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
+					"raw": "{\r\n  \r\n    \"nombre\": \"me gusta lanten\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios",
@@ -229,7 +229,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"publicacion\": \"hola\",\n        \"zonaVerde\": null,\n        \"negocio\": null,\n        \"centroComercial\": null\n    }"
+					"raw": " {\n    \"descripcion\": \"nada\"\n    }"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}",
@@ -275,7 +275,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \n    \"nombre\": \"Me disgusto la antencion\",\n    \"fecha\": \"2000/01/01\",\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\n}"
+					"raw": "{\r\n  \r\n    \"nombre\": \"Me encion\",\r\n    \"fecha\": \"2020-01-01\",\r\n    \"descripcion\": \"El personal  es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/comentarios/0",

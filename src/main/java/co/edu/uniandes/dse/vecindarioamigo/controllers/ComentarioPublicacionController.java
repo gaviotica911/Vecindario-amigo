@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniandes.dse.vecindarioamigo.dto.*;
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.services.ComentarioPublicacionService;
 
+
+@RestController
 @RequestMapping("/comentarios")
 public class ComentarioPublicacionController {
 	/**
@@ -45,7 +48,7 @@ public class ComentarioPublicacionController {
 	 */
 	@PostMapping(value = "/{comentarioId}/publicaciones/{publicacionId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public PublicacionDTO addAuthor(@PathVariable("comentarioId") Long comentarioId,
+	public PublicacionDTO addpublicacion(@PathVariable("comentarioId") Long comentarioId,
 			@PathVariable("publicacionId") Long publicacionId)
 			throws EntityNotFoundException {
 		PublicacionEntity publicacionEntity = comentarioPublicacionService.addpublicacion(publicacionId, comentarioId);
@@ -62,7 +65,7 @@ public class ComentarioPublicacionController {
 	 */
 	@GetMapping(value = "/{comentarioId}/publicaciones")
 	@ResponseStatus(code = HttpStatus.OK)
-	public PublicacionDetailDTO getAuthor(@PathVariable("comentarioId") Long comentarioId)
+	public PublicacionDetailDTO getComentario(@PathVariable("comentarioId") Long comentarioId)
 			throws EntityNotFoundException {
 		PublicacionEntity publicacionEntity = comentarioPublicacionService.getPublicacion(comentarioId);
 		return modelMapper.map(publicacionEntity, PublicacionDetailDTO.class);

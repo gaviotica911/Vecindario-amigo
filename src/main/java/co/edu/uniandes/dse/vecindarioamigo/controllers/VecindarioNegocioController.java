@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniandes.dse.vecindarioamigo.dto.NegocioDTO;
 import co.edu.uniandes.dse.vecindarioamigo.dto.NegocioDetailDTO;
@@ -19,10 +21,10 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.NegocioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 
+@RestController
+@RequestMapping("/vecindarios")
 public class VecindarioNegocioController {
     
-    
-
 	@Autowired
 	private co.edu.uniandes.dse.vecindarioamigo.services.VecindarioNegocioService vecindarioNegocioService;
 
@@ -39,7 +41,7 @@ public class VecindarioNegocioController {
 	 *                    ser una cadena de dígitos.
 	 * @return JSON {@link NegocioDTO} - El Negocio guardado en el vecindario.
 	 */
-	@PostMapping(value = "/{vecindarioId}/negocios/{NegocioId}")
+	@PostMapping(value = "/{vecindarioId}/negocios/{negocioId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public NegocioDTO addNegocio(@PathVariable("vecindarioId") Long vecindarioId, @PathVariable("negocioId") Long NegocioId)
 			throws EntityNotFoundException {
@@ -72,11 +74,11 @@ public class VecindarioNegocioController {
 	 *                    ser una cadena de dígitos.
 	 * @return JSON {@link NegocioDetailDTO} - El Negocio buscado
 	 */
-	@GetMapping(value = "/{vecindarioId}/negocios/{NegocioId}")
+	@GetMapping(value = "/{vecindarioId}/negocios/{negocioId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public NegocioDetailDTO getNegocio(@PathVariable("vecindarioId") Long vecindarioId, @PathVariable("negocioId") Long NegocioId)
+	public NegocioDetailDTO getNegocio(@PathVariable("vecindarioId") Long vecindarioId, @PathVariable("negocioId") Long negocioId)
 			throws EntityNotFoundException, IllegalOperationException {
-		NegocioEntity NegocioEntity = vecindarioNegocioService.getNegocio(vecindarioId, NegocioId);
+		NegocioEntity NegocioEntity = vecindarioNegocioService.getNegocio(vecindarioId, negocioId);
 		return modelMapper.map(NegocioEntity, NegocioDetailDTO.class);
 	}
 

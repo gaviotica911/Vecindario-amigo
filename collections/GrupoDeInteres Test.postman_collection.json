@@ -30,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"LaCalleja\",\n    \"ciudad\": \"Bogota\",\n  \"localidad\": \"Usaquen\"\n}",
+					"raw": "{\n    \"nombre\": \"SantaFe\",\n    \"ciudad\": \"Bogota\",\n  \"localidad\": \"SantaFe\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,12 +38,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/Vecindarios",
+					"raw": "{{baseUrl}}/vecindarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"Vecindarios"
+						"vecindarios"
 					]
 				},
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -59,7 +59,7 @@
 						"exec": [
 							"var data = pm.response.json()",
 							"pm.environment.get(\"variable_key\");",
-							"pm.globals.set(\"grupo_de_interes_id_1\", data.id);",
+							"pm.globals.set(\"grupoDeInteres_id_1\", data.id);",
 							"",
 							"pm.test(\"Status code is 201\", function () {",
 							"   pm.response.to.have.status(201);",
@@ -75,7 +75,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"nuestros\",\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\"\n\n}",
+					"raw": "{\n\t\"nombre\": \"nuestkgbhjv\",\n    \"descripcion\": \"Es un grupo para divertir del vecindario\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,7 +119,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n    \"nombre\": \"pasear\",\r\n    \"descripcion\": \"Un grupo para pasear a nuestros peludos, comentar sobre noticias y nuevos juegos que podemos hacer con nuestra mascota\"\r\n\r\n}",
+					"raw": "{ \r\n    \"nombre\": \"paasear\",\r\n    \"descripcion\": \"Un grupo para pasear a nuestros peludos, comentar sobre noticias y nuevos juegos que podemos hacer con nuestra mascota\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -193,13 +193,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/gruposDeInteres/{{grupoDeInteres_id_1}}",
+					"raw": "{{baseUrl}}/gruposDeInteres/{{grupo_de_interes_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"gruposDeInteres",
-						"{{grupoDeInteres_id_1}}"
+						"{{grupo_de_interes_id_1}}"
 					]
 				}
 			},

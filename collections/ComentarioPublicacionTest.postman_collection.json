@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "557649ff-ba18-4ee8-bb98-c89f6d568f09",
-		"name": "ComentarioNegocioTest",
+		"_postman_id": "9c9f1bec-64a2-4e06-8d77-7b1192a514fc",
+		"name": "ComentarioPublicacionTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29103184"
 	},
@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"LaCalleja\",\r\n    \"ciudad\": \"Bogota\",\r\n  \"localidad\": \"Usaquen\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"LaCallleja\",\r\n    \"ciudad\": \"Bogota\",\r\n  \"localidad\": \"Usaquen\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,26 +37,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/Vecindarios",
+					"raw": "{{baseUrl}}/vecindarios",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"Vecindarios"
+						"vecindarios"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un negocio",
+			"name": "Crea un vecino",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"negocio_id\", data.id);\r",
+							"pm.globals.set(\"vecino_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"nombre\":\"Panaderia Don juan\",\r\n\t\"descripcion\": \"pan para pan pan pam pan\",\r\n\t\"numeroDeTelefonico\": 3103559985,\r\n\t\"Calificacion\": 5,\r\n    \"vecindario\": {\r\n        \"id\" : {{vecindario_id}}\r\n}\r\n}",
+					"raw": "{\r\n\"nombre\": \"conca\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":1,\r\n    \"nombre\": \"cedritoos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,26 +79,69 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio",
+					"raw": "{{baseUrl}}/vecinos",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio"
+						"vecinos"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crearle un comentario a un negocio",
+			"name": "Crear una publicacion",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"comentrario_id_1\", data.id);\r",
+							"pm.globals.set(\"publicacion_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n   \r\n    \"contenido\": \"buena gente\",\r\n    \"foto\": \"www.foto.com\",\r\n    \"video\": \"video.com\",\r\n    \"likes\": 0,\r\n    \"compartidos\": 0,\r\n    \"fecha\":\"2023-01-01\",\r\n    \"vecino\": {\r\n        \"id\" : {{vecino_id}}\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publicaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.globals.set(\"comentario_id_1\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -114,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}",
+					"raw": "{\r\n\r\n  \r\n    \"nombre\": \"me gusta lanten\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -122,13 +165,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/negocio/{{negocio_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
 						"comentarios"
 					]
 				}
@@ -136,19 +177,15 @@
 			"response": []
 		},
 		{
-			"name": "crearle un comentario 2 a un  negocio",
+			"name": "Crearle un comentario una publicacion",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"negocio_id_2\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});\r",
-							""
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -159,29 +196,30 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
-							"language": "json"
+							"language": "text"
 						}
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/publicaciones/{{publicacion_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
-						"comentarios"
+						"comentarios",
+						"{{comentario_id_1}}",
+						"publicaciones",
+						"{{publicacion_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "crearle un comentario a un negocioque no existe",
+			"name": "crearle un comentario a  una publicacion que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -193,7 +231,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The negocio with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The post with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -205,7 +243,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -213,34 +251,81 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/0/comentrarios",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/publicaciones/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"0",
-						"comentrarios"
+						"comentarios",
+						"{{comentario_id_1}}",
+						"publicaciones",
+						"0"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "obtener los comentarios de un negocio",
+			"name": "obtener los comentarios de una publicacion",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of comentarios > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/publicaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"{{comentario_id_1}}",
+						"publicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una comentario que no existe de una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -262,66 +347,21 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios/0/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
-						"comentarios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "obtener un comentariode un negocio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"negocio",
-						"{{negocio_id}}",
 						"comentarios",
-						"{{comentario_id_1}}"
+						"0",
+						"publicaciones"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Editarle el comentario a un negocio",
+			"name": "Editarle el comentario auna publicacion",
 			"event": [
 				{
 					"listen": "test",
@@ -340,7 +380,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -348,22 +388,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}//comentarios/{{comentario_id_1}}/publicaciones/{{publicacion_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"",
 						"comentarios",
-						"{{comentario_id_1}}"
+						"{{comentario_id_1}}",
+						"publicaciones",
+						"{{publicacion_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Editarle un comentario que no existe a un negocio",
+			"name": "Editarle un comentario que no existe a una publicacion",
 			"event": [
 				{
 					"listen": "test",
@@ -395,13 +436,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
+						"publicaciones",
+						"{{publicacion_id}}",
 						"comentarios",
 						"0"
 					]
@@ -410,7 +451,7 @@
 			"response": []
 		},
 		{
-			"name": "Editarle un comentario a un negociol que no existe",
+			"name": "Editarle un comentario a una publicacion que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -422,7 +463,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The negocio with the given id was not found\");\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The centroComercial with the given id was not found\");\r",
 							"});\r",
 							""
 						],
@@ -443,12 +484,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/0/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/publicaciones/0/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
+						"publicaciones",
 						"0",
 						"comentarios",
 						"{{comentario_id_1}}"
@@ -458,19 +499,14 @@
 			"response": []
 		},
 		{
-			"name": "Borrar un comentrario que no existe a un negocio",
+			"name": "Borrarle un comentario a una publicacion que no existe",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The comentario with the given id was not found\");\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -490,22 +526,21 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
 						"comentarios",
-						"0"
+						"{{comentario_id_1}}",
+						"publicaciones"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Borrarle un comentario a un negociol que no existe",
+			"name": "Borrarle un comentario a una publicacion que no existe Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -517,8 +552,9 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The negocio with the given id was not found\");\r",
-							"});"
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -537,13 +573,53 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/0/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/comentarios/0/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
+						"comentarios",
 						"0",
+						"publicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
 						"comentarios",
 						"{{comentario_id_1}}"
 					]
@@ -552,7 +628,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrarle un comentario a un negocio",
+			"name": "Borrar publicacion",
 			"event": [
 				{
 					"listen": "test",
@@ -580,140 +656,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"negocio",
-						"{{negocio_id}}",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrarle un comentario 2 a un negocio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}/comentarios/{{comentario_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"negocio",
-						"{{negocio_id}}",
-						"comentarios",
-						"{{comentario_id_2}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar un negocio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/negocio/{{negocio_id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"negocio",
-						"{{negocio_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar un vecindario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"vecindarios",
-						"{{vecindario_id}}"
+						"publicaciones",
+						"{{publicacion_id}}"
 					]
 				}
 			},

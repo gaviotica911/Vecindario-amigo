@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "43d0a8f5-cdb8-40ba-9dfa-3b397f9bb56d",
-		"name": "ComentarioCentroComercial Test Copy 3",
+		"_postman_id": "494219f5-72c8-4dd0-8c09-62b8d7546c39",
+		"name": "ComentarioCentroComercial Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29103184"
 	},
@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"LaCalleja\",\r\n    \"ciudad\": \"Bogota\",\r\n  \"localidad\": \"Usaquen\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"LaCallleja\",\r\n    \"ciudad\": \"Bogota\",\r\n  \"localidad\": \"Usaquen\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,19 +37,61 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/Vecindarios",
+					"raw": "{{baseUrl}}/vecindarios",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
-						"Vecindarios"
+						"vecindarios"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un centro comercial",
+			"name": "Crea un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"vecino_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\": \"coca\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":1,\r\n    \"nombre\": \"cedritoos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -71,7 +113,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"nombre\": \"cedritos\",\r\n\"descripcion\": \"un centro comercial muy bonito\",\r\n\"ubicacion\": \"calle127-d\",\r\n\"calificacion\": 5,\r\n\"vecindario\": {\r\n        \"id\" : {{vecindario_id}}\r\n}\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Unicentro\",\r\n    \"descripcion\": \"centro comercial en el vecindario\",\r\n    \"ubicacion\": \"norte\",\r\n    \"celificacion\": \"4.3\",\r\n    \"vecindario\":{\r\n        \"id\":1\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,14 +133,15 @@
 			"response": []
 		},
 		{
-			"name": "Crearle un comentario a un centro comercial",
+			"name": "Crear un comentario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"comentrario_id_1\", data.id);\r",
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.globals.set(\"comentario_id_1\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -114,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}",
+					"raw": "{\r\n\r\n  \r\n    \"nombre\": \"me gusta Maxsteel\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -122,58 +165,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/centroComercial/{{centroComercial_id}}/comentarios",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"centroComercial",
-						"{{centroComercial_id}}",
-						"comentarios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "crearle un comentario 2 a un  centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"centroComercial_id_2\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
 						"comentarios"
 					]
 				}
@@ -181,19 +177,14 @@
 			"response": []
 		},
 		{
-			"name": "crearle un comentario a un comentario que no existe",
+			"name": "Crearle un comentario uncentro comercial",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The centroComercial with the given id was not found\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -205,7 +196,54 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/centrosComerciales/{{centroComercial_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"{{comentario_id_1}}",
+						"centrosComerciales",
+						"{{centroComercial_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearle un comentario a  una centro comercialque no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -213,14 +251,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/0/comentrarios",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/centrosComerciales/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
+						"comentarios",
+						"{{comentario_id_1}}",
 						"centrosComerciales",
-						"0",
-						"comentrarios"
+						"0"
 					]
 				}
 			},
@@ -233,14 +272,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of comentarios > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
-							"});\r",
-							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"   pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -262,29 +297,35 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/centrosComerciales",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
-						"comentarios"
+						"comentarios",
+						"{{comentario_id_1}}",
+						"centrosComerciales"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "obtener una reseña de un libro",
+			"name": "obtener una comentario que no existe de un centro comercial",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -306,15 +347,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/comentarios/0/centrosComerciales",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
 						"comentarios",
-						"{{comentario_id_1}}"
+						"0",
+						"centrosComerciales"
 					]
 				}
 			},
@@ -340,7 +380,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy bueno, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -348,15 +388,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}//comentarios/{{comentario_id_1}}/centrosComerciales/{{centroComercial_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
+						"",
 						"comentarios",
-						"{{comentario_id_1}}"
+						"{{comentario_id_1}}",
+						"centrosComerciales",
+						"{{centroComercial_id}}"
 					]
 				}
 			},
@@ -395,13 +436,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
+						"publicaciones",
+						"{{publicacion_id}}",
 						"comentarios",
 						"0"
 					]
@@ -410,149 +451,7 @@
 			"response": []
 		},
 		{
-			"name": "Editarle un comentario a un centro comercial que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The centroComercial with the given id was not found\");\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \r\n    \"nombre\": \"Me no me gusto la antencion\",\r\n    \"fecha\": \"Thu Sep 16 14:30:00 GMT 2023\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, pcco atento y me disgusto, nunca buscando ayudarte\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/0/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"centrosComerciales",
-						"0",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar un comentrario que no existe a un centro comercial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The comentario with the given id was not found\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios/0",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
-						"comentarios",
-						"0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrarle un comentario a un centro comencial que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.apierror.message).to.eql(\"The centroComercial with the given id was not found\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/0/comentarios/{{comentario_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"centrosComerciales",
-						"0",
-						"comentarios",
-						"{{comentario_id_1}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrarle un comentario a un centro comenrcial",
+			"name": "Borrarle un comentario a una centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -580,22 +479,68 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}/centrosComerciales",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
 						"comentarios",
-						"{{comentario_id_1}}"
+						"{{comentario_id_1}}",
+						"centrosComerciales"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Borrarle un comentario 2 a un centro comercial",
+			"name": "Borrarle un comentario que no existe a un centro comercial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios/0/centrosComerciales",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios",
+						"0",
+						"centrosComerciales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -623,22 +568,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/centrosComerciales/{{centroComercial_id}}/comentarios/{{comentario_id_2}}",
+					"raw": "{{baseUrl}}/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"centrosComerciales",
-						"{{centroComercial_id}}",
 						"comentarios",
-						"{{comentario_id_2}}"
+						"{{comentario_id_1}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Borrar un centro comercial",
+			"name": "Borrar centro comercial",
 			"event": [
 				{
 					"listen": "test",
@@ -673,47 +616,6 @@
 					"path": [
 						"centrosComerciales",
 						"{{centroComercial_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar un vecindario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/vecindarios/{{vecindario_id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"vecindarios",
-						"{{vecindario_id}}"
 					]
 				}
 			},
