@@ -36,7 +36,7 @@ public class VecinoVecindarioController {
 	 * @return JSON {@link VecinoDetailDTO} - El arreglo de vecinos guardado en la
 	 *         vecindario.
 	 */
-	@PutMapping(value = "/{vecinoId}/vecindario")
+	@PutMapping(value = "/{vecinoId}/vecindarios")
 	@ResponseStatus(code = HttpStatus.OK)
 	public VecinoDetailDTO replaceVecindario(@PathVariable("vecinoId") Long vecinoId, @RequestBody VecindarioDTO vecindarioDTO)
 			throws EntityNotFoundException {

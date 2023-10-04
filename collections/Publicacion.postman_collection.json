@@ -1,19 +1,191 @@
 {
 	"info": {
-		"_postman_id": "16de587f-82fe-4dc4-a041-0071d1f37488",
+		"_postman_id": "be11d198-b792-493e-a494-f70ff03f0138",
 		"name": "Publicacion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29200318"
 	},
 	"item": [
 		{
-			"name": "Crear una publicación",
+			"name": "Crear un vecindario Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"vecindario_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"contenido\": \"Hola estoy durmiento\",\r\n   \"fecha\": \"23/07/23\",\r\n   \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\r\n   \"video\": \"vacio\",\r\n   \"likes\": 4,\r\n   \"compartidos\": 32\r\n}",
+					"raw": "{\r\n    \"nombre\": \"bolas\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un vecindario -example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"La Marina de Port\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"1\",\r\n    \"nombre\": \"La Marina de Port\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un vecino Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"vecino_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\": \"oso1\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":2,\r\n    \"nombre\": \"usaquen\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un vecino",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nombre\": \"Gabriela\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"nombre\": \"cedritos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecinos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\":1,\r\n\"nombre\": \"Gabriela\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":1,\r\n    \"nombre\": \"cedritos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear una publicación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"publicacion_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contenido\": \"Este es el contenido del post\",\r\n  \"foto\": \"URL_de_la_foto.jpg\",\r\n  \"video\": \"URL_del_video.mp4\",\r\n  \"likes\": 100,\r\n  \"compartidos\": 50,\r\n  \"fecha\": \"2023-10-02T15:30:00.000Z\",\r\n  \"vecino\":{\r\n\"nombre\": \"oso1\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":2,\r\n    \"nombre\": \"usaquen\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,7 +210,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"contenido\": \"Hola estoy durmiento\",\r\n   \"fecha\": \"23/07/23\",\r\n   \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\r\n   \"video\": \"vacio\",\r\n   \"likes\": 4,\r\n   \"compartidos\": 32\r\n}",
+							"raw": "{\r\n  \"contenido\": \"Este es el contenido del post\",\r\n  \"foto\": \"URL_de_la_foto.jpg\",\r\n  \"video\": \"URL_del_video.mp4\",\r\n  \"likes\": 100,\r\n  \"compartidos\": 50,\r\n  \"fecha\": \"2023-10-02T15:30:00.000Z\",\r\n  \"vecino\":{\r\n\"nombre\": \"oso1\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":2,\r\n    \"nombre\": \"usaquen\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,7 +240,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"contenido\": \"Hola estoy durmiento\",\n    \"fecha\": \"23/07/23\",\n    \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\n    \"video\": \"vacio\",\n    \"likes\": 4,\n    \"compartidos\": 32\n}"
+					"body": "{\n    \"id\":1,\n  \"contenido\": \"Este es el contenido del post\",\n  \"foto\": \"URL_de_la_foto.jpg\",\n  \"video\": \"URL_del_video.mp4\",\n  \"likes\": 100,\n  \"compartidos\": 50,\n  \"fecha\": \"2023-10-02T15:30:00.000Z\",\n  \"vecino\":{\n\"nombre\": \"oso1\",\n\"edad\": 19,\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n\"descripcion\": \"Estudio ISIS\",\n\"vecindario\":{\n    \"id\":2,\n    \"nombre\": \"usaquen\",\n    \"ciudad\": \"Barcelona\",\n    \"localidad\": \"Sants - Montjuïc\"\n}\n}\n}\n"
 				}
 			]
 		},
@@ -155,8 +327,8 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": "{\r\n        \"id\":1,\r\n        \"contenido\": \"Hola estoy durmiento\",\r\n        \"fecha\": \"23/07/23\",\r\n        \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\r\n        \"video\": \"vacio\",\r\n        \"likes\": 4,\r\n        \"compartidos\": 32,\r\n        \"comentarios\":[]\r\n    }"
 				}
@@ -383,10 +555,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},

@@ -41,7 +41,7 @@ public class VecinoPublicacionController {
 	 *                      ser una cadena de dígitos.
 	 * @return JSON {@link publicacionDTO} - El post guardado en la vecino.
 	 */
-	@PostMapping(value = "/{vecinoId}/publicacion/{publicacionId}")
+	@PostMapping(value = "/{vecinoId}/publicaciones/{publicacionId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public PublicacionDTO addPublicacion(@PathVariable("vecinoId") Long vecinoId,
 			@PathVariable("publicacionId") Long publicacionId)
@@ -58,7 +58,7 @@ public class VecinoPublicacionController {
 	 * @return JSONArray {@link PublicacionDetailDTO} - Los libros encontrados en la
 	 *         vecino. Si no hay ninguno retorna una lista vacía.
 	 */
-	@GetMapping(value = "/{vecinoId}/books")
+	@GetMapping(value = "/{vecinoId}/publicaciones")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<PublicacionDetailDTO> getPublicacions(@PathVariable("vecinoId") Long vecinoId)
 			throws EntityNotFoundException {
@@ -76,7 +76,7 @@ public class VecinoPublicacionController {
 	 *                 ser una cadena de dígitos.
 	 * @return JSON {@link PublicacionDetailDTO} - El libro buscado
 	 */
-	@GetMapping(value = "/{vecinoId}/books/{bookId}")
+	@GetMapping(value = "/{vecinoId}/publicaciones/{publicacionId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public PublicacionDetailDTO getPublicacion(@PathVariable("vecinoId") Long vecinoId,
 			@PathVariable("bookId") Long bookId)
@@ -97,7 +97,7 @@ public class VecinoPublicacionController {
 	 *         la
 	 *         vecino.
 	 */
-	@PutMapping(value = "/{vecinoId}/books")
+	@PutMapping(value = "/{vecinoId}/publicaciones")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<PublicacionDetailDTO> replacePublicacions(@PathVariable("vecinoId") Long vecinosId,
 			@RequestBody List<PublicacionDetailDTO> books) throws EntityNotFoundException {

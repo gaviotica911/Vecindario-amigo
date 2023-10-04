@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.uniandes.dse.vecindarioamigo.dto.PublicacionDTO;
 import co.edu.uniandes.dse.vecindarioamigo.dto.PublicacionDetailDTO;
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
+
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.PublicacionService;
@@ -47,13 +48,14 @@ public class PublicacionController {
         return modelMapper.map(publicacionEntity, PublicacionDetailDTO.class);
     }
 
+    
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public PublicacionDTO create(@RequestBody PublicacionDTO publicacionDTO)
-            throws IllegalOperationException, EntityNotFoundException {
-        PublicacionEntity publicacionEntity = publicacionService.createPublicacion(modelMapper.map(publicacionDTO, PublicacionEntity.class));
-        return modelMapper.map(publicacionEntity, PublicacionDTO.class);
-    }
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public PublicacionDTO create(@RequestBody PublicacionDTO bookDTO) throws IllegalOperationException, EntityNotFoundException {
+		PublicacionEntity bookEntity = publicacionService.createPublicacion(modelMapper.map(bookDTO, PublicacionEntity.class));
+		return modelMapper.map(bookEntity, PublicacionDTO.class);
+	}
+
 
     @PutMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)

@@ -50,7 +50,7 @@ public class PublicacionService {
 
        
         publicacionEntity.setVecino(vecinoEntity.get());
-        log.info("Termina proceso de creación del libro");
+        log.info("Termina proceso de creación del post");
         return publicacionRepository.save(publicacionEntity);
 
 		}

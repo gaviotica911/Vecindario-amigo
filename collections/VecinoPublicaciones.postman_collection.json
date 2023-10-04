@@ -1,26 +1,359 @@
 {
 	"info": {
-		"_postman_id": "072d2df0-98d8-4891-818c-8da214f268ce",
+		"_postman_id": "f1e70af2-b3a4-493e-ac59-5736ec5e58ee",
 		"name": "VecinoPublicaciones",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29200318"
 	},
 	"item": [
 		{
+			"name": "Crear un vecindario Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"vecindario_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"suba\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecindarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecindarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un vecindario -example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"La Marina de Port\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecindarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecindarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"1\",\r\n    \"nombre\": \"La Marina de Port\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un vecino Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"vecino_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\": \"manol1\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\": 2,\r\n    \"nombre\": \"suba\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vecinos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vecinos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un vecino",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nombre\": \"Gabriela\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"nombre\": \"cedritos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vecinos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vecinos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\":1,\r\n\"nombre\": \"Gabriela\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":1,\r\n    \"nombre\": \"cedritos\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear una publicación Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"publicacion_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": 19,\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 2,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publicaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publicaciones"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear una publicación",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": 19,\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 2,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/publicaciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"publicaciones"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\":1,\n    \"contenido\": \"Este es el contenido de la publicación\",\n    \"foto\": \"URL_de_la_foto\",\n    \"video\": \"URL_del_video\",\n    \"likes\": 10,\n    \"compartidos\": 5,\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\n    \"vecino\": {\n        \"id\": 3,\n        \"nombre\": \"manol1\",\n        \"edad\": 19,\n        \"profilePic\": null,\n        \"descripcion\": \"Estudio ISIS\",\n        \"vecindario\": {\n            \"id\": 2,\n            \"nombre\": \"suba\",\n            \"ciudad\": \"Barcelona\",\n            \"localidad\": \"Sants - Montjuïc\"\n        }\n    }\n}\n"
+				}
+			]
+		},
+		{
+			"name": "Crear una publicación Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"publicacion_id_2\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": 19,\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 2,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publicaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publicaciones"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear una publicación",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": 19,\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 2,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/publicaciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"publicaciones"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\":1,\n    \"contenido\": \"Este es el contenido de la publicación\",\n    \"foto\": \"URL_de_la_foto\",\n    \"video\": \"URL_del_video\",\n    \"likes\": 10,\n    \"compartidos\": 5,\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\n    \"vecino\": {\n        \"id\": 3,\n        \"nombre\": \"manol1\",\n        \"edad\": 19,\n        \"profilePic\": null,\n        \"descripcion\": \"Estudio ISIS\",\n        \"vecindario\": {\n            \"id\": 2,\n            \"nombre\": \"suba\",\n            \"ciudad\": \"Barcelona\",\n            \"localidad\": \"Sants - Montjuïc\"\n        }\n    }\n}\n"
+				}
+			]
+		},
+		{
 			"name": "Agregar una publicación a un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
+						"{{vecino_id_1}}",
 						"publicaciones",
-						"{{publicacion_id_1}}"
+						"{{publicacion_id_2}}"
 					]
 				}
 			},
@@ -62,17 +395,35 @@
 		},
 		{
 			"name": "Agregar un post que no existe a un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The post with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
+						"{{vecino_id_1}}",
 						"publicaciones",
 						"0"
 					]
@@ -116,17 +467,30 @@
 		},
 		{
 			"name": "Obtener un post de un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
+						"{{vecino_id_1}}",
 						"publicaciones",
 						"{{publicacion_id_1}}"
 					]
@@ -139,13 +503,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_1}}",
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_1}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"vecinos",
-								"{{vecino_id}}",
+								"{{vecino_id_1}}",
 								"publicaciones",
 								"{{publicacion_id_1}}"
 							]
@@ -170,17 +534,35 @@
 		},
 		{
 			"name": "Obtener un post que no existe de un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
+						"{{vecino_id_1}}",
 						"publicaciones",
 						"0"
 					]
@@ -224,17 +606,35 @@
 		},
 		{
 			"name": "Obtener un post que no está asociado a un autor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The book is not associated to the author\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_2}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
+						"{{vecino_id_1}}",
 						"publicaciones",
 						"{{publicacion_id_2}}"
 					]
@@ -247,13 +647,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/{{publicacion_id_2}}",
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"vecinos",
-								"{{vecino_id}}",
+								"{{vecino_id_1}}",
 								"publicaciones",
 								"{{publicacion_id_2}}"
 							]
@@ -278,18 +678,36 @@
 		},
 		{
 			"name": "Obtener los posts de un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of books > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/vecinos",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
-						"vecinos"
+						"{{vecino_id_1}}",
+						"publicaciones"
 					]
 				}
 			},
@@ -330,6 +748,19 @@
 		},
 		{
 			"name": "Asociar posts a un autor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -343,14 +774,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecinoid}}/publicacion",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecinoid}}",
-						"publicacion"
+						"{{vecino_id_1}}",
+						"publicaciones"
 					]
 				}
 			},
@@ -391,6 +822,24 @@
 		},
 		{
 			"name": "Asociar publicaciones que no existen a un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -404,13 +853,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
+						"{{vecino_id_2}}",
 						"publicaciones"
 					]
 				}
@@ -452,18 +901,32 @@
 		},
 		{
 			"name": "Borrar una publicación de un vecino",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones{{publicacion_id_2}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones/{{publicacion_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id}}",
-						"publicaciones{{publicacion_id_2}}"
+						"{{vecino_id_2}}",
+						"publicaciones",
+						"{{publicacion_id_2}}"
 					]
 				}
 			},
@@ -487,15 +950,33 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
 		{
 			"name": "Borrar una publicacion a un vecino que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
