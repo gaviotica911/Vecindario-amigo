@@ -35,14 +35,14 @@ public class ComentarioController {
 	/**
 	 * Busca y devuelve todos los premios que existen en la aplicacion.
 	 *
-	 * @return JSONArray {@link ComentarioDetailDTO} - Los premios encontrados en la
+	 * @return JSONArray {@link ComentarioDTO} - Los premios encontrados en la
 	 *         aplicación. Si no hay ninguno retorna una lista vacía.
 	 */
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<ComentarioDetailDTO> findAll() {
+	public List<ComentarioDTO> findAll() {
 		List<ComentarioEntity> prizes = comentarioService.getComentarios();
-		return modelMapper.map(prizes, new TypeToken<List<ComentarioDetailDTO>>() {
+		return modelMapper.map(prizes, new TypeToken<List<ComentarioDTO>>() {
 		}.getType());
 	}
 
@@ -51,16 +51,16 @@ public class ComentarioController {
 	 *
 	 * @param id Identificador del premio que se esta buscando. Este debe ser una
 	 *           cadena de dígitos.
-	 * @return JSON {@link ComentarioDetailDTO} - El premio buscado
+	 * @return JSON {@link ComentarioDTO} - El premio buscado
 	 * @throws WebApplicationException {@link WebApplicationExceptionMapper} - Error
 	 *                                 de lógica que se genera cuando no se
 	 *                                 encuentra el premio.
 	 */
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ComentarioDetailDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException {
+	public ComentarioDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException {
 		ComentarioEntity prizeEntity = comentarioService.getComentario(id);
-		return modelMapper.map(prizeEntity, ComentarioDetailDTO.class);
+		return modelMapper.map(prizeEntity, ComentarioDTO.class);
 	}
 
 	/**
@@ -87,15 +87,15 @@ public class ComentarioController {
 	 * @param id    Identificador del premio que se desea actualizar. Este debe ser
 	 *              una cadena de dígitos.
 	 * @param prize {@link ComentarioDTO} El premio que se desea guardar.
-	 * @return JSON {@link ComentarioDetailDTO} - El premio guardada.
+	 * @return JSON {@link ComentarioDTO} - El premio guardada.
 	 */
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ComentarioDetailDTO update(@PathVariable("id") Long id, @RequestBody ComentarioDTO prizeDTO)
+	public ComentarioDTO update(@PathVariable("id") Long id, @RequestBody ComentarioDTO prizeDTO)
 			throws EntityNotFoundException {
 		ComentarioEntity prizeEntity = comentarioService.updateComentarios(id,
 				modelMapper.map(prizeDTO, ComentarioEntity.class));
-		return modelMapper.map(prizeEntity, ComentarioDetailDTO.class);
+		return modelMapper.map(prizeEntity, ComentarioDTO.class);
 	}
 
 	/**
