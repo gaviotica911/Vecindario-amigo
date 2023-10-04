@@ -60,8 +60,8 @@ public class CentroComercialComentarioService {
     @Transactional
     public ComentarioEntity getComentario(Long centroComercialID, Long comentarioID)
             throws EntityNotFoundException, IllegalOperationException {
-        log.info("Start the process of consulting the comment with id = {0} from the shopping centre with id = "
-                + centroComercialID, comentarioID);
+        log.info("Start the process of consulting the comment with id = {} from the shopping centre with id = {}",
+                comentarioID, centroComercialID);
 
         Optional<CentroComercialEntity> centroComercialEntity = centroComercialRepository.findById(centroComercialID);
         if (centroComercialEntity.isEmpty())
@@ -71,11 +71,11 @@ public class CentroComercialComentarioService {
         if (comentarioEntity.isEmpty())
             throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 
-        log.info("The process of consulting the comment with id ends = {0} from the shopping centre with id = "
-                + centroComercialID, comentarioID);
-
         if (!centroComercialEntity.get().getComentarios().contains(comentarioEntity.get()))
-            throw new IllegalOperationException("The comment is not associated to the shopping centre");
+            throw new IllegalOperationException("The comment is not associated with the shopping centre");
+
+        log.info("The process of consulting the comment with id = {} from the shopping centre with id = {} ends",
+                comentarioID, centroComercialID);
 
         return comentarioEntity.get();
     }
