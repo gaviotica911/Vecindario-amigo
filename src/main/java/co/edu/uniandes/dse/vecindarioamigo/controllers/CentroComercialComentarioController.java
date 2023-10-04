@@ -58,18 +58,4 @@ public class CentroComercialComentarioController {
         return modelMapper.map(comentarioEntity, ComentarioDetailDTO.class);
     }
 
-    @PutMapping(value = "/{centroComercialId}/comentarios")
-    @ResponseStatus(code = HttpStatus.OK)
-    public List<ComentarioDTO> replaceComentarios(@PathVariable("comentarioId") Long vecindarioId,
-            @RequestBody List<ComentarioDTO> comentarios) throws EntityNotFoundException {
-        List<ComentarioEntity> comentariosList = modelMapper.map(comentarios,
-                new TypeToken<List<ComentarioEntity>>() {
-                }.getType());
-        List<ComentarioEntity> result = centroComercialComentarioService.replaceComentarios(vecindarioId,
-                comentariosList);
-        return modelMapper.map(result, new TypeToken<List<ComentarioDTO>>() {
-        }.getType());
-
-    }
-
 }
