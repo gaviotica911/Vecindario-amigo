@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniandes.dse.vecindarioamigo.dto.VecinoDTO;
 import co.edu.uniandes.dse.vecindarioamigo.dto.VecinoDetailDTO;
@@ -20,6 +22,8 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.VecindarioVecinoService;
 
+@RestController
+@RequestMapping("/vecindarios")
 public class VecindarioVecinoController {
 
 	@Autowired
@@ -71,11 +75,12 @@ public class VecindarioVecinoController {
 	 *                    ser una cadena de dígitos.
 	 * @return JSON {@link VecinoDetailDTO} - El Vecino buscado
 	 */
-	@GetMapping(value = "/{vecindarioId}/Vecinos/{VecinoId}")
+	@GetMapping(value = "/{vecindarioId}/vecinos/{VecinoId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public VecinoDetailDTO getVecino(@PathVariable("vecindarioId") Long vecindarioId, @PathVariable("VecinoId") Long VecinoId)
 			throws EntityNotFoundException, IllegalOperationException {
 		VecinoEntity VecinoEntity = VecindarioVecinoService.getVecino(vecindarioId, VecinoId);
+        System.out.println("enter to get request");
 		return modelMapper.map(VecinoEntity, VecinoDetailDTO.class);
 	}
 
