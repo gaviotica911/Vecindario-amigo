@@ -10,125 +10,117 @@ import org.springframework.stereotype.Service;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
+
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.ComentarioRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.PublicacionRepository;
 import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
 @Service
-
 public class PublicacionComentarioService {
-    
-    
 
-    //dependency injections of the two entities of the relation
-    @Autowired
-	private ComentarioRepository comentarioRepository;
+	@Autowired
+	private ComentarioRepository ComentarioRepository;
 
-    @Autowired
-	private PublicacionRepository publicacionRepository;
-
-    /**
-	 * Agregar un comentario al publicacion
+	@Autowired
+	private PublicacionRepository PublicacionRepository;
+	
+	/**
+	 * Agregar un Comentario a la Publicacion
 	 *
-	 * @param comentarioId     El id del comentario a guardar
-	 * @param publicacionId      El id del publicacion en el cual se va a guardar el comentario.
-	 * @return El comentario creado.
+	 * @param ComentarioId      El id libro a guardar
+	 * @param PublicacionId El id de la Publicacion en la cual se va a guardar el libro.
+	 * @return El libro creado.
 	 * @throws EntityNotFoundException 
 	 */
 	
 	@Transactional
-	public ComentarioEntity addComentario(Long comentarioId, Long publicacionId) throws EntityNotFoundException {
-		log.info("Start the process of adding a comment to the post with id = {0}", publicacionId);
+	public ComentarioEntity addComentario(Long ComentarioId, Long PublicacionId) throws EntityNotFoundException {
+		log.info("Inicia proceso de agregarle un libro a la Publicacion con id = {0}", PublicacionId);
 		
-		Optional<ComentarioEntity> comentarioEntity = comentarioRepository.findById(comentarioId);
-		if(comentarioEntity.isEmpty())
+		Optional<ComentarioEntity> ComentarioEntity = ComentarioRepository.findById(ComentarioId);
+		if(ComentarioEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 		
-		Optional<PublicacionEntity> publicacionEntity = publicacionRepository.findById(publicacionId);
-		if(publicacionEntity.isEmpty())
+		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
+		if(PublicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
 		
-		comentarioEntity.get().setPublicacion(publicacionEntity.get());
-		log.info("Finish process of adding a comment to the post with id = {0}", publicacionId);
-		return comentarioEntity.get();
-	}
-    
-    /**
-	 * Retorna todos los comentarios asociados a un publicacion
-	 *
-	 * @param publicacionId El ID del publicacion buscado
-	 * @return La lista de comentarios del publicacion
-	 * @throws EntityNotFoundException si el publicacion no existe
-	 */
-	@Transactional
-	public List<ComentarioEntity> getComentarios(Long publicacionId) throws EntityNotFoundException {
-		log.info("Start the process of consulting the comments associated with the post with id = {0}", publicacionId);
-		Optional<PublicacionEntity> publicacionEntity = publicacionRepository.findById(publicacionId);
-		if(publicacionEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
-		
-		return publicacionEntity.get().getComentarios();
+		ComentarioEntity.get().setPublicacion(PublicacionEntity.get());
+		log.info("Termina proceso de agregarle un libro a la Publicacion con id = {0}", PublicacionId);
+		return ComentarioEntity.get();
 	}
 
-    /**
-	 * Retorna un comentario asociado a un publicacion
+	/**
+	 * Retorna todos los Comentarios asociados a una Publicacion
 	 *
-	 * @param publicacionId El id del publicacion a buscar.
-	 * @param comentarioId El id del comentario a buscar
-	 * @return El comentario encontrado dentro del publicacion.
-	 * @throws EntityNotFoundException Si el comentario no se encuentra en el publicacion
-	 * @throws IllegalOperationException Si el comentario no está asociado a el publicacion
+	 * @param PublicacionId El ID de la Publicacion buscada
+	 * @return La lista de libros de la Publicacion
+	 * @throws EntityNotFoundException si la Publicacion no existe
 	 */
 	@Transactional
-	public ComentarioEntity getComentario(Long publicacionId, Long comentarioId) throws EntityNotFoundException, IllegalOperationException {
-		log.info("Start the process of consulting the comment with id = {0} from the post with id = " + publicacionId, comentarioId);
-		
-		Optional<PublicacionEntity> publicacionEntity = publicacionRepository.findById(publicacionId);
-		if(publicacionEntity.isEmpty())
+	public List<ComentarioEntity> getComentarios(Long PublicacionId) throws EntityNotFoundException {
+		log.info("Inicia proceso de consultar los libros asociados a la Publicacion con id = {0}", PublicacionId);
+		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
+		if(PublicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
 		
-		Optional<ComentarioEntity> comentarioEntity = comentarioRepository.findById(comentarioId);
-		if(comentarioEntity.isEmpty())
+		return PublicacionEntity.get().getComentarios();
+	}
+
+	/**
+	 * Retorna un Comentario asociado a una Publicacion
+	 *
+	 * @param PublicacionId El id de la Publicacion a buscar.
+	 * @param ComentarioId      El id del libro a buscar
+	 * @return El libro encontrado dentro de la Publicacion.
+	 * @throws EntityNotFoundException Si el libro no se encuentra en la Publicacion
+	 * @throws IllegalOperationException Si el libro no está asociado a la Publicacion
+	 */
+	@Transactional
+	public ComentarioEntity getComentario(Long PublicacionId, Long ComentarioId) throws EntityNotFoundException, IllegalOperationException {
+		log.info("Inicia proceso de consultar el libro con id = {0} de la Publicacion con id = " + PublicacionId, ComentarioId);
+		
+		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
+		if(PublicacionEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
+		
+		Optional<ComentarioEntity> ComentarioEntity = ComentarioRepository.findById(ComentarioId);
+		if(ComentarioEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 				
-		log.info("The process of consulting the comment with id ends = {0} from the post with id = " + publicacionId, comentarioId);
+		log.info("Termina proceso de consultar el libro con id = {0} de la Publicacion con id = " + PublicacionId, ComentarioId);
 		
-		if(!publicacionEntity.get().getComentarios().contains(comentarioEntity.get()))
-			throw new IllegalOperationException("The comment is not associated to the post");
-		
-		return comentarioEntity.get();
+		if(!PublicacionEntity.get().getComentarios().contains(ComentarioEntity.get()))
+			throw new IllegalOperationException("The Comentario is not associated to the Publicacion");
+		System.out.println(ComentarioEntity);
+		return ComentarioEntity.get();
 	}
 
-    /**
-	 * Remplazar comentarios de un publicacion
+	/**
+	 * Remplazar Comentarios de una Publicacion
 	 *
-	 * @param comentarios Lista de comentarios que serán los de un publicacion.
-	 * @param publicacionId El id del publicacion que se quiere actualizar.
-	 * @return La lista de comentarios actualizada.
-	 * @throws EntityNotFoundException Si el publicacion o un comentario de la lista no se encuentran
+	 * @param Comentarios        Lista de libros que serán los de la Publicacion.
+	 * @param PublicacionId El id de la Publicacion que se quiere actualizar.
+	 * @return La lista de libros actualizada.
+	 * @throws EntityNotFoundException Si la Publicacion o un libro de la lista no se encuentran
 	 */
 	@Transactional
-	public List<ComentarioEntity> replaceComentarios(Long publicacionId, List<ComentarioEntity> comentarios) throws EntityNotFoundException {
-		log.info("Start process of updating the post with id = {0}", publicacionId);
-		Optional<PublicacionEntity> publicacionEntity = publicacionRepository.findById(publicacionId);
-		if(publicacionEntity.isEmpty())
+	public List<ComentarioEntity> replaceComentarios(Long PublicacionId, List<ComentarioEntity> Comentarios) throws EntityNotFoundException {
+		log.info("Inicia proceso de actualizar la Publicacion con id = {0}", PublicacionId);
+		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
+		if(PublicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
 		
-		for(ComentarioEntity comentario : comentarios) {
-			Optional<ComentarioEntity> v = comentarioRepository.findById(comentario.getId());
-			if(v.isEmpty())
+		for(ComentarioEntity Comentario : Comentarios) {
+			Optional<ComentarioEntity> b = ComentarioRepository.findById(Comentario.getId());
+			if(b.isEmpty())
 				throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 			
-			v.get().setPublicacion(publicacionEntity.get());
+			b.get().setPublicacion(PublicacionEntity.get());
 		}		
-        return comentarios;
-		
-    
-    }
-
+		return Comentarios;
+	}
 }
-

@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,12 +46,13 @@ public class PublicacionVecinoController {
 	 * @return JSON {@link PublicacionDetailDTO} - El arreglo de posts guardado en la
 	 *         vecino.
 	 */
-	@PutMapping(value = "/{publicacionId}/vecino")
+	@PutMapping(value = "/{publicacionId}/vecinos")
 	@ResponseStatus(code = HttpStatus.OK)
 	public PublicacionDetailDTO replaceVecino(@PathVariable("publicacionId") Long publicacionId, @RequestBody VecinoDTO vecinoDTO)
 			throws EntityNotFoundException {
 		PublicacionEntity publicacionEntity = publicacionVecinoService.replaceVecino(publicacionId, vecinoDTO.getId());
 		return modelMapper.map(publicacionEntity, PublicacionDetailDTO.class);
 	}
+	
     
 }

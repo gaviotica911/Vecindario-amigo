@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniandes.dse.vecindarioamigo.dto.PublicacionDTO;
 import co.edu.uniandes.dse.vecindarioamigo.dto.PublicacionDetailDTO;
+import co.edu.uniandes.dse.vecindarioamigo.dto.VecinoDetailDTO;
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
+import co.edu.uniandes.dse.vecindarioamigo.services.VecindarioVecinoService;
 import co.edu.uniandes.dse.vecindarioamigo.services.VecinoPublicacionService;
 
 @RestController
@@ -67,22 +71,14 @@ public class VecinoPublicacionController {
 		}.getType());
 	}
 
-	/**
-	 * Busca el libro con el id asociado dentro de la vecino con id asociado.
-	 *
-	 * @param vecinoId Identificador de la vecino que se esta buscando. Este
-	 *                 debe ser una cadena de dígitos.
-	 * @param bookId   Identificador del libro que se esta buscando. Este debe
-	 *                 ser una cadena de dígitos.
-	 * @return JSON {@link PublicacionDetailDTO} - El libro buscado
-	 */
+	
 	@GetMapping(value = "/{vecinoId}/publicaciones/{publicacionId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public PublicacionDetailDTO getPublicacion(@PathVariable("vecinoId") Long vecinoId,
-			@PathVariable("bookId") Long bookId)
+	public PublicacionDetailDTO getPublicacion (@PathVariable("vecinoId") Long vecinoId, @PathVariable("publicacionId") Long publicacionId)
 			throws EntityNotFoundException, IllegalOperationException {
-		PublicacionEntity bookEntity = vecinoPublicacionService.getPublicacion(vecinoId, bookId);
-		return modelMapper.map(bookEntity, PublicacionDetailDTO.class);
+		PublicacionEntity publicacionEntity = vecinoPublicacionService.getPublicacion(vecinoId, publicacionId);
+        System.out.println("enter to get request");
+		return modelMapper.map(publicacionEntity, PublicacionDetailDTO.class);
 	}
 
 	/**
@@ -107,5 +103,7 @@ public class VecinoPublicacionController {
 		return modelMapper.map(result, new TypeToken<List<PublicacionDetailDTO>>() {
 		}.getType());
 	}
+
+	
 
 }

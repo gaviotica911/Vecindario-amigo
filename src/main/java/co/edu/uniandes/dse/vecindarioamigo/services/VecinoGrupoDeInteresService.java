@@ -157,4 +157,24 @@ public class VecinoGrupoDeInteresService {
 
             log.info("Termina proceso de borrar un grupo de interes  del vecino con id = {0}", vecinoId);
     }
+
+	@Transactional
+	public List<GruposDeInteresEntity> addGruposDeInteres(Long authorId, List<GruposDeInteresEntity> books) throws EntityNotFoundException {
+		log.info("Inicia proceso de reemplazar los libros asociados al author con id = {0}", authorId);
+		Optional<VecinoEntity> authorEntity = vecinoRepository.findById(authorId);
+		if (authorEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
+
+		for (GruposDeInteresEntity book : books) {
+			Optional<GruposDeInteresEntity> bookEntity = grupoDeInteresRepository.findById(book.getId());
+			if (bookEntity.isEmpty())
+				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
+
+			if (!bookEntity.get().getVecinos().contains(authorEntity.get()))
+				bookEntity.get().getVecinos().add(authorEntity.get());
+		}
+		log.info("Finaliza proceso de reemplazar los libros asociados al author con id = {0}", authorId);
+		authorEntity.get().setGruposDeInteres(books);
+		return authorEntity.get().getGruposDeInteres();
+	}
 }

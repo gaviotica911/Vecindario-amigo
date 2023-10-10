@@ -22,89 +22,86 @@ import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.PublicacionComentarioService;
-
 @RestController
 @RequestMapping("/publicaciones")
 public class PublicacionComentarioController {
-   
-    
+
 	@Autowired
-	private PublicacionComentarioService publicacionComentarioService;
+	private PublicacionComentarioService PublicacionComentarioService;
 
 	@Autowired
 	private ModelMapper modelMapper;
 
 	/**
-	 * Guarda un comentario dentro de una publicacion con la informacion que recibe
-	 * URL. Se devuelve el comentario que se guarda en la publicacion.
+	 * Guarda un libro dentro de una Publicacion con la informacion que recibe el la
+	 * URL. Se devuelve el libro que se guarda en la Publicacion.
 	 *
-	 * @param publicacionId Identificador de la publicacion que se esta actualizando.
+	 * @param PublicacionId Identificador de la Publicacion que se esta actualizando.
 	 *                    Este debe ser una cadena de dígitos.
-	 * @param comentarioId      Identificador del comentario que se desea guardar. Este debe
+	 * @param ComentarioId      Identificador del libro que se desea guardar. Este debe
 	 *                    ser una cadena de dígitos.
-	 * @return JSON {@link ComentarioDTO} - El comentario guardado en la publicacion.
+	 * @return JSON {@link ComentarioDTO} - El libro guardado en la Publicacion.
 	 */
-	@PostMapping(value = "/{publicacionId}/comentarios/{comentarioId}")
+	@PostMapping(value = "/{PublicacionId}/comentarios/{ComentarioId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ComentarioDTO addComentario(@PathVariable("publicacionId") Long publicacionId, @PathVariable("comentarioId") Long comentariolId)
+	public ComentarioDTO addComentario(@PathVariable("PublicacionId") Long PublicacionId, @PathVariable("ComentarioId") Long ComentariolId)
 			throws EntityNotFoundException {
-		ComentarioEntity comentarioEntity = publicacionComentarioService.addComentario(comentariolId, publicacionId);
-		return modelMapper.map(comentarioEntity, ComentarioDTO.class);
+		ComentarioEntity ComentarioEntity = PublicacionComentarioService.addComentario(ComentariolId, PublicacionId);
+		return modelMapper.map(ComentarioEntity, ComentarioDTO.class);
 	}
 
 	/**
-	 * Busca y devuelve todos los comentarios que existen en la publicacion.
+	 * Busca y devuelve todos los libros que existen en la Publicacion.
 	 *
-	 * @param publicacionId Identificador de la publicacion que se esta buscando. Este
+	 * @param PublicacionId Identificador de la Publicacion que se esta buscando. Este
 	 *                    debe ser una cadena de dígitos.
-	 * @return JSONArray {@link ComentarioDetailDTO} - Los comentarios encontrados en la
-	 *         publicacion. Si no hay ninguno retorna una lista vacía.
+	 * @return JSONArray {@link ComentarioDetailDTO} - Los libros encontrados en la
+	 *         Publicacion. Si no hay ninguno retorna una lista vacía.
 	 */
-	@GetMapping(value = "/{publicacionId}/comentarios")
+	@GetMapping(value = "/{PublicacionId}/comentarios")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<ComentarioDetailDTO> getComentarios(@PathVariable("publicacionId") Long publicacionId) throws EntityNotFoundException {
-		List<ComentarioEntity> comentarioList = publicacionComentarioService.getComentarios(publicacionId);
-		return modelMapper.map(comentarioList, new TypeToken<List<ComentarioDetailDTO>>() {
+	public List<ComentarioDetailDTO> getComentarios(@PathVariable("PublicacionId") Long PublicacionId) throws EntityNotFoundException {
+		List<ComentarioEntity> ComentarioList = PublicacionComentarioService.getComentarios(PublicacionId);
+		return modelMapper.map(ComentarioList, new TypeToken<List<ComentarioDetailDTO>>() {
 		}.getType());
 	}
 
 	/**
-	 * Busca el comentario con el id asociado dentro de la publicacion con id asociado.
+	 * Busca el libro con el id asociado dentro de la Publicacion con id asociado.
 	 *
-	 * @param publicacionId Identificador de la publicacion que se esta buscando. Este
+	 * @param PublicacionId Identificador de la Publicacion que se esta buscando. Este
 	 *                    debe ser una cadena de dígitos.
-	 * @param comentarioId      Identificador del comentario que se esta buscando. Este debe
+	 * @param ComentarioId      Identificador del libro que se esta buscando. Este debe
 	 *                    ser una cadena de dígitos.
-	 * @return JSON {@link ComentarioDetailDTO} - El comentario buscado
+	 * @return JSON {@link ComentarioDetailDTO} - El libro buscado
 	 */
 	@GetMapping(value = "/{publicacionId}/comentarios/{comentarioId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ComentarioDetailDTO getComentario(@PathVariable("publicacionId") Long publicacionId, @PathVariable("comentarioId") Long comentarioId)
+	public ComentarioDetailDTO getCommment(@PathVariable("publicacionId") Long PublicacionId, @PathVariable("comentarioId") Long ComentarioId)
 			throws EntityNotFoundException, IllegalOperationException {
-		ComentarioEntity comentarioEntity = publicacionComentarioService.getComentario(publicacionId, comentarioId);
-		return modelMapper.map(comentarioEntity, ComentarioDetailDTO.class);
+				System.out.println("enter to get request");
+		ComentarioEntity ComentarioEntity = PublicacionComentarioService.getComentario(PublicacionId, ComentarioId);
+		return modelMapper.map(ComentarioEntity, ComentarioDetailDTO.class);
 	}
 
 	/**
 	 * Remplaza las instancias de Comentario asociadas a una instancia de Publicacion
 	 *
-	 * @param publicacionId Identificador de la publicacion que se esta remplazando.
+	 * @param PublicacionId Identificador de la Publicacion que se esta remplazando.
 	 *                    Este debe ser una cadena de dígitos.
-	 * @param comentarios       JSONArray {@link ComentarioDTO} El arreglo de comentarios nuevo para
-	 *                    la publicacion.
-	 * @return JSON {@link ComentarioDetailDTO} - El arreglo de comentarios guardado en la
-	 *         publicacion.
+	 * @param Comentarios       JSONArray {@link ComentarioDTO} El arreglo de libros nuevo para
+	 *                    la Publicacion.
+	 * @return JSON {@link ComentarioDetailDTO} - El arreglo de libros guardado en la
+	 *         Publicacion.
 	 */
-	@PutMapping(value = "/{publicacionId}/comentarios")
+	@PutMapping(value = "/{PublicacionId}/comentarios")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<ComentarioDetailDTO> replaceComentarios(@PathVariable("publicacionId") Long publicacionsId,
-			@RequestBody List<ComentarioDetailDTO> comentarios) throws EntityNotFoundException {
-		List<ComentarioEntity> comentariosList = modelMapper.map(comentarios, new TypeToken<List<ComentarioEntity>>() {
+	public List<ComentarioDetailDTO> replaceComentarios(@PathVariable("PublicacionId") Long PublicacionsId,
+			@RequestBody List<ComentarioDetailDTO> Comentarios) throws EntityNotFoundException {
+		List<ComentarioEntity> ComentariosList = modelMapper.map(Comentarios, new TypeToken<List<ComentarioEntity>>() {
 		}.getType());
-		List<ComentarioEntity> result = publicacionComentarioService.replaceComentarios(publicacionsId, comentariosList);
+		List<ComentarioEntity> result = PublicacionComentarioService.replaceComentarios(PublicacionsId, ComentariosList);
 		return modelMapper.map(result, new TypeToken<List<ComentarioDetailDTO>>() {
 		}.getType());
 	}
-    
-    
 }

@@ -23,99 +23,93 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.VecinoGrupoDeInteresService;
 
 
-
-/**
- * Clase que implementa el recurso "vecinos/{id}/s".
- *
- 
- */
 @RestController
 @RequestMapping("/vecinos")
 public class VecinoGrupoDeInteresController {
-    @Autowired
-	private VecinoGrupoDeInteresService vecinoGrupoDeInteresService;
+
+	@Autowired
+	private VecinoGrupoDeInteresService vecinogruposDeIntereservice;
 
 	@Autowired
 	private ModelMapper modelMapper;
 
 	/**
-	 * Asocia un grupo de interes existente con un vecinos existente
+	 * Busca y devuelve el libro con el ID recibido en la URL, relativo a un autor.
 	 *
-	 * @param grupoDeInteresId El ID del grupo de interes que se va a asociar
-	 * @param vecinoId   El ID del vecinos al cual se le va a asociar el grupo de interes
-	 * @return JSON {@link GrupoDeInteresDetailDTO} - El grupo de interes asociado.
-	 * @throws IllegalOperationException
-	 */
-	@PostMapping(value = "/{vecinoId}/gruposDeInteres/{grupoDeInteresId}")
-	@ResponseStatus(code = HttpStatus.OK)
-	public GrupoDeInteresDetailDTO addGrupoDeInteres(@PathVariable("grupoDeInteresId") Long grupoDeInteresId, @PathVariable("vecinoId") Long vecinoId)
-			throws EntityNotFoundException, IllegalOperationException {
-		GruposDeInteresEntity grupoDeInteresEntity = vecinoGrupoDeInteresService.addGrupoDeInteres(vecinoId, grupoDeInteresId);
-		return modelMapper.map(grupoDeInteresEntity, GrupoDeInteresDetailDTO.class);
-	}
-
-	/**
-	 * Busca y devuelve el grupo de interes con el ID recibido en la URL, relativo a un vecinos.
-	 *
-	 * @param grupoDeInteresId El ID del grupo de interes que se busca
-	 * @param vecinoId   El ID del vecinos del cual se busca el grupo de interes
-	 * @return {@link GrupoDeInteresDetailDTO} - El grupo de interes encontrado en el vecinos.
+	 * @param vecinoId El ID del autor del cual se busca el libro
+	 * @param grupoDeInteresId   El ID del libro que se busca
+	 * @return {@link grupoDeInteresDetailDTO} - El libro encontrado en el autor.
 	 */
 	@GetMapping(value = "/{vecinoId}/gruposDeInteres/{grupoDeInteresId}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public GrupoDeInteresDetailDTO getGrupoDeInteres(@PathVariable("grupoDeInteresId") Long grupoDeInteresId, @PathVariable("vecinoId") Long vecinoId)
+	public GrupoDeInteresDetailDTO getgrupoDeInteres(@PathVariable("vecinoId") Long vecinoId, @PathVariable("grupoDeInteresId") Long grupoDeInteresId)
 			throws EntityNotFoundException, IllegalOperationException {
-		GruposDeInteresEntity grupoDeInteresEntity = vecinoGrupoDeInteresService.getGrupoDeInteres(vecinoId, grupoDeInteresId);
+		GruposDeInteresEntity grupoDeInteresEntity = vecinogruposDeIntereservice.getGrupoDeInteres(vecinoId, grupoDeInteresId);
 		return modelMapper.map(grupoDeInteresEntity, GrupoDeInteresDetailDTO.class);
 	}
 
 	/**
-	 * Actualiza la lista de grupo de intereses de un vecinos con la lista que se recibe en el
-	 * cuerpo.
+	 * Busca y devuelve todos los libros que existen en un autor.
 	 *
-	 * @param vecinoId  El ID del vecinos al cual se le va a asociar la lista de grupo de intereses
-	 * @param s JSONArray {@link GrupoDeInteresDTO} - La lista de grupo de intereses que se desea
-	 *                guardar.
-	 * @return JSONArray {@link GrupoDeInteresDetailDTO} - La lista actualizada.
-	 * @throws IllegalOperationException
-	 */
-	@PutMapping(value = "/{vecinoId}/gruposDeInteres")
-	@ResponseStatus(code = HttpStatus.OK)
-	public List<GrupoDeInteresDetailDTO> addGrupoDeInteress(@PathVariable("vecinoId") Long vecinoId, @RequestBody List<GrupoDeInteresDTO> s)
-			throws EntityNotFoundException, IllegalOperationException {
-		List<GruposDeInteresEntity> entities = modelMapper.map(s, new TypeToken<List<GruposDeInteresEntity>>() {
-		}.getType());
-		List<GruposDeInteresEntity> sList = vecinoGrupoDeInteresService.replaceGrupoDeInteres(vecinoId, entities);
-		return modelMapper.map(sList, new TypeToken<List<GrupoDeInteresDetailDTO>>() {
-		}.getType());
-	}
-
-	/**
-	 * Busca y devuelve todos los grupo de intereses que existen en un vecinos.
-	 *
-	 * @param vecinosd El ID del vecinos del cual se buscan los grupo de intereses
-	 * @return JSONArray {@link GrupoDeInteresDetailDTO} - Los grupo de intereses encontrados en el
-	 *         vecinos. Si no hay ninguno retorna una lista vacía.
+	 * @param vecinosId El ID del autor del cual se buscan los libros
+	 * @return JSONArray {@link grupoDeInteresDetailDTO} - Los libros encontrados en el autor.
+	 *         Si no hay ninguno retorna una lista vacía.
 	 */
 	@GetMapping(value = "/{vecinoId}/gruposDeInteres")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<GrupoDeInteresDetailDTO> getGrupoDeInteress(@PathVariable("vecinoId") Long vecinoId) throws EntityNotFoundException {
-		List<GruposDeInteresEntity> grupoDeInteresEntity = vecinoGrupoDeInteresService.getGruposDeInteres(vecinoId);
+	public List<GrupoDeInteresDetailDTO> getgruposDeInteres(@PathVariable("vecinoId") Long vecinoId) throws EntityNotFoundException {
+		List<GruposDeInteresEntity> grupoDeInteresEntity = vecinogruposDeIntereservice.getGruposDeInteres(vecinoId);
 		return modelMapper.map(grupoDeInteresEntity, new TypeToken<List<GrupoDeInteresDetailDTO>>() {
 		}.getType());
 	}
 
 	/**
-	 * Elimina la conexión entre el grupo de interes y el vecinos recibidos en la URL.
+	 * Asocia un libro existente con un autor existente
 	 *
-	 * @param vecinoId   El ID del vecinos al cual se le va a desasociar el grupo de interes
-	 * @param grupoDeInteresId El ID del grupo de interes que se desasocia
+	 * @param vecinoId El ID del autor al cual se le va a asociar el libro
+	 * @param grupoDeInteresId   El ID del libro que se asocia
+	 * @return JSON {@link grupoDeInteresDetailDTO} - El libro asociado.
+	 * @throws IllegalOperationException
+	 */
+	@PostMapping(value = "/{vecinoId}/gruposDeInteres/{grupoDeInteresId}")
+	@ResponseStatus(code = HttpStatus.OK)
+	public GrupoDeInteresDetailDTO addgrupoDeInteres(@PathVariable("vecinoId") Long vecinoId, @PathVariable("grupoDeInteresId") Long grupoDeInteresId)
+			throws EntityNotFoundException, IllegalOperationException {
+		GruposDeInteresEntity grupoDeInteresEntity = vecinogruposDeIntereservice.addGrupoDeInteres(vecinoId, grupoDeInteresId);
+		return modelMapper.map(grupoDeInteresEntity, GrupoDeInteresDetailDTO.class);
+	}
+
+	/**
+	 * Actualiza la lista de libros de un autor con la lista que se recibe en el
+	 * cuerpo
+	 *
+	 * @param vecinoId El ID del autor al cual se le va a asociar el libro
+	 * @param gruposDeInteres    JSONArray {@link grupoDeInteresDTO} - La lista de libros que se desea
+	 *                 guardar.
+	 * @return JSONArray {@link grupoDeInteresDetailDTO} - La lista actualizada.
+	 */
+	@PutMapping(value = "/{vecinoId}/gruposDeInteres")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<GrupoDeInteresDetailDTO> replacegruposDeInteres(@PathVariable("vecinoId") Long vecinoId, @RequestBody List<GrupoDeInteresDTO> gruposDeInteres)
+			throws EntityNotFoundException {
+		List<GruposDeInteresEntity> entities = modelMapper.map(gruposDeInteres, new TypeToken<List<GruposDeInteresEntity>>() {
+		}.getType());
+		List<GruposDeInteresEntity> gruposDeInteresList = vecinogruposDeIntereservice.addGruposDeInteres(vecinoId, entities);
+		return modelMapper.map(gruposDeInteresList, new TypeToken<List<GrupoDeInteresDetailDTO>>() {
+		}.getType());
+
+	}
+
+	/**
+	 * Elimina la conexión entre el libro y e autor recibidos en la URL.
+	 *
+	 * @param vecinoId El ID del autor al cual se le va a desasociar el libro
+	 * @param grupoDeInteresId   El ID del libro que se desasocia
 	 */
 	@DeleteMapping(value = "/{vecinoId}/gruposDeInteres/{grupoDeInteresId}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void removeGrupoDeInteres(@PathVariable("grupoDeInteresId") Long grupoDeInteresId, @PathVariable("vecinoId") Long vecinoId)
+	public void removegrupoDeInteres(@PathVariable("vecinoId") Long vecinoId, @PathVariable("grupoDeInteresId") Long grupoDeInteresId)
 			throws EntityNotFoundException {
-		vecinoGrupoDeInteresService.removeGrupoDeInteres(vecinoId, grupoDeInteresId);
+		vecinogruposDeIntereservice.removeGrupoDeInteres(vecinoId, grupoDeInteresId);
 	}
-    
 }
