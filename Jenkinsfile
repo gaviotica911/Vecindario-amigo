@@ -37,7 +37,7 @@ pipeline {
          // Build artifacts
          steps {
             script {
-               docker.image('springtools-isis2603:latest').inside('-v ${WORKSPACE}/maven:/root/.m2') {
+               docker.image('citools-isis2603:latest').inside('-v ${WORKSPACE}/maven:/root/.m2') {
                   sh '''
                      java -version
                      ./mvnw clean package
@@ -50,7 +50,7 @@ pipeline {
          // Run unit tests
          steps {
             script {
-               docker.image('springtools-isis2603:latest').inside('-v ${WORKSPACE}/maven:/root/.m2') {                  
+               docker.image('citools-isis2603:latest').inside('-v ${WORKSPACE}/maven:/root/.m2') {                  
                   sh '''
                      ./mvnw clean test
                   '''
@@ -62,7 +62,7 @@ pipeline {
          // Run static analysis
          steps {
             script {
-               docker.image('springtools-isis2603:latest').inside('-v ${WORKSPACE}/maven:/root/.m2') {
+               docker.image('citools-isis2603:latest').inside('-v ${WORKSPACE}/maven:/root/.m2') {
                   sh '''
                      ./mvnw clean verify sonar:sonar -Dsonar.host.url=${SONARQUBE_URL}
                   '''
