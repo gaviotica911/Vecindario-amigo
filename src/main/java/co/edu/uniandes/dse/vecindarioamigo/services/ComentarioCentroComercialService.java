@@ -37,7 +37,7 @@ public class ComentarioCentroComercialService {
 		log.info("Starts the process of associating the deal with id = {0} to the offer with id = " + comentarioId, centroComercialId);
 		Optional<CentroComercialEntity> CentroComercialEntity = centroComercialRepository.findById(centroComercialId);
 		if (CentroComercialEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.CentroComercial_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.CENTROCOMERCIAL_NOT_FOUND);
 
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())
@@ -87,7 +87,7 @@ public class ComentarioCentroComercialService {
 		log.info("Start the process of updating the business of the offer with id = {0}", comentarioId);
 		Optional<CentroComercialEntity> CentroComercialEntity = centroComercialRepository.findById(centroComercialId);
 		if (CentroComercialEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.CentroComercial_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.CENTROCOMERCIAL_NOT_FOUND);
 
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())

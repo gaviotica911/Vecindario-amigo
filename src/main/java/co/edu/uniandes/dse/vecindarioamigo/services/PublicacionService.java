@@ -98,7 +98,7 @@ public class PublicacionService {
 		Optional<PublicacionEntity> publicacionEntity = publicacionRepository.findById(publicacionId);
 		if (publicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
-		 if ( publicacion.getContenido().isEmpty() || publicacion.getContenido()== null)
+		 else if ( publicacion.getContenido().isEmpty() || publicacion.getContenido()== null)
                 throw new IllegalOperationException("contenido is not valid");
 
 

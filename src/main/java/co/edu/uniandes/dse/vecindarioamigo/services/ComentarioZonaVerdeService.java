@@ -35,7 +35,7 @@ public class ComentarioZonaVerdeService {
 		log.info("Starts the process of associating the deal with id = {0} to the offer with id = " + comentarioId, zonaVerdeId);
 		Optional<Zona_VerdeEntity> Zona_VerdeEntity = ZonaVerdeRepository.findById(zonaVerdeId);
 		if (Zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())
@@ -85,7 +85,7 @@ public class ComentarioZonaVerdeService {
 		log.info("Start the process of updating the business of the offer with id = {0}", comentarioId);
 		Optional<Zona_VerdeEntity> Zona_VerdeEntity = ZonaVerdeRepository.findById(zonaVerdeId);
 		if (Zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 
 		Optional<ComentarioEntity> ComentarioEntity = comentarioRepository.findById(comentarioId);
 		if (ComentarioEntity.isEmpty())

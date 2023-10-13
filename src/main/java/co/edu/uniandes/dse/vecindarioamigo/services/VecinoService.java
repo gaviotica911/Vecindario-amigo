@@ -104,7 +104,7 @@ public class VecinoService {
 			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
 
 		if (vecino.getNombre().isEmpty())
-		throw new IllegalOperationException("nombre is not valid");
+			throw new IllegalOperationException("nombre is not valid");
 
 		vecino.setId(vecinoId);
 		log.info("Finish process of updating the neighborhood with id = {0}", vecinoId);

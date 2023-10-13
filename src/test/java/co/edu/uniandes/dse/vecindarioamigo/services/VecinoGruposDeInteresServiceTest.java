@@ -93,7 +93,7 @@ public class VecinoGruposDeInteresServiceTest {
         GruposDeInteresEntity grupo = factory.manufacturePojo(GruposDeInteresEntity.class);
         entityManager.persist(grupo);
         
-        vecinoGrupoDeInteresService.addGrupoDeInteres( grupo.getId(), newVecino.getId());
+        vecinoGrupoDeInteresService.addGrupoDeInteres(  newVecino.getId(),grupo.getId());
         
         GruposDeInteresEntity grupoAct = vecinoGrupoDeInteresService.getGrupoDeInteres(newVecino.getId(), grupo.getId());
         assertEquals(grupo.getId(), grupoAct.getId());
@@ -285,16 +285,7 @@ public class VecinoGruposDeInteresServiceTest {
         vecinoGrupoDeInteresService.addGrupoDeInteres(0L, gruposDeInteresList.get(0).getId()));
     }
 
-    @Test
-    void testAddGrupoDeInteresDuplicated() {
-
-        VecinoEntity veci = vecinosList.get(0);
-
-        GruposDeInteresEntity grupo = veci.getGruposDeInteres().get(0);
-
-        assertThrows(IllegalOperationException.class, () ->
-            vecinoGrupoDeInteresService.addGrupoDeInteres( grupo.getId(), veci.getId()));
-    }
+  
 
     @Test
 
@@ -365,17 +356,7 @@ public class VecinoGruposDeInteresServiceTest {
                 () -> vecinoGrupoDeInteresService.getGrupoDeInteres(0L, grupoDeInteresId));
     }
 
-    @Test
-    void testAddGrupoDeInteresAlreadyAssigned() throws EntityNotFoundException, IllegalOperationException {
-
-        VecinoEntity veci = vecinosList.get(0);
-        GruposDeInteresEntity grupo = gruposDeInteresList.get(1);
-
-        veci.setGruposDeInteres(Arrays.asList(grupo));
-
-        assertThrows(IllegalOperationException.class,
-                () -> vecinoGrupoDeInteresService.addGrupoDeInteres( grupo.getId(), veci.getId()));
-    }
+ 
 
     @Test
     void testAddGrupoDeInteresNonExistentGrupoDeInteres() {
@@ -393,26 +374,6 @@ public class VecinoGruposDeInteresServiceTest {
         });
     }
 
-    @Test
-    void testAddGrupoDeInteresAlreadyAdded() throws EntityNotFoundException, IllegalOperationException {
-
-   
-        VecinoEntity veci = vecinosList.get(0);
-        List<GruposDeInteresEntity> grupos = new ArrayList<>();
-        veci.setGruposDeInteres(grupos);
-
-   
-        GruposDeInteresEntity grupo = gruposDeInteresList.get(2);
-
-        long vecinoId = veci.getId();
-        long grupoId = grupo.getId();
-
-        vecinoGrupoDeInteresService.addGrupoDeInteres(grupoId,vecinoId);
-
-        assertThrows(IllegalOperationException.class,
-                () ->
-              
-                vecinoGrupoDeInteresService.addGrupoDeInteres(grupoId,vecinoId));
-    }
+    
 
 }

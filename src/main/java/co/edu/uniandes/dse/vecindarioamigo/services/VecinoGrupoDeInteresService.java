@@ -40,8 +40,10 @@ public class VecinoGrupoDeInteresService {
 	 */
 	
 	 @Transactional
-	 public GruposDeInteresEntity addGrupoDeInteres(Long VecinoId, Long GrupoDeInteresId) throws EntityNotFoundException {
+	 public GruposDeInteresEntity addGrupoDeInteres(Long VecinoId, Long GrupoDeInteresId) throws EntityNotFoundException, IllegalOperationException {
 		 log.info("Inicia proceso de asociarle un autor al libro con id = {0}", VecinoId);
+		 if(VecinoId == null || GrupoDeInteresId == null)
+			 throw new IllegalOperationException("El id del vecino o del grupo de interes no pueden ser nulos");
 		 Optional<GruposDeInteresEntity> GrupoDeInteresEntity = grupoDeInteresRepository.findById(GrupoDeInteresId);
 		 if (GrupoDeInteresEntity.isEmpty())
 			 throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
@@ -49,6 +51,9 @@ public class VecinoGrupoDeInteresService {
 		 Optional<VecinoEntity> VecinoEntity = vecinoRepository.findById(VecinoId);
 		 if (VecinoEntity.isEmpty())
 			 throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
+		
+		 if(VecinoEntity.get().getGruposDeInteres().contains(GrupoDeInteresEntity.get()))
+			 throw new IllegalOperationException("El grupo de interes ya esta asociado al vecino");
 
 
 

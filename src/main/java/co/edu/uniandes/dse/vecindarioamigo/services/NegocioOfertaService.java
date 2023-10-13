@@ -34,7 +34,7 @@ public class NegocioOfertaService {
 
 		Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(negocioId);
 		if (NegocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 
 		OfertaEntity.get().setNegocio(NegocioEntity.get());
 		return OfertaEntity.get();
@@ -45,7 +45,7 @@ public class NegocioOfertaService {
 	public List<OfertaEntity> getOfertas(Long negocioId) throws EntityNotFoundException {
 		Optional<NegocioEntity> negocioEntity = negocioRepository.findById(negocioId);
 		if (negocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 
 		return negocioEntity.get().getOfertas();
 	}
@@ -58,7 +58,7 @@ public class NegocioOfertaService {
 
 		Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(negocioId);
 		if (NegocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 
 		if (OfertaEntity.get().getNegocio().equals(NegocioEntity.get())) {
 			OfertaEntity.get().setNegocio(null);

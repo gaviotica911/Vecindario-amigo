@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.uniandes.dse.vecindarioamigo.dto.GrupoDeInteresDTO;
 import co.edu.uniandes.dse.vecindarioamigo.dto.GrupoDeInteresDetailDTO;
 import co.edu.uniandes.dse.vecindarioamigo.entities.GruposDeInteresEntity;
-import co.edu.uniandes.dse.vecindarioamigo.entities.VecinoEntity;
+
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.VecinoGrupoDeInteresService;
@@ -72,7 +72,7 @@ public class VecinoGrupoDeInteresController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public GrupoDeInteresDetailDTO addGrupoDeInteres(@PathVariable("vecinoId") Long VecinoId,
 			@PathVariable("grupoDeInteresId") Long GrupoDeInteresId)
-			throws EntityNotFoundException {
+			throws EntityNotFoundException, IllegalOperationException {
 		GruposDeInteresEntity GrupoDeInteresEntity = vecinogruposDeIntereservice.addGrupoDeInteres(VecinoId,
 				GrupoDeInteresId);
 		

@@ -36,7 +36,7 @@ public class NegocioComentariosService {
 		
 		Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(negocioId);
 		if(NegocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 		
 		comentarioEntity.get().setNegocio(NegocioEntity.get());
 		return comentarioEntity.get();
@@ -48,7 +48,7 @@ public class NegocioComentariosService {
 	public List<ComentarioEntity> getComentarios(Long negocioId) throws EntityNotFoundException {
 		Optional<NegocioEntity> negocioEntity = negocioRepository.findById(negocioId);
 		if(negocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 		
 		return negocioEntity.get().getComentarios();
 	}

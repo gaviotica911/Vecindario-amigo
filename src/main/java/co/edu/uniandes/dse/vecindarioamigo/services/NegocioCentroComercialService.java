@@ -29,10 +29,10 @@ public class NegocioCentroComercialService {
 
         Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(NegocioId);
         if (NegocioEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
         Optional<CentroComercialEntity> CentroComercialEntity = centrocomercialRepository.findById(CentroComercialId);
         if (CentroComercialEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.CentroComercial_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.CENTROCOMERCIAL_NOT_FOUND);
         NegocioEntity.get().setCentroComercial(CentroComercialEntity.get());
         return NegocioEntity.get();
 
@@ -43,7 +43,7 @@ public class NegocioCentroComercialService {
     public void removeCentroComercial(Long NegocioId) throws EntityNotFoundException {
         Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(NegocioId);
         if (NegocioEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 
         Optional<CentroComercialEntity> CentroComercialEntity = centrocomercialRepository.findById(NegocioEntity.get().getCentroComercial().getId());
         CentroComercialEntity.ifPresent(CentroComercial -> CentroComercial.getLista_negocios().remove(NegocioEntity.get()));

@@ -29,7 +29,7 @@ public class Zona_VerdeService {
 			throw new IllegalOperationException("Zona_Verde name already exists");
 		}
 		if (zona_VerdeEntity.getVecindario() == null) {
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 		}
 		return Zona_VerdeRepository.save(zona_VerdeEntity);
 	}
@@ -46,7 +46,7 @@ public class Zona_VerdeService {
 
 		Optional<Zona_VerdeEntity> Zona_VerdeEntity = Zona_VerdeRepository.findById(Zona_VerdeId);
 		if (Zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 		return Zona_VerdeEntity.get();
 	}
 
@@ -55,7 +55,7 @@ public class Zona_VerdeService {
 			throws EntityNotFoundException, IllegalOperationException {
 		Optional<Zona_VerdeEntity> Zona_VerdeEntity = Zona_VerdeRepository.findById(Zona_VerdeId);
 		if (Zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 
 		Zona_Verde.setId(Zona_VerdeId);
 		return Zona_VerdeRepository.save(Zona_Verde);
@@ -65,7 +65,7 @@ public class Zona_VerdeService {
 	public void deleteZona_Verde(Long Zona_VerdeId) throws EntityNotFoundException, IllegalOperationException {
 		Optional<Zona_VerdeEntity> Zona_VerdeEntity = Zona_VerdeRepository.findById(Zona_VerdeId);
 		if (Zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 		Zona_VerdeRepository.deleteById(Zona_VerdeId);
 	}
 

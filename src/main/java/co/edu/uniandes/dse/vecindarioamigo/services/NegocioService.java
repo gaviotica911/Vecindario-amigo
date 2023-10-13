@@ -44,7 +44,7 @@ public class NegocioService {
 	public NegocioEntity getNegocio(Long NegocioId) throws EntityNotFoundException {
 		Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(NegocioId);
 		if (NegocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 		return NegocioEntity.get();
 
 	}
@@ -55,7 +55,7 @@ public class NegocioService {
 			throws EntityNotFoundException, IllegalOperationException {
 		Optional<NegocioEntity> negocioEntity = negocioRepository.findById(NegocioId);
 		if (negocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 		Negocio.setId(NegocioId);
 		return negocioRepository.save(Negocio);
 	}
@@ -65,7 +65,7 @@ public class NegocioService {
 	public void deleteNegocio(Long NegocioId) throws EntityNotFoundException, IllegalOperationException {
 		Optional<NegocioEntity> negocioEntity = negocioRepository.findById(NegocioId);
 		if (negocioEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 		negocioRepository.deleteById(NegocioId);
 	}
 }

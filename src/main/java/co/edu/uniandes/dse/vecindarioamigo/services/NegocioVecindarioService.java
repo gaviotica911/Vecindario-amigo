@@ -31,7 +31,7 @@ public class NegocioVecindarioService {
 
         Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(NegocioId);
         if (NegocioEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 
         Optional<VecindarioEntity> VecindarioEntity = vecindarioRepository.findById(vecindarioId);
         if (VecindarioEntity.isEmpty())
@@ -48,7 +48,7 @@ public class NegocioVecindarioService {
     public void removeVecindario(Long NegocioId) throws EntityNotFoundException {
         Optional<NegocioEntity> NegocioEntity = negocioRepository.findById(NegocioId);
         if (NegocioEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.Negocio_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.NEGOCIO_NOT_FOUND);
 
         Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(NegocioEntity.get().getVecindario().getId());
         vecindarioEntity.ifPresent(Vecindario -> Vecindario.getNegocios().remove(NegocioEntity.get()));

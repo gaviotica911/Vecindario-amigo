@@ -36,7 +36,7 @@ public class Zona_VerdeComentarioService {
 		
 		Optional<Zona_VerdeEntity> zona_VerdeEntity = zona_VerdeRepository.findById(Zona_VerdeId);
 		if(zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 		
 		comentarioEntity.get().setZonaVerde(zona_VerdeEntity.get());
 		return comentarioEntity.get();
@@ -48,7 +48,7 @@ public class Zona_VerdeComentarioService {
 	public List<ComentarioEntity> getComentarios(Long Zona_VerdeId) throws EntityNotFoundException {
 		Optional<Zona_VerdeEntity> zona_VerdeEntity = zona_VerdeRepository.findById(Zona_VerdeId);
 		if(zona_VerdeEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+			throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 		
 		return zona_VerdeEntity.get().getReviews();
 	}

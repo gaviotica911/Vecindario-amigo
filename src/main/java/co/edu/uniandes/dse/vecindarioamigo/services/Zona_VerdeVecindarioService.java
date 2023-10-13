@@ -31,7 +31,7 @@ public class Zona_VerdeVecindarioService {
     public void removeVecindario(Long Zona_VerdeId) throws EntityNotFoundException {
         Optional<Zona_VerdeEntity> Zona_VerdeEntity = zona_VerdeRepository.findById(Zona_VerdeId);
         if (Zona_VerdeEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 
         Optional<VecindarioEntity> vecindarioEntity = vecindarioRepository.findById(Zona_VerdeEntity.get().getVecindario().getId());
         vecindarioEntity.ifPresent(Vecindario -> Vecindario.getZonasVerdes().remove(Zona_VerdeEntity.get()));
@@ -45,7 +45,7 @@ public class Zona_VerdeVecindarioService {
     public VecindarioEntity getVecindario(Long Zona_VerdeId) throws EntityNotFoundException {
         Optional<Zona_VerdeEntity> Zona_VerdeEntity = zona_VerdeRepository.findById(Zona_VerdeId);
         if (Zona_VerdeEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.Zona_Verde_NOT_FOUND);
+            throw new EntityNotFoundException(ErrorMessage.ZONA_VERDE_NOT_FOUND);
 
         vecindarioRepository.findById(Zona_VerdeEntity.get().getVecindario().getId());
     
