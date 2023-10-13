@@ -32,6 +32,7 @@ public class GrupoDeInteresService {
         if (!GrupoDeInteresRepository.findByNombre(GrupoDeInteres.getNombre()).isEmpty()) {
 			throw new IllegalOperationException("El nombre del grupo de interes ya existe");
         }
+		log.info("termina el proceso de creación del Grupo de interes");
 		return GrupoDeInteresRepository.save(GrupoDeInteres);
 	}
     /**

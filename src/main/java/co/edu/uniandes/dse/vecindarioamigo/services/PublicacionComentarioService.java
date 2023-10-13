@@ -1,44 +1,51 @@
 package co.edu.uniandes.dse.vecindarioamigo.services;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 
-import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.entities.PublicacionEntity;
-
+import co.edu.uniandes.dse.vecindarioamigo.entities.ComentarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.vecindarioamigo.repositories.ComentarioRepository;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.PublicacionRepository;
-import lombok.extern.slf4j.Slf4j;
+import co.edu.uniandes.dse.vecindarioamigo.repositories.ComentarioRepository;
+
+/**
+ * Clase que implementa la conexión con la persistencia para la relación entre
+ * la entidad Publicacion y Comentario.
+ *
+ * @Comentario ISIS2603
+ */
 @Slf4j
 @Service
 public class PublicacionComentarioService {
+    
+    
 
-	@Autowired
+    //dependency injections of the two entities of the relation
+    @Autowired
 	private ComentarioRepository ComentarioRepository;
 
-	@Autowired
+    @Autowired
 	private PublicacionRepository PublicacionRepository;
-	
-	/**
-	 * Agregar un Comentario a la Publicacion
+
+    /**
+	 * Agregar unA ZONA al Publicacion
 	 *
-	 * @param ComentarioId      El id libro a guardar
-	 * @param PublicacionId El id de la Publicacion en la cual se va a guardar el libro.
-	 * @return El libro creado.
+	 * @param ComentarioId     El id de la zona verde a guardar
+	 * @param PublicacionId      El id del Publicacion en el cual se va a guardar el negocio.
+	 * @return La zona verde creada.
 	 * @throws EntityNotFoundException 
 	 */
 	
 	@Transactional
 	public ComentarioEntity addComentario(Long ComentarioId, Long PublicacionId) throws EntityNotFoundException {
-		log.info("Inicia proceso de agregarle un libro a la Publicacion con id = {0}", PublicacionId);
+		log.info("Start the process of adding a commnet to the post with id = {0}", PublicacionId);
 		
 		Optional<ComentarioEntity> ComentarioEntity = ComentarioRepository.findById(ComentarioId);
 		if(ComentarioEntity.isEmpty())
@@ -49,20 +56,20 @@ public class PublicacionComentarioService {
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
 		
 		ComentarioEntity.get().setPublicacion(PublicacionEntity.get());
-		log.info("Termina proceso de agregarle un libro a la Publicacion con id = {0}", PublicacionId);
+		log.info("Finish process of adding a commnet to the post with id = {0}", PublicacionId);
 		return ComentarioEntity.get();
 	}
-
-	/**
-	 * Retorna todos los Comentarios asociados a una Publicacion
+    
+    /**
+	 * Retorna todas las zonas verdes asociados a un Publicacion
 	 *
-	 * @param PublicacionId El ID de la Publicacion buscada
-	 * @return La lista de libros de la Publicacion
-	 * @throws EntityNotFoundException si la Publicacion no existe
+	 * @param PublicacionId El ID del Publicacion buscado
+	 * @return La lista de zonas verdes del Publicacion
+	 * @throws EntityNotFoundException si el Publicacion no existe
 	 */
 	@Transactional
-	public List<ComentarioEntity> getComentarios(Long PublicacionId) throws EntityNotFoundException {
-		log.info("Inicia proceso de consultar los libros asociados a la Publicacion con id = {0}", PublicacionId);
+	public List<ComentarioEntity> getComentaros(Long PublicacionId) throws EntityNotFoundException {
+		log.info("Start the process of consulting the commnets associated with the post with id = {0}", PublicacionId);
 		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
 		if(PublicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
@@ -70,18 +77,18 @@ public class PublicacionComentarioService {
 		return PublicacionEntity.get().getComentarios();
 	}
 
-	/**
-	 * Retorna un Comentario asociado a una Publicacion
+    /**
+	 * Retorna una zona verde asociada a un Publicacion
 	 *
-	 * @param PublicacionId El id de la Publicacion a buscar.
-	 * @param ComentarioId      El id del libro a buscar
-	 * @return El libro encontrado dentro de la Publicacion.
-	 * @throws EntityNotFoundException Si el libro no se encuentra en la Publicacion
-	 * @throws IllegalOperationException Si el libro no está asociado a la Publicacion
+	 * @param PublicacionId El id del Publicacion a buscar.
+	 * @param ComentarioId El id de la zona verde a buscar
+	 * @return La zona verde encontrada dentro del Publicacion.
+	 * @throws EntityNotFoundException Si la zona verde no se encuentra en el Publicacion
+	 * @throws IllegalOperationException Si la zona verde no está asociado a el Publicacion
 	 */
 	@Transactional
 	public ComentarioEntity getComentario(Long PublicacionId, Long ComentarioId) throws EntityNotFoundException, IllegalOperationException {
-		log.info("Inicia proceso de consultar el libro con id = {0} de la Publicacion con id = " + PublicacionId, ComentarioId);
+		log.info("Start the process of consulting the commnet with id = {0} from the post with id = " + PublicacionId, ComentarioId);
 		
 		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
 		if(PublicacionEntity.isEmpty())
@@ -91,36 +98,37 @@ public class PublicacionComentarioService {
 		if(ComentarioEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 				
-		log.info("Termina proceso de consultar el libro con id = {0} de la Publicacion con id = " + PublicacionId, ComentarioId);
+		log.info("The process of consulting the commnet with id ends = {0} from the post with id = " + PublicacionId, ComentarioId);
 		
 		if(!PublicacionEntity.get().getComentarios().contains(ComentarioEntity.get()))
-			throw new IllegalOperationException("The Comentario is not associated to the Publicacion");
-		System.out.println(ComentarioEntity);
+			throw new IllegalOperationException("The commnet is not associated to the post");
+		
 		return ComentarioEntity.get();
 	}
 
-	/**
-	 * Remplazar Comentarios de una Publicacion
+    /**
+	 * Remplazar zonas verdes de un Publicacion
 	 *
-	 * @param Comentarios        Lista de libros que serán los de la Publicacion.
-	 * @param PublicacionId El id de la Publicacion que se quiere actualizar.
-	 * @return La lista de libros actualizada.
-	 * @throws EntityNotFoundException Si la Publicacion o un libro de la lista no se encuentran
+	 * @param Zonas_Verdes Lista de zonas verdes que serán las de un Publicacion.
+	 * @param PublicacionId El id del Publicacion que se quiere actualizar.
+	 * @return La lista de zonas verdes actualizada.
+	 * @throws EntityNotFoundException Si el Publicacion o una zona verde de la lista no se encuentran
 	 */
 	@Transactional
-	public List<ComentarioEntity> replaceComentarios(Long PublicacionId, List<ComentarioEntity> Comentarios) throws EntityNotFoundException {
-		log.info("Inicia proceso de actualizar la Publicacion con id = {0}", PublicacionId);
+	public List<ComentarioEntity> replaceComentarios(Long PublicacionId, List<ComentarioEntity> Zonas_Verdes) throws EntityNotFoundException {
+		log.info("Start process of updating the post with id = {0}", PublicacionId);
 		Optional<PublicacionEntity> PublicacionEntity = PublicacionRepository.findById(PublicacionId);
 		if(PublicacionEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.PUBLICACION_NOT_FOUND);
 		
-		for(ComentarioEntity Comentario : Comentarios) {
-			Optional<ComentarioEntity> b = ComentarioRepository.findById(Comentario.getId());
-			if(b.isEmpty())
+		for(ComentarioEntity Comentario : Zonas_Verdes) {
+			Optional<ComentarioEntity> z = ComentarioRepository.findById(Comentario.getId());
+			if(z.isEmpty())
 				throw new EntityNotFoundException(ErrorMessage.COMENTARIO_NOT_FOUND);
 			
-			b.get().setPublicacion(PublicacionEntity.get());
+			z.get().setPublicacion(PublicacionEntity.get());
 		}		
-		return Comentarios;
+		return Zonas_Verdes;
 	}
+	
 }

@@ -253,52 +253,7 @@
 			"response": []
 		},
 		{
-			"name": "Crear un grupo Copy 3",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()",
-							"pm.environment.get(\"variable_key\");",
-							"pm.globals.set(\"grupo_de_interes_id_3\", data.id);",
-							"",
-							"pm.test(\"Status code is 201\", function () {",
-							"   pm.response.to.have.status(201);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"gatos\",\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\"\n\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/gruposDeInteres",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"gruposDeInteres"
-					]
-				},
-				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Agregar un vecino a grupo",
+			"name": "Agregar un grupo a un vecino",
 			"event": [
 				{
 					"listen": "test",
@@ -316,21 +271,21 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/gruposDeInteres/{{grupo_de_interes_id_3}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/gruposDeInteres/{{grupo_de_interes_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id_2}}",
+						"{{vecino_id_1}}",
 						"gruposDeInteres",
-						"{{grupo_de_interes_id_3}}"
+						"{{grupo_de_interes_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Agregar un vecino a grupo",
+					"name": "Agregar un grupo a un vecino",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -349,23 +304,21 @@
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": "json",
+					"_postman_previewlanguage": "",
 					"header": [
+						{}
+					],
+					"cookie": [
 						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
+							"expires": "Invalid Date"
 						}
 					],
-					"cookie": [],
-					"body": "{\r\n    \"id\":1,\r\n    \"nombre\":\"jugadoresMinecraft\",\r\n    \"descripcion\":\"recreamos el vecindario en Minecraft\",\r\n    \"vecinos\":[{\r\n         \"id\": 1,\r\n         \"nombre\": \"Gabriela\",\r\n         \"edad\": 19,\r\n         \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n         \"descripcion\": \"Estudio ISIS\"\r\n\r\n    }]\r\n\r\n}\r\n"
+					"body": "{\n    \"id\": 1,\n    \"nombre\": \"Piscina1\",\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\",\n    \"vecinos\": [\n        {\n            \"id\": 1,\n            \"nombre\": \"tambor\",\n            \"edad\": \"19\",\n            \"profilePic\": null,\n            \"descripcion\": \"Estudio ISIS\",\n            \"vecindario\": {\n                \"id\": 1,\n                \"nombre\": \"super\",\n                \"ciudad\": \"Barcelona\",\n                \"localidad\": \"Sants - Montjuïc\"\n            }\n        }\n    ]\n}"
 				}
 			]
 		},
 		{
-			"name": "Agregar un vecino que no existe a un grupo",
+			"name": "agregar un grupo que no existe a un vecino",
 			"event": [
 				{
 					"listen": "test",
@@ -377,7 +330,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The neighbor with the given id was not found\");",
+							"   pm.expect(data.apierror.message).to.eql(\"The Grupo de interes was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -455,7 +408,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/gruposDeInteres/{{grupo_de_interes_id_2}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/gruposDeInteres/{{grupo_de_interes_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -463,7 +416,7 @@
 						"vecinos",
 						"{{vecino_id_1}}",
 						"gruposDeInteres",
-						"{{grupo_de_interes_id_2}}"
+						"{{grupo_de_interes_id_1}}"
 					]
 				}
 			},
@@ -588,7 +541,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The group is not associated to the neighbor\");",
+							"   pm.expect(data.apierror.message).to.eql(\"he GruposDeInteres is not associated to the neighbor\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -599,7 +552,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/gruposDeInteres/{{grupo_de_interes_id_1}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/gruposDeInteres/{{grupo_de_interes_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -607,7 +560,7 @@
 						"vecinos",
 						"{{vecino_id_1}}",
 						"gruposDeInteres",
-						"{{grupo_de_interes_id_1}}"
+						"{{grupo_de_interes_id_2}}"
 					]
 				}
 			},
@@ -737,7 +690,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n    \"id\": {{new_id_g}},\r\n    \"nombre\": \"jugadoresMinecraft\",\r\n    \"descripcion\": \"recreamos el vecindario en Minecraft\",\r\n    \"vecinos\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"Gabriela\",\r\n        \"edad\": 19,\r\n        \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n        \"descripcion\": \"Estudio ISIS\"\r\n        }\r\n    },\r\n    {\r\n    \"id\": {{new_id_g2}},\r\n    \"nombre\": \"jugadoresLOL\",\r\n    \"descripcion\": \"amamos LOL\",\r\n    \"vecinos\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"Gabriela\",\r\n        \"edad\": 19,\r\n        \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n        \"descripcion\": \"Estudio ISIS\"\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n]",
+					"raw": "[\r\n    {\r\n    \"id\": 1,\r\n    \"nombre\": \"Piscina1\",\r\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\"\r\n},{\r\n    \"id\": 2,\r\n    \"nombre\": \"2perritos\",\r\n    \"descripcion\": \"Es un grupo para divertirse y convivir con nuestros compañeros del vecindario\"\r\n}\r\n]\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -813,7 +766,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The neighborhood with the given id was not found\");",
+							"   pm.expect(data.apierror.message).to.eql(\"The Grupo de interes was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -825,7 +778,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n    \"id\":1,\r\n    \"nombre\":\"tomamos el sol\",\r\n    \"descripcion\":\"nos gusta broncearnos\"\r\n    }\r\n\r\n]",
+					"raw": "[{\r\n    \"id\":0,\r\n    \"nombre\":\"tomamos el sol\",\r\n    \"descripcion\":\"nos gusta broncearnos\"\r\n    }\r\n\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -887,7 +840,7 @@
 			]
 		},
 		{
-			"name": "Borrar un grupo de un autor",
+			"name": "Borrar un grupo de un vecino",
 			"event": [
 				{
 					"listen": "test",
@@ -957,7 +910,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"   pm.expect(data.apierror.message).to.eql(\"No se ha encontrado el vecino con ese id.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -968,7 +921,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/0/gruposDeInteres/{{grupo_de_interes_id_2}}.",
+					"raw": "{{baseUrl}}/vecinos/0/gruposDeInteres/{{grupo_de_interes_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -976,7 +929,7 @@
 						"vecinos",
 						"0",
 						"gruposDeInteres",
-						"{{grupo_de_interes_id_2}}."
+						"{{grupo_de_interes_id_2}}"
 					]
 				}
 			},

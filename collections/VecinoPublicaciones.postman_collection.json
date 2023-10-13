@@ -88,7 +88,7 @@
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"vecino_id_2\", data.id);\r",
+							"pm.globals.set(\"vecino_id_1\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"nombre\": \"manol1\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\": 2,\r\n    \"nombre\": \"suba\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
+					"raw": "{\r\n\"nombre\": \"manol2\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\": 1,\r\n    \"nombre\": \"suba\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -185,7 +185,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": 19,\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 2,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n",
+					"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n    \"id\": 1,\r\n    \"nombre\": \"manol1\",\r\n    \"edad\": \"19\",\r\n    \"profilePic\": null,\r\n    \"descripcion\": \"Estudio ISIS\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"suba\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    }\r\n}\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -267,7 +267,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": 19,\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 2,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n",
+					"raw": "{\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04T15:30:00.000Z\",\r\n    \"vecino\": {\r\n    \"id\": 1,\r\n    \"nombre\": \"manol1\",\r\n    \"edad\": \"19\",\r\n    \"profilePic\": null,\r\n    \"descripcion\": \"Estudio ISIS\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"suba\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    }\r\n}\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -345,15 +345,15 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_2}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones/{{publicacion_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id_1}}",
+						"{{vecino_id_2}}",
 						"publicaciones",
-						"{{publicacion_id_2}}"
+						"{{publicacion_id_1}}"
 					]
 				}
 			},
@@ -417,13 +417,13 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/0",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id_1}}",
+						"{{vecino_id_2}}",
 						"publicaciones",
 						"0"
 					]
@@ -484,13 +484,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/{{publicacion_id_1}}",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones/{{publicacion_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id_1}}",
+						"{{vecino_id_2}}",
 						"publicaciones",
 						"{{publicacion_id_1}}"
 					]
@@ -528,7 +528,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n\"id\":1,\n\"contenido\": \"hola, me llamo gabriela\",\n\"fecha\": \"11/9/2023\",\n\"foto\": \"none\",\n\"video\": \"none\",\n\"likes\": 10000000,\n\"compartidos\": 234543,\n\"vecino\": {\n    \"id\": 1,\n\"nombre\": \"Gabriela\",\n\"edad\": 19,\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n\"descripcion\": \"Estudio ISIS\"\n},\n\"comentarios\":[{\n\"id\":1,\n\"autor\":\"Francois\",\n\"fecha\":\"2023/11/09\",\n\"contenido\": \"Hola me gustas\"\n}]\n}\n"
+					"body": "{\n    \"id\": 2,\n    \"contenido\": \"Este es el contenido de la publicación\",\n    \"foto\": \"URL_de_la_foto\",\n    \"video\": \"URL_del_video\",\n    \"likes\": 10,\n    \"compartidos\": 5,\n    \"fecha\": \"2023-10-04\",\n    \"vecino\": {\n        \"id\": 2,\n        \"nombre\": \"manol1\",\n        \"edad\": \"19\",\n        \"profilePic\": null,\n        \"descripcion\": \"Estudio ISIS\",\n        \"vecindario\": {\n            \"id\": 2,\n            \"nombre\": \"suba\",\n            \"ciudad\": \"Barcelona\",\n            \"localidad\": \"Sants - Montjuïc\"\n        }\n    }\n}"
 				}
 			]
 		},
@@ -545,7 +545,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"   pm.expect(data.apierror.message).to.eql(\"The neighbor with the given id was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -575,13 +575,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
+							"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones/0",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"vecinos",
-								"{{vecino_id}}",
+								"{{vecino_id_1}}",
 								"publicaciones",
 								"0"
 							]
@@ -617,7 +617,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The book is not associated to the author\");",
+							"   pm.expect(data.apierror.message).to.eql(\"The post is not associated to the neighbor\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -672,7 +672,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"apierror\": {\n        \"status\": \"PRECONDITION_FAILED\",\n        \"timestamp\": \"21-02-2023 10:19:03\",\n        \"message\": \"The post is not associated to the neighbor\"\n    }\n}"
+					"body": "{\n    \"apierror\": {\n        \"status\": \"PRECONDITION_FAILED\",\n        \"timestamp\": \"21-02-2023 10:19:03\",\n        \"message\": \"The book is not associated to the author\"\n    }\n}"
 				}
 			]
 		},
@@ -700,13 +700,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_1}}/publicaciones",
+					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"vecinos",
-						"{{vecino_id_1}}",
+						"{{vecino_id_2}}",
 						"publicaciones"
 					]
 				}
@@ -747,7 +747,7 @@
 			]
 		},
 		{
-			"name": "Asociar posts a un autor",
+			"name": "Asociar posts a un vecino",
 			"event": [
 				{
 					"listen": "test",
@@ -766,7 +766,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[ \r\n    {\r\n        \"id\":{{new_id_p}},\r\n        \"contenido\": \"hola, me llamo gabriela\",\r\n        \"fecha\": \"11/9/2023\",\r\n        \"foto\": \"none\",\r\n        \"video\": \"none\",\r\n        \"likes\": 10000000,\r\n        \"compartidos\": 234543,\r\n        \"vecino\": {\r\n            \"id\": {{new_id_v}},\r\n            \"nombre\": \"Gabriela\",\r\n            \"edad\": 19,\r\n            \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n            \"descripcion\": \"Estudio ISIS\"\r\n            },\r\n        \"comentarios\":[\r\n                {\r\n             \"id\": {{new_id_c}},\r\n            \"autor\":\"Francois\",\r\n            \"fecha\":\"2023/11/09\",\r\n            \"contenido\": \"Hola me gustas\"\r\n                }\r\n            ]\r\n    },\r\n    {\r\n    \"id\": {{new_id_p2}},\r\n    \"contenido\": \"felizz\",\r\n    \"fecha\": \"12/9/2023\",\r\n    \"foto\": \"none\",\r\n    \"video\": \"none\",\r\n    \"likes\": 1232,\r\n    \"compartidos\": 10,\r\n    \"vecino\": {\r\n        \"id\": {{new_id_v}},\r\n        \"nombre\": \"Gabriela\",\r\n        \"edad\": 19,\r\n        \"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n        \"descripcion\": \"Estudio ISIS\"\r\n        },\r\n    \"comentarios\":[\r\n            {\r\n        \"id\": {{new_id_c2}},\r\n        \"autor\":\"Francois\",\r\n        \"fecha\":\"2023/11/09\",\r\n        \"contenido\": \"feli x2\"\r\n            }\r\n        ]\r\n    }\r\n]\r\n\r\n\r\n    ",
+					"raw": "[ \r\n    {\r\n    \"id\": 1,\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04\",\r\n    \"vecino\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": \"19\",\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 1,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n},\r\n{\r\n    \"id\": 2,\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04\",\r\n    \"vecino\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": \"19\",\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 1,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}\r\n]\r\n\r\n\r\n    ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -833,7 +833,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"   pm.expect(data.apierror.message).to.eql(\"The post with the given id was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -845,10 +845,10 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"id\":0,\r\n        \"contenido\": \"nada\",\r\n        \"fecha\": 11/08/2023,\r\n        \"foto\": none,\r\n        \"video\": none,\r\n        \"likes\": 0,\r\n        \"compartidos\": 0\r\n\r\n    }\r\n]",
+					"raw": "[{\r\n    \"id\": 0,\r\n    \"contenido\": \"Este es el contenido de la publicación\",\r\n    \"foto\": \"URL_de_la_foto\",\r\n    \"video\": \"URL_del_video\",\r\n    \"likes\": 10,\r\n    \"compartidos\": 5,\r\n    \"fecha\": \"2023-10-04\",\r\n    \"vecino\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"manol1\",\r\n        \"edad\": \"19\",\r\n        \"profilePic\": null,\r\n        \"descripcion\": \"Estudio ISIS\",\r\n        \"vecindario\": {\r\n            \"id\": 1,\r\n            \"nombre\": \"suba\",\r\n            \"ciudad\": \"Barcelona\",\r\n            \"localidad\": \"Sants - Montjuïc\"\r\n        }\r\n    }\r\n}]",
 					"options": {
 						"raw": {
-							"language": "javascript"
+							"language": "json"
 						}
 					}
 				},
@@ -896,190 +896,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:25:21\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Borrar una publicación de un vecino",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {",
-							"   pm.response.to.have.status(204);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id_2}}/publicaciones/{{publicacion_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"vecinos",
-						"{{vecino_id_2}}",
-						"publicaciones",
-						"{{publicacion_id_2}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar una publicación de un vecino",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones{{publicacion_id_2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"vecinos",
-								"{{vecino_id}}",
-								"publicaciones{{publicacion_id_2}}"
-							]
-						}
-					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
-					"cookie": [],
-					"body": ""
-				}
-			]
-		},
-		{
-			"name": "Borrar una publicacion a un vecino que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"   pm.response.to.have.status(404);",
-							"});",
-							"",
-							"pm.test(\"Get expected error message\", function () {",
-							"   var data = pm.response.json();",
-							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/vecinos/0/publicaciones/{{publicacion_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"vecinos",
-						"0",
-						"publicaciones",
-						"{{publicacion_id_2}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar una publicacion a un autor que no existe",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/vecinos/0/publicaciones/{{publicacion_id_2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"vecinos",
-								"0",
-								"publicaciones",
-								"{{publicacion_id_2}}"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:05:19\",\r\n        \"message\": \"The neighbor with the given id was not found\"\r\n    }\r\n}"
-				}
-			]
-		},
-		{
-			"name": "Borrar un post que no existe de un vecino",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"vecinos",
-						"{{vecino_id}}",
-						"publicaciones",
-						"0"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar un post que no existe de un vecino",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/vecinos/{{vecino_id}}/publicaciones/0",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"vecinos",
-								"{{vecino_id}}",
-								"publicaciones",
-								"0"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:05:19\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
 				}
 			]
 		}

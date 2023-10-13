@@ -18,4 +18,5 @@ public class GruposDeInteresEntity extends BaseEntity{
     @ManyToMany
     private List<VecinoEntity> vecinos = new ArrayList<>();
     
+    
 }

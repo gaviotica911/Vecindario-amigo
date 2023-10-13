@@ -1,26 +1,211 @@
 {
 	"info": {
-		"_postman_id": "b8fce288-9c2f-4f5f-b2a3-bc2bae293f5a",
+		"_postman_id": "da2ba42e-df68-4aa0-ae46-0415b77e43dd",
 		"name": "PublicacionComentario",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29200318"
 	},
 	"item": [
 		{
+			"name": "Crear una publicación Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"publicacion_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contenido\": \"Este es el contenido del post\",\r\n  \"foto\": \"URL_de_la_foto.jpg\",\r\n  \"video\": \"URL_del_video.mp4\",\r\n  \"likes\": 100,\r\n  \"compartidos\": 50,\r\n  \"fecha\": \"2023-10-02T15:30:00.000Z\",\r\n  \"vecino\":{\r\n    \"id\": 1,\r\n    \"nombre\": \"oso1\",\r\n    \"edad\": \"19\",\r\n    \"profilePic\": null,\r\n    \"descripcion\": \"Estudio ISIS\",\r\n    \"vecindario\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"usaquen\",\r\n        \"ciudad\": \"Barcelona\",\r\n        \"localidad\": \"Sants - Montjuïc\"\r\n    }\r\n}\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publicaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publicaciones"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear una publicación",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contenido\": \"Este es el contenido del post\",\r\n  \"foto\": \"URL_de_la_foto.jpg\",\r\n  \"video\": \"URL_del_video.mp4\",\r\n  \"likes\": 100,\r\n  \"compartidos\": 50,\r\n  \"fecha\": \"2023-10-02T15:30:00.000Z\",\r\n  \"vecino\":{\r\n\"nombre\": \"oso1\",\r\n\"edad\": 19,\r\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\r\n\"descripcion\": \"Estudio ISIS\",\r\n\"vecindario\":{\r\n    \"id\":2,\r\n    \"nombre\": \"usaquen\",\r\n    \"ciudad\": \"Barcelona\",\r\n    \"localidad\": \"Sants - Montjuïc\"\r\n}\r\n}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/publicaciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"publicaciones"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\":1,\n  \"contenido\": \"Este es el contenido del post\",\n  \"foto\": \"URL_de_la_foto.jpg\",\n  \"video\": \"URL_del_video.mp4\",\n  \"likes\": 100,\n  \"compartidos\": 50,\n  \"fecha\": \"2023-10-02T15:30:00.000Z\",\n  \"vecino\":{\n\"nombre\": \"oso1\",\n\"edad\": 19,\n\"profile_pic\": \"https://images.ecestaticos.com/EM_ympCtHYjjeP0kMvITDpiNPps=/2x25:1279x693/600x315/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F998%2Fded%2Ffbf%2F998dedfbfa6b8902025a38ec4fb19660.jpg\",\n\"descripcion\": \"Estudio ISIS\",\n\"vecindario\":{\n    \"id\":2,\n    \"nombre\": \"usaquen\",\n    \"ciudad\": \"Barcelona\",\n    \"localidad\": \"Sants - Montjuïc\"\n}\n}\n}\n"
+				}
+			]
+		},
+		{
+			"name": "Crear un comentario Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.environment.get(\"variable_key\");",
+							"pm.globals.set(\"comentario_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"nombre\": \"me gusta lanten\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nCrea un nuevo premio. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comentario Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.environment.get(\"variable_key\");",
+							"pm.globals.set(\"comentario_id_2\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"nombre\": \"me gusta \",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comentarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comentarios"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nCrea un nuevo premio. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
 			"name": "Agregar un comentario a una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/{{comentario_id_1}}.",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios",
-						"{{comentario_id_1}}."
+						"{{comentario_id_1}}"
 					]
 				}
 			},
@@ -62,17 +247,35 @@
 		},
 		{
 			"name": "Agregar un comentario que no existe a una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios",
 						"0"
 					]
@@ -115,18 +318,43 @@
 			]
 		},
 		{
-			"name": "Obtener un comentario de una publicacion",
+			"name": "Obtener un comentario de un post 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/{{comentario_id_1}}",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios/{{comentario_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios",
 						"{{comentario_id_1}}"
 					]
@@ -134,23 +362,25 @@
 			},
 			"response": [
 				{
-					"name": "Obtener un comentario de una publicacion",
+					"name": "Obtener un comentario de un post 1",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/{{comentario_id_1}}",
+							"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}}}/comentarios/{{comentario_id_1}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"publicaciones",
-								"{{publicacion_id}}",
+								"{{publicacion_id_1}}}}",
 								"comentarios",
 								"{{comentario_id_1}}"
 							]
 						}
 					},
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -162,23 +392,41 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\":1,\r\n    \"autor\":\"Gabriela\",\r\n\"fecha\":\"02/07/2023\",\r\n\"contenido\":\"Linda\",\r\n\"publicacion\": {\r\n    \"id\": 1,\r\n    \"contenido\": \"Hola estoy durmiento\",\r\n    \"fecha\": \"23/07/23\",\r\n    \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\r\n    \"video\": \"vacio\",\r\n    \"likes\": 4,\r\n    \"compartidos\": 32\r\n\r\n}\r\n}"
+					"body": "{\n    \"id\": 1,\n    \"nombre\": \"me gusta lanten\",\n    \"fecha\": \"2022-12-31\",\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\",\n    \"publicacion\": {\n        \"id\": 1,\n        \"contenido\": \"Este es el contenido del post\",\n        \"foto\": \"URL_de_la_foto.jpg\",\n        \"video\": \"URL_del_video.mp4\",\n        \"likes\": 100,\n        \"compartidos\": 50,\n        \"fecha\": \"2023-10-02\",\n        \"vecino\": {\n            \"id\": 1,\n            \"nombre\": \"oso1\",\n            \"edad\": \"19\",\n            \"profilePic\": null,\n            \"descripcion\": \"Estudio ISIS\",\n            \"vecindario\": {\n                \"id\": 1,\n                \"nombre\": \"bolas\",\n                \"ciudad\": \"Barcelona\",\n                \"localidad\": \"Sants - Montjuïc\"\n            }\n        }\n    },\n    \"zonaVerde\": null,\n    \"negocio\": null,\n    \"centroComercial\": null\n}"
 				}
 			]
 		},
 		{
 			"name": "Obtener un comentario que no existe de una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/0",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios",
 						"0"
 					]
@@ -222,17 +470,35 @@
 		},
 		{
 			"name": "Obtener un comentario que no esta asociado a una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The Comentario is not associated to the Publicacion\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/{{comentario_id_2}}",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios/{{comentario_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios",
 						"{{comentario_id_2}}"
 					]
@@ -276,17 +542,35 @@
 		},
 		{
 			"name": "Obtener los comentarios de una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of books > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios"
 					]
 				}
@@ -311,8 +595,8 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": "[\r\n    {\r\n        \"id\":1,\r\n    \"autor\":\"Gabriela\",\r\n\"fecha\":\"02/07/2023\",\r\n\"contenido\":\"Linda\",\r\n\"publicacion\": {\r\n    \"id\": 1,\r\n    \"contenido\": \"Hola estoy durmiento\",\r\n    \"fecha\": \"23/07/23\",\r\n    \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\r\n    \"video\": \"vacio\",\r\n    \"likes\": 4,\r\n    \"compartidos\": 32\r\n\r\n}\r\n\r\n    },\r\n    {\r\n        \"id\":2,\r\n    \"autor\":\"Gabriela\",\r\n\"fecha\":\"09/07/2023\",\r\n\"contenido\":\"increible\",\r\n\"publicacion\": {\r\n    \"id\": 1,\r\n    \"contenido\": \"Hola estoy durmiento\",\r\n    \"fecha\": \"23/07/23\",\r\n    \"foto\": \"https://w0.peakpx.com/wallpaper/64/68/HD-wallpaper-pooh-sleeping.jpg\",\r\n    \"video\": \"vacio\",\r\n    \"likes\": 4,\r\n    \"compartidos\": 32\r\n\r\n}\r\n\r\n    }\r\n]"
 				}
@@ -320,12 +604,25 @@
 		},
 		{
 			"name": "Asociar comentarios a una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"id\":{{new_id_c}},\r\n    \"autor\":\"Gabriela\",\r\n\"fecha\":\"02/07/2023\",\r\n\"contenido\":\"Linda\"\r\n    },\r\n    {\r\n        \"id\":{{new_id_c2}},\r\n    \"autor\":\"Gabriela\",\r\n\"fecha\":\"09/07/2023\",\r\n\"contenido\":\"increible\"\r\n\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n  \"id\":1,\r\n    \"nombre\": \"me gusta lanten\",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n},\r\n    {\r\n  \"id\":2,\r\n    \"nombre\": \"me gusta \",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -333,13 +630,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios"
 					]
 				}
@@ -390,12 +687,30 @@
 		},
 		{
 			"name": "Asociar comentarios que no existen a una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"The book with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"id\":0,\r\n        \"autor\":\"Gabriela\",\r\n        \"fecha\":\"02/07/2023\",\r\n        \"contenido\":\"Linda\"\r\n\r\n    }\r\n]",
+					"raw": "[{\r\n  \"id\":0,\r\n    \"nombre\": \"me gusta \",\r\n    \"fecha\": \"2023-01-01\",\r\n    \"descripcion\": \"El personal de atencion es muy malo, muy atento y me encanto, siempre buscando ayudarte en cualquier ocacion\"\r\n}]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -403,13 +718,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios",
+					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id_1}}/comentarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"publicaciones",
-						"{{publicacion_id}}",
+						"{{publicacion_id_1}}",
 						"comentarios"
 					]
 				}
@@ -455,157 +770,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:25:21\",\n        \"message\": \"The comment with the given id was not found\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Borrar un comentario de una publicacion",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/{{comentario_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"publicaciones",
-						"{{publicacion_id}}",
-						"comentarios",
-						"{{comentario_id_2}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar un comentario de una publicacion",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/publicaciones/{{publicacion_id}}/comentarios/{{comentario_id_2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"publicaciones",
-								"{{publicacion_id}}",
-								"comentarios",
-								"{{comentario_id_2}}"
-							]
-						}
-					},
-					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
-				}
-			]
-		},
-		{
-			"name": "Borrar un comentario a una publicacion que no existe",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/publicaciones/0/comentarios/{{comentario_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"publicaciones",
-						"0",
-						"comentarios",
-						"{{comentario_id_2}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar un comentario a una publicacion que no existe",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/publicaciones/0/comentarios/{{comentario_id_2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"publicaciones",
-								"0",
-								"comentarios",
-								"{{comentario_id_2}}"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:25:21\",\n        \"message\": \"The post with the given id was not found\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Borrar una comentario que no existe de una publicacion",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/publicaciones/{{publicaciones_id}}/comentarios/0",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"publicaciones",
-						"{{publicaciones_id}}",
-						"comentarios",
-						"0"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar una comentario que no existe de una publicacion",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/publicaciones/{{publicaciones_id}}/comentarios/0",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"publicaciones",
-								"{{publicaciones_id}}",
-								"comentarios",
-								"0"
-							]
-						}
-					},
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n        \"message\": \"The comment with the given id was not found\"\r\n    }\r\n}"
 				}
 			]
 		}

@@ -130,7 +130,7 @@ public class PublicacionComentarioServiceTest {
 
 	@Test
 	void testGetComentarios() throws EntityNotFoundException {
-		List<ComentarioEntity> list = publicacionComentarioService.getComentarios(publicacionList.get(0).getId());
+		List<ComentarioEntity> list = publicacionComentarioService.getComentaros(publicacionList.get(0).getId());
 		assertEquals(1, list.size());
 	}
 	
@@ -143,7 +143,7 @@ public class PublicacionComentarioServiceTest {
 	@Test
 	void testGetComentariosInvalidPublicacion() {
 		assertThrows(EntityNotFoundException.class,()->{
-			publicacionComentarioService.getComentarios(0L);
+			publicacionComentarioService.getComentaros(0L);
 		});
 	}
 

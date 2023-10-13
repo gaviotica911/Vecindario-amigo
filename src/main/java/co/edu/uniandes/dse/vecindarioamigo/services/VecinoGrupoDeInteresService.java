@@ -39,31 +39,26 @@ public class VecinoGrupoDeInteresService {
      * @throws IllegalOperationException
 	 */
 	
-	@Transactional
-	public GruposDeInteresEntity addGrupoDeInteres(Long grupoDeInteresId, Long vecinoId) throws EntityNotFoundException, IllegalOperationException {
-		log.info("Start the process of adding a neighbor to the neighborhood with id = {0}", vecinoId);
-		if (grupoDeInteresId ==null)
-		throw new IllegalOperationException("Id null");
+	 @Transactional
+	 public GruposDeInteresEntity addGrupoDeInteres(Long VecinoId, Long GrupoDeInteresId) throws EntityNotFoundException {
+		 log.info("Inicia proceso de asociarle un autor al libro con id = {0}", VecinoId);
+		 Optional<GruposDeInteresEntity> GrupoDeInteresEntity = grupoDeInteresRepository.findById(GrupoDeInteresId);
+		 if (GrupoDeInteresEntity.isEmpty())
+			 throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
+ 
+		 Optional<VecinoEntity> VecinoEntity = vecinoRepository.findById(VecinoId);
+		 if (VecinoEntity.isEmpty())
+			 throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
 
+
+
+		GrupoDeInteresEntity.get().getVecinos().add(VecinoEntity.get());
+		VecinoEntity.get().getGruposDeInteres().add(GrupoDeInteresEntity.get());
 	
-
-		Optional<GruposDeInteresEntity> gruposDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteresId);
-		if (gruposDeInteresEntity.isEmpty())
-				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
-		
-		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
-
-		if (vecinoEntity.isEmpty())
-				throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
-			
-		if ((vecinoEntity.get()).getGruposDeInteres().contains(gruposDeInteresEntity.get()))
-			throw new IllegalOperationException("el vecino ya hace parte de este grupo");
-		
-		vecinoEntity.get().getGruposDeInteres().add(gruposDeInteresEntity.get());
-	
-		log.info("Finish process of adding a interest group to a neighbor with id = {0}", vecinoId);
-		return gruposDeInteresEntity.get();
-	}
+		 
+		 log.info("Termina proceso de asociarle un autor al libro con id = {0}", VecinoId);
+		 return GrupoDeInteresEntity.get();
+	 }
     
     /**
 	 * Retorna todos los grupoDeInteress asociados a un vecino
@@ -92,23 +87,22 @@ public class VecinoGrupoDeInteresService {
 	 * @throws IllegalOperationException Si el grupoDeInteres no está asociado a el vecino
 	 */
 	@Transactional
-	public GruposDeInteresEntity getGrupoDeInteres(Long vecinoId, Long grupoDeInteresId) throws EntityNotFoundException, IllegalOperationException {
-		log.info("Start the process of consulting the group with id = {0} from the neighbor with id = " +  grupoDeInteresId,vecinoId);
-		
-		Optional<VecinoEntity> vecinoEntity = vecinoRepository.findById(vecinoId);
-		if(vecinoEntity.isEmpty())
-			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
-		
-		Optional<GruposDeInteresEntity> gruposDeInteresEntity = grupoDeInteresRepository.findById(grupoDeInteresId);
-		if(gruposDeInteresEntity.isEmpty())
+	public GruposDeInteresEntity getGrupoDeInteres(Long bookId, Long GruposDeInteresId)
+			throws EntityNotFoundException, IllegalOperationException {
+		log.info("Inicia proceso de consultar un autor del libro con id = {0}", bookId);
+		Optional<GruposDeInteresEntity> GruposDeInteresEntity = grupoDeInteresRepository.findById(GruposDeInteresId);
+		Optional<VecinoEntity> bookEntity = vecinoRepository.findById(bookId);
+
+		if (GruposDeInteresEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
-				
-		log.info("The process of consulting the group with id ends = {0} from the neighbor with id = " + grupoDeInteresId, vecinoId);
+
+		if (bookEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
+		log.info("Termina proceso de consultar un autor del libro con id = {0}", bookId);
+		if (!bookEntity.get().getGruposDeInteres().contains(GruposDeInteresEntity.get()))
+			throw new IllegalOperationException("The GruposDeInteres is not associated to the neighbor");
 		
-		if(!vecinoEntity.get().getGruposDeInteres().contains(gruposDeInteresEntity.get()))
-			throw new IllegalOperationException("The group is not associated to the neighbor");
-		
-		return gruposDeInteresEntity.get();
+		return GruposDeInteresEntity.get();
 	}
 
     /**
@@ -159,22 +153,22 @@ public class VecinoGrupoDeInteresService {
     }
 
 	@Transactional
-	public List<GruposDeInteresEntity> addGruposDeInteres(Long authorId, List<GruposDeInteresEntity> books) throws EntityNotFoundException {
-		log.info("Inicia proceso de reemplazar los libros asociados al author con id = {0}", authorId);
-		Optional<VecinoEntity> authorEntity = vecinoRepository.findById(authorId);
-		if (authorEntity.isEmpty())
+	public List<GruposDeInteresEntity> addGruposDeInteres(Long VecinoId, List<GruposDeInteresEntity> GrupoDeInteress) throws EntityNotFoundException {
+		log.info("Inicia proceso de reemplazar los libros asociados al Vecino con id = {0}", VecinoId);
+		Optional<VecinoEntity> VecinoEntity = vecinoRepository.findById(VecinoId);
+		if (VecinoEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.VECINO_NOT_FOUND);
 
-		for (GruposDeInteresEntity book : books) {
-			Optional<GruposDeInteresEntity> bookEntity = grupoDeInteresRepository.findById(book.getId());
-			if (bookEntity.isEmpty())
+		for (GruposDeInteresEntity GrupoDeInteres : GrupoDeInteress) {
+			Optional<GruposDeInteresEntity> GrupoDeInteresEntity = grupoDeInteresRepository.findById(GrupoDeInteres.getId());
+			if (GrupoDeInteresEntity.isEmpty())
 				throw new EntityNotFoundException(ErrorMessage.GRUPO_DE_INTERES_NOT_FOUND);
 
-			if (!bookEntity.get().getVecinos().contains(authorEntity.get()))
-				bookEntity.get().getVecinos().add(authorEntity.get());
+			if (!GrupoDeInteresEntity.get().getVecinos().contains(VecinoEntity.get()))
+				GrupoDeInteresEntity.get().getVecinos().add(VecinoEntity.get());
 		}
-		log.info("Finaliza proceso de reemplazar los libros asociados al author con id = {0}", authorId);
-		authorEntity.get().setGruposDeInteres(books);
-		return authorEntity.get().getGruposDeInteres();
+		log.info("Finaliza proceso de reemplazar los libros asociados al Vecino con id = {0}", VecinoId);
+		VecinoEntity.get().setGruposDeInteres(GrupoDeInteress);
+		return VecinoEntity.get().getGruposDeInteres();
 	}
 }
