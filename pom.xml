@@ -123,7 +123,6 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
-						<!--
 						<configuration>
 							<executable>
 								postman-combine-collections
@@ -132,9 +131,8 @@
 								--name Composed -f collections/*.postman_collection.json -o it/composed.collection.json
 							</commandlineArgs>
 						</configuration>
-						-->
 					</execution>
-					<execution>
+					<!--<execution>
 						<id>integration-tests-composed-collection</id>
 						<phase>integration-test</phase>
 						<goals>
@@ -148,7 +146,7 @@
 								run it/composed.collection.json -e collections/EntornoIT.postman_environment.json
 							</commandlineArgs>
 						</configuration>
-					</execution>
+					</execution-->
 				</executions>
 			</plugin>
 		</plugins>
