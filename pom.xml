@@ -112,7 +112,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--<plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.6.0</version>
@@ -123,6 +123,7 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
+						<!--
 						<configuration>
 							<executable>
 								postman-combine-collections
@@ -131,6 +132,7 @@
 								--name Composed -f collections/*.postman_collection.json -o it/composed.collection.json
 							</commandlineArgs>
 						</configuration>
+						-->
 					</execution>
 					<execution>
 						<id>integration-tests-composed-collection</id>
@@ -148,7 +150,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
 </project>
