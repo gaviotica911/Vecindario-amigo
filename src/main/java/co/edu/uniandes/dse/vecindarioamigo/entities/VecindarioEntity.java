@@ -35,6 +35,4 @@ public class VecindarioEntity extends BaseEntity{
                cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Zona_VerdeEntity> zonasVerdes = new ArrayList<>();
 
-
-
 }
