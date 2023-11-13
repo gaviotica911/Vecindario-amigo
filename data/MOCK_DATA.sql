@@ -1,29 +1,29 @@
 --inicio de población vecino_entity
 -- Barcelona
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('El Raval', 'Barcelona', 'Ciutat Vella');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Gothic Quarter', 'Barcelona', 'Ciutat Vella');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('El Poblenou', 'Barcelona', 'Sant Martí');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Gracia', 'Barcelona', 'Gracia');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('El Born', 'Barcelona', 'Ciutat Vella');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Sants', 'Barcelona', 'Sants-Montjuïc');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('La Barceloneta', 'Barcelona', 'Ciutat Vella');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Sarrià', 'Barcelona', 'Sarrià-Sant Gervasi');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('El Clot', 'Barcelona', 'Sant Martí');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Horta', 'Barcelona', 'Horta-Guinardó');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('El Raval', 'Barcelona', 'Ciutat Vella');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Gothic Quarter', 'Barcelona', 'Ciutat Vella');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('El Poblenou', 'Barcelona', 'Sant Martí');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Gracia', 'Barcelona', 'Gracia');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('El Born', 'Barcelona', 'Ciutat Vella');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Sants', 'Barcelona', 'Sants-Montjuïc');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('La Barceloneta', 'Barcelona', 'Ciutat Vella');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Sarrià', 'Barcelona', 'Sarrià-Sant Gervasi');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('El Clot', 'Barcelona', 'Sant Martí');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Horta', 'Barcelona', 'Horta-Guinardó');
 
 -- Valencia
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Patraix', 'Valencia', 'Patraix');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('La Saidia', 'Valencia', 'La Saidia');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('El Botanic', 'Valencia', 'Extramurs');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Ciutat de les Arts i les Ciències', 'Valencia', 'Quatre Carreres');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('El Saler', 'Valencia', 'Poblats del Sud');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Patraix', 'Valencia', 'Patraix');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('La Saidia', 'Valencia', 'La Saidia');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('El Botanic', 'Valencia', 'Extramurs');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Ciutat de les Arts i les Ciències', 'Valencia', 'Quatre Carreres');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('El Saler', 'Valencia', 'Poblats del Sud');
 
 -- Madrid
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Salamanca', 'Madrid', 'Salamanca');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Retiro', 'Madrid', 'Retiro');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Moncloa', 'Madrid', 'Moncloa-Aravaca');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Tetuán', 'Madrid', 'Tetuán');
-INSERT INTO Vecindario (nombre, ciudad, localidad) VALUES ('Vallecas', 'Madrid', 'Puente de Vallecas');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Salamanca', 'Madrid', 'Salamanca');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Retiro', 'Madrid', 'Retiro');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Moncloa', 'Madrid', 'Moncloa-Aravaca');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Tetuán', 'Madrid', 'Tetuán');
+INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Vallecas', 'Madrid', 'Puente de Vallecas');
 
 --inicio de crear vecino_entity
 insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion) values (1, 'Cassondra Havill', 29, 'https://robohash.org/aliasautfacere.png?size=50x50&set=set1', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.');
@@ -79,107 +79,4 @@ insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion) values (5
 insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion) values (51, 'Iormina Dofty', 48, 'https://robohash.org/quasiquoet.png?size=50x50&set=set1', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
 
 
--- crear grupos de interes
-
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (1, 'voleibol', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (2, 'béisbol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (3, 'voleibol', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (4, 'zumba', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (5, 'fútbol', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (6, 'baloncesto', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (7, 'baloncesto', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (8, 'béisbol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (9, 'fútbol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (10, 'béisbol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (11, 'zumba', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (12, 'zumba', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (13, 'pilates', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (14, 'kickboxing', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (15, 'pilates', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (16, 'pilates', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (17, 'pilates', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (18, 'béisbol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (19, 'béisbol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (20, 'ciclismo', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (21, 'fútbol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (22, 'baloncesto', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (23, 'zumba', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (24, 'pilates', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (25, 'fútbol', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (26, 'natación', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (27, 'béisbol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (28, 'baloncesto', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (29, 'kickboxing', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (30, 'zumba', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (31, 'baloncesto', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (32, 'baloncesto', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (33, 'yoga', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (34, 'voleibol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (35, 'kickboxing', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (36, 'béisbol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (37, 'béisbol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (38, 'voleibol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (39, 'ciclismo', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (40, 'kickboxing', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (41, 'fútbol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (42, 'voleibol', 'Este es un grupo para que todos podamos divertirnos y pasarla bien');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (43, 'voleibol', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (44, 'fútbol', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (45, 'kickboxing', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (46, 'pilates', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (47, 'natación', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (48, 'kickboxing', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (49, 'zumba', 'Un grupo hecho sola para las personas más valientes y comprometidas');
-insert into GRUPOS_DE_INTERES_ENTITY  (id, nombre, descripcion) values (50, 'ciclismo', 'Este es un grupo con el que podemos crecer en lo que nos gusta');
-
--- relacion vecino - grupo de interes
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (1, 26);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (2, 2);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (3, 43);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (4, 27);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (5, 20);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (6, 35);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (7, 20);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (8, 26);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (9, 44);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (10, 24);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (11, 21);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (12, 31);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (13, 44);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (14, 47);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (15, 29);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (16, 8);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (17, 29);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (18, 46);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (19, 44);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (20, 10);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (21, 17);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (22, 32);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (23, 30);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (24, 4);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (25, 24);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (26, 5);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (27, 11);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (28, 9);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (29, 15);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (30, 6);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (31, 7);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (32, 45);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (33, 28);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (34, 37);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (35, 23);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (36, 35);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (37, 45);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (38, 32);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (39, 48);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (40, 32);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (41, 17);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (42, 34);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (43, 44);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (44, 15);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (45, 8);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (46, 27);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (47, 32);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (48, 42);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (49, 46);
-insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (50, 31);
+--fin de crear vecino_entity
