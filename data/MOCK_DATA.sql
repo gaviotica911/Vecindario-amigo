@@ -182,3 +182,64 @@ insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID
 insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (48, 42);
 insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (49, 46);
 insert into GRUPOS_DE_INTERES_ENTITY_VECINOS  (GRUPOS_DE_INTERES_ID , VECINOS_ID ) values (50, 31);
+
+--centros comerciales
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.2, 'Gran centro comercial', 'Mall Plaza', 'Calle Principal 123', 1);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(3.8, 'Destino urbano de compras', 'City Center Mall', 'Avenida Roble 456', 2);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.5, 'Compras y entretenimiento', 'Sunset Plaza', 'Calle Arce 789', 3);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.0, 'Núcleo central de compras', 'Downtown Square Mall', 'Boulevard Pino 101', 4);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.8, 'Experiencia de compras frente al mar', 'Harbor View Mall', 'Drive Lakeshore 202', 5);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(3.5, 'Terapia de compras en el valle', 'Valley Mall', 'Calle Valley 555', 6);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.1, 'Compras con temática tropical', 'Palm Oasis Shopping Center', 'Calle Palm 777', 7);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(3.9, 'Compras orientadas al tránsito', 'Metro Junction', 'Transit Lane 888', 8);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.4, 'Compras inspiradas en la naturaleza', 'Silver Springs Plaza', 'Silver Street 999', 9);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.2, 'Compras entre espacios verdes', 'Central Park Mall', 'Avenida Park 111', 10);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.2, 'Gran centro comercial', 'Mall Plaza', 'Calle Principal 123', 11);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(3.8, 'Destino urbano de compras', 'City Center Mall', 'Avenida Roble 456', 12);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.5, 'Compras y entretenimiento', 'Sunset Plaza', 'Calle Arce 789', 13);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.0, 'Núcleo central de compras', 'Downtown Square Mall', 'Boulevard Pino 101', 14);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.8, 'Experiencia de compras frente al mar', 'Harbor View Mall', 'Drive Lakeshore 202', 15);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(3.5, 'Terapia de compras en el valle', 'Valley Mall', 'Calle Valley 555', 16);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.1, 'Compras con temática tropical', 'Palm Oasis Shopping Center', 'Calle Palm 777', 17);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(3.9, 'Compras orientadas al tránsito', 'Metro Junction', 'Transit Lane 888', 18);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.4, 'Compras inspiradas en la naturaleza', 'Silver Springs Plaza', 'Silver Street 999', 19);
+
+INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
+(4.2, 'Compras entre espacios verdes', 'Central Park Mall', 'Avenida Park 111', 20);
