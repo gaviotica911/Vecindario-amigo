@@ -26,7 +26,7 @@ INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Tetuán', 'Ma
 INSERT INTO vecindario_entity (nombre, ciudad, localidad) VALUES ('Vallecas', 'Madrid', 'Puente de Vallecas');
 
 --inicio de crear vecino_entity
-insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion, vecindario_id) values (1, 'Christian Espinoy', 60, 'https://robohash.org/eligendiaccusantiumlaborum.png?size=50x50&set=set1', 'Pusan National University', 5);
+insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion, vecindario_id) values (1, 'Gabriela', 19, 'src/assets/pic2.png', 'Bogotá :)', 5);
 insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion, vecindario_id) values (2, 'Kaitlyn Phelan', 37, 'https://robohash.org/sintconsequaturnon.png?size=50x50&set=set1', 'Western Bible College', 11);
 insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion, vecindario_id) values (3, 'Umeko Bartaletti', 42, 'https://robohash.org/perferendisidasperiores.png?size=50x50&set=set1', 'Georgian Court College', 19);
 insert into vecino_entity (id, nombre, edad, profile_Pic, descripcion, vecindario_id) values (4, 'Marcille Laxston', 51, 'https://robohash.org/dictaautrerum.png?size=50x50&set=set1', 'University of Trinidad and Tobago', 18);
@@ -296,7 +296,7 @@ insert into zona_verde_entity (id, nombre, descripcion, ubicacion, preferencias,
 insert into zona_verde_entity (id, nombre, descripcion, ubicacion, preferencias, calificacion, vecindario_id) values (49, 'Constantine Fishbourn', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 'Suite 67', 'Aquamarine', 3, 5);
 insert into zona_verde_entity (id, nombre, descripcion, ubicacion, preferencias, calificacion, vecindario_id) values (50, 'Bondy Seckom', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.', 'Apt 1849', 'Fuscia', 2, 7);
 --POSTS
-insert into publicacion_entity (id, contenido, fecha, foto, video, likes, compartidos, vecino_id) values (1, 'hierarchy', '2023-08-24', 'https://images.unsplash.com/photo-1699002159193-68fd17410f46?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://', 107301, 113508, 18);
+insert into publicacion_entity (id, contenido, fecha, foto, video, likes, compartidos, vecino_id) values (1, 'mis hijos', '2023-08-24', 'src/assets/post.png', 'https://', 107301, 113508, 1);
 insert into publicacion_entity (id, contenido, fecha, foto, video, likes, compartidos, vecino_id) values (2, 'Reactive', '2023-08-05', 'https://images.unsplash.com/photo-1695653420018-6fcd7709a268?q=80&w=3496&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://', 110928, 27813, 22);
 insert into publicacion_entity (id, contenido, fecha, foto, video, likes, compartidos, vecino_id) values (3, 'capability', '2023-02-21', 'https://cdn.pixabay.com/photo/2023/10/30/16/04/web-8353227_1280.png', 'https://', 7145, 101588, 46);
 insert into publicacion_entity (id, contenido, fecha, foto, video, likes, compartidos, vecino_id) values (4, 'demand-driven', '2023-03-22', 'https://images.unsplash.com/photo-1676828484325-5778145496a7?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'http://', 15631, 95768, 25);
