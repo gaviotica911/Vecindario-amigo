@@ -5,6 +5,10 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,10 +65,11 @@ public class VecindarioController {
      */
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<VecindarioDetailDTO> findAll() {
-		List<VecindarioEntity> vecindarios = vecindarioService.getVecindarios();
-		return modelMapper.map(vecindarios, new TypeToken<List<VecindarioDetailDTO>>() {
-		}.getType());
+	public Page<VecindarioDetailDTO> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
+											@RequestParam(value = "size", defaultValue = "10") int size) {
+		PageRequest pageable = PageRequest.of(page, size);
+		Page<VecindarioEntity> vecindariosPage = vecindarioService.getVecindarios(pageable);
+		return vecindariosPage.map(vecindario -> modelMapper.map(vecindario, VecindarioDetailDTO.class));
 	}
 
 	/**
