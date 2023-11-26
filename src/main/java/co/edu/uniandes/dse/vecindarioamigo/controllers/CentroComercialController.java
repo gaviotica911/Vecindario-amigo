@@ -35,6 +35,7 @@ public class CentroComercialController {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     public List<CentroComercialDetailDTO> findAll() {
+        System.out.println("The process of consulting all the shopping centers begins");
         List<CentroComercialEntity> centrosComerciales = centroComercialService.getCentrosComerciales();
         return modelMapper.map(centrosComerciales, new TypeToken<List<CentroComercialDetailDTO>>() {
         }.getType());
@@ -44,6 +45,7 @@ public class CentroComercialController {
     @GetMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public CentroComercialDetailDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException {
+        System.out.println("The process of consulting the shopping center with ID " + id + " begins");
         CentroComercialEntity centroComercial = centroComercialService.getCentroComercial(id);
         return modelMapper.map(centroComercial, CentroComercialDetailDTO.class);
     }
