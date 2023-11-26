@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 import co.edu.uniandes.dse.vecindarioamigo.dto.*;
 import co.edu.uniandes.dse.vecindarioamigo.entities.GruposDeInteresEntity;
+import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.GrupoDeInteresService;
@@ -33,12 +37,12 @@ public class GrupoDeInteresController {
 	
     @GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<GrupoDeInteresDetailDTO> findAll() {
-		List<GruposDeInteresEntity> authors = authorService.getGruposDeInteres();
-		return modelMapper.map(authors, new TypeToken<List<GrupoDeInteresDetailDTO>>() {
-		}.getType());
+	public Page<GrupoDeInteresDetailDTO> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
+											@RequestParam(value = "size", defaultValue = "10") int size) {
+		PageRequest pageable = PageRequest.of(page, size);
+		Page<GruposDeInteresEntity> gruposDeInteresPage = authorService.getGruposDeInteres(pageable);
+		return gruposDeInteresPage.map(grupoDeInteres -> modelMapper.map(grupoDeInteres, GrupoDeInteresDetailDTO.class));
 	}
-
 
     @GetMapping(value = "/{id}")
 	@ResponseStatus(code = HttpStatus.OK)

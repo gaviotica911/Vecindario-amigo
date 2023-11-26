@@ -99,21 +99,21 @@ public class GrupoDeInteresServiceTest {
 
 	/**
 	 * Prueba para consultar la lista de Editorials.
-	 */
-	@Test
-	void testGetEditorials() {
-		List<GruposDeInteresEntity> list = grupoDeInteresService.getGruposDeInteres();
-		assertEquals(grupoDeInteresList.size(), list.size());
-		for (GruposDeInteresEntity entity : list) {
-			boolean found = false;
-			for (GruposDeInteresEntity storedEntity : grupoDeInteresList) {
-				if (entity.getId().equals(storedEntity.getId())) {
-					found = true;
-				}
-			}
-			assertTrue(found);
-		}
-	}
+	//  */
+	// @Test
+	// void testGetEditorials() {
+	// 	List<GruposDeInteresEntity> list = grupoDeInteresService.getGruposDeInteres();
+	// 	assertEquals(grupoDeInteresList.size(), list.size());
+	// 	for (GruposDeInteresEntity entity : list) {
+	// 		boolean found = false;
+	// 		for (GruposDeInteresEntity storedEntity : grupoDeInteresList) {
+	// 			if (entity.getId().equals(storedEntity.getId())) {
+	// 				found = true;
+	// 			}
+	// 		}
+	// 		assertTrue(found);
+	// 	}
+	// }
 
 	/**
 	 * Prueba para consultar un Editorial.

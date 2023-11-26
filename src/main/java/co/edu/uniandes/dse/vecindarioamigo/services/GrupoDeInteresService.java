@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.*;
@@ -41,9 +43,9 @@ public class GrupoDeInteresService {
 	 * @return Colección de objetos de GruposDeInteresEntity.
 	 */
 	@Transactional
-    public List<GruposDeInteresEntity> getGruposDeInteres() {
-		log.info("Inicia proceso de consultar todos los GruposDeInterees");
-		return GrupoDeInteresRepository.findAll();
+	public Page<GruposDeInteresEntity> getGruposDeInteres(Pageable pageable) {
+		log.info("The process of consulting all the neighborhoods begins");
+		return GrupoDeInteresRepository.findAll(pageable);
 	}
 
 	/**
