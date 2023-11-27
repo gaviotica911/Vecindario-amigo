@@ -13,6 +13,9 @@ import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.repositories.Zona_VerdeRepository;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 
 @Service
 
@@ -37,6 +40,8 @@ public class Zona_VerdeService {
 	// retorna una lista con todas las zona verdes
 	@Transactional
 	public List<Zona_VerdeEntity> getZona_Verdes() {
+		log.info("The process of consulting all the zonas verdes begins");
+
 		return Zona_VerdeRepository.findAll();
 	}
 

@@ -5,6 +5,8 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniandes.dse.vecindarioamigo.dto.*;
 import co.edu.uniandes.dse.vecindarioamigo.entities.CentroComercialEntity;
-
+import co.edu.uniandes.dse.vecindarioamigo.entities.VecindarioEntity;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.vecindarioamigo.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.vecindarioamigo.services.CentroComercialService;
@@ -34,12 +37,12 @@ public class CentroComercialController {
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public List<CentroComercialDetailDTO> findAll() {
-        System.out.println("The process of consulting all the shopping centers begins");
-        List<CentroComercialEntity> centrosComerciales = centroComercialService.getCentrosComerciales();
-        return modelMapper.map(centrosComerciales, new TypeToken<List<CentroComercialDetailDTO>>() {
-        }.getType());
-
+    public Page<CentroComercialDetailDTO> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        Page<CentroComercialEntity> centrosComercialesPage = centroComercialService.getCentrosComerciales(pageable);
+        return centrosComercialesPage
+                .map(centroComercial -> modelMapper.map(centroComercial, CentroComercialDetailDTO.class));
     }
 
     @GetMapping(value = "/{id}")

@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniandes.dse.vecindarioamigo.entities.*;
@@ -39,9 +41,9 @@ public class CentroComercialService {
     }
 
     @Transactional
-    public List<CentroComercialEntity> getCentrosComerciales() {
-
-        return centroComercialRepository.findAll();
+    public Page<CentroComercialEntity> getCentrosComerciales(Pageable pageable) {
+        log.info("The process of consulting all the shopping centers begins");
+        return centroComercialRepository.findAll(pageable);
     }
 
     @Transactional
