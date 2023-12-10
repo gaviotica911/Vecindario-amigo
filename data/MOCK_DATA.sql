@@ -220,7 +220,7 @@ INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacio
 (3.8, 'Destino urbano de compras', 'City Center Mall', 'Avenida Roble 456', 1);
 
 INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
-(4.5, 'Compras y entretenimiento', 'Sunset Plaza', 'Calle Arce 789', 13);
+(4.4, 'Compras y entretenimiento', 'Sunset Plaza', 'Calle Arce 789', 13);
 
 INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
 (4.0, 'Núcleo central de compras', 'Downtown Square Mall', 'Boulevard Pino 101', 14);
