@@ -232,7 +232,7 @@ INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacio
 (3.5, 'Terapia de compras en el valle', 'Valley Mall', 'Calle Valley 555', 16);
 
 INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
-(4.1, 'Compras con temática tropical', 'Palm Oasis Shopping Center', 'Calle Palm 777', 17);
+(4.1, 'Compras con temática tropical', 'Palm Oasis Shopping Center', 'Calle Palm 77', 17);
 
 INSERT INTO centro_comercial_entity (calificacion, descripcion, nombre, ubicacion, vecindario_id) VALUES
 (3.9, 'Compras orientadas al tránsito', 'Metro Junction', 'Transit Lane 888', 18);
